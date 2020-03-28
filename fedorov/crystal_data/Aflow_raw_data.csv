@@ -1,0 +1,591 @@
+prototype_index,Prototype,Number of Species,Number of Atoms,Pearson Symbol,Strukturbericht Designation,AFLOW Prototype,Space Group Symbol,Space Group Number,Notes
+0,C,1,4,hP4,,A_hP4_194_f,P63/mmcP63/mmcP6_{3}/mmc,194,Lonsdaleite (Hexagonal Diamond) Structure
+1,Cr3Si,2,8,cP8,A15A15A15,A3B_cP8_223_c_a,Pmˉ3nPm3¯nPm\bar{3}n,223,Cr3Si (A15) Structure
+2,V4Zn5,2,9,tI18,,A4B5_tI18_139_i_ah,I4/mmmI4/mmmI4/mmm,139,V4Zn5 Structure
+3,Mn3O4,2,14,tI28,,A3B4_tI28_141_ad_h,I41/amdI41/amdI4_{1}/amd,141,Hausmannite (Mn3O4) Structure
+4,B5W2,2,14,hP14,D8hD8hD8_{h},A5B2_hP14_194_abdf_f,P63/mmcP63/mmcP6_{3}/mmc,194,W2B5 (D8h) Structure
+5,O3Pb(Ti0.48)Zr0.52,3,5,tP5,,A3BC_tP5_99_bc_a_b,P4mmP4mmP4mm,99,Tetragonal PZT [Pb(ZrxTi1–x)O3] Structure
+6,Ga2Hf,2,12,tI24,,A2B_tI24_141_2e_e,I41/amdI41/amdI4_{1}/amd,141,Ga2Hf Structure
+7,O2Si,2,12,tP12,C30C30C30,A2B_tP12_92_b_a,P41212P41212P4_{1}2_{1}2,92,"αα\alpha–Cristobalite (SiO2, C30C30C30, low) Structure"
+8,AuCu3,2,4,cP4,L12L12L1_{2},AB3_cP4_221_a_c,Pmˉ3mPm3¯mPm\bar{3}m,221,Cu3Au (L12) Structure
+9,BaS3,2,16,oP16,,AB3_oP16_18_ab_3c,P21212P21212P2_{1}2_{1}2,18,BaS3 Structure
+10,CrNaS2,3,4,hR4,F51F51F5_{1},ABC2_hR4_166_a_b_c,Rˉ3mR3¯mR\bar{3}m,166,"Caswellsilverite (CrNaS2, F51) Crystal Structure"
+11,BaHg11,2,36,cP36,D2eD2eD2_{e},AB11_cP36_221_c_agij,Pmˉ3mPm3¯mPm\bar{3}m,221,BaHg11 (D2e) Structure
+12,O2Si,2,72,mC144,,A2B_mC144_9_24a_12a,CcCcCc,9,Monoclinic (Cc) Low Tridymite (SiO2) Structure
+13,AsTi,2,8,hP8,BiBiB_{i},AB_hP8_194_ad_f,P63/mmcP63/mmcP6_{3}/mmc,194,AsTi (Bi) Structure
+14,Ca7Ge,2,8,cF32,,A7B_cF32_225_bd_a,Fmˉ3mFm3¯mFm\bar{3}m,225,Ca7Ge Structure
+15,Se,1,64,mP64,AkAkA_{k},A_mP64_14_16e,P21/cP21/cP2_{1}/c,14,Se (Ak) Structure
+16,Li3N,2,4,hP4,,A3B_hP4_191_bc_a,P6/mmmP6/mmmP6/mmm,191,Li3N Structure
+17,CClN,3,6,oP6,,ABC_oP6_59_a_a_a,PmmnPmmnPmmn,59,CNCl Structure
+18,GeS,2,8,oP8,B16B16B16,AB_oP8_62_c_c,PnmaPnmaPnma,62,GeS (B16) Structure
+19,O,1,2,mC4,,A_mC4_12_i,C2/mC2/mC2/m,12,αα\alpha–O Structure
+20,FeSi,2,8,cP8,B20B20B20,AB_cP8_198_a_a,P213P213P2_{1}3,198,FeSi (B20) Structure
+21,LiNbO3,3,10,hR10,,ABC3_hR10_161_a_a_b,R3cR3cR3c,161,Ferroelectric LiNbO3 Structure
+22,Al2MgO4,3,14,cF56,H11H11H1_{1},A2BC4_cF56_227_d_a_e,Fdˉ3mFd3¯mFd\bar{3}m,227,"Spinel (Al2MgO4, H11) Structure"
+23,OPb,2,4,tP4,B10B10B10,AB_tP4_129_a_c,P4/nmmP4/nmmP4/nmm,129,PbO (B10) Structure
+24,CaCO3,3,10,hR10,G01G01G0_{1},ABC3_hR10_167_a_b_e,Rˉ3cR3¯cR\bar{3}c,167,"Calcite (CaCO3, G01) Structure"
+25,FeB,2,8,oP8,B27B27B27,AB_oP8_62_c_c,PnmaPnmaPnma,62,FeB (B27) Structure
+26,Al3Zr,2,8,tI16,D023D023D0_{23},A3B_tI16_139_cde_e,I4/mmmI4/mmmI4/mmm,139,Al3Zr (D023) Structure
+27,AuTe2,2,3,mC6,C34C34C34,AB2_mC6_12_a_i,C2/mC2/mC2/m,12,"Calaverite (AuTe2, C34) Structure"
+28,AsCuSiZr,4,8,tP8,,ABCD_tP8_129_c_b_a_c,P4/nmmP4/nmmP4/nmm,129,AsCuSiZr Structure
+29,O2Si,2,12,mP12,,A2B_mP12_3_bc3e_2e,P2P2P2,3,SiO2 (P2) Structure
+30,O2Ti,2,24,oP24,C21C21C21,A2B_oP24_61_2c_c,PbcaPbcaPbca,61,"Brookite (TiO2, C21) Structure"
+31,CuTi,2,4,tP4,B11B11B11,AB_tP4_129_c_c,P4/nmmP4/nmmP4/nmm,129,γγ\gamma–CuTi (B11) Structure
+32,O3Re,2,4,cP4,D09D09D0_{9},A3B_cP4_221_d_a,Pmˉ3mPm3¯mPm\bar{3}m,221,αα\alpha–ReO3 (D09) Structure
+33,Si,1,34,cF136,,A_cF136_227_aeg,Fdˉ3mFd3¯mFd\bar{3}m,227,Si34 Clathrate Structure
+34,AsCu3S4,3,16,oP16,H25H25H2_{5},AB3C4_oP16_31_a_ab_2ab,Pmn21Pmn21Pmn2_{1},31,"Enargite (AsCu3S4, H25) Structure"
+35,Cu3S4V,3,8,cP8,H24H24H2_{4},A3B4C_cP8_215_d_e_a,Pˉ43mP4¯3mP\bar{4}3m,215,"Sulvanite (Cu3S4V, H24) Structure"
+36,Cu3Ti,2,8,oP8,D0aD0aD0_{a},A3B_oP8_59_bf_a,PmmnPmmnPmmn,59,ββ\beta–TiCu3 (D0a) Structure
+37,AsK3S4,3,32,oP32,,AB3C4_oP32_33_a_3a_4a,Pna21Pna21Pna2_{1},33,AsK3S4 Structure
+38,C6Cr23,2,29,cF116,D84D84D8_{4},A6B23_cF116_225_e_acfh,Fmˉ3mFm3¯mFm\bar{3}m,225,Cr23C6 (D84) Structure
+39,Fe7W6,2,13,hR13,D85D85D8_{5},A7B6_hR13_166_ah_3c,Rˉ3mR3¯mR\bar{3}m,166,Fe7W6 (D85) μμ\mu–phase
+40,ReSi2,2,3,oI6,,AB2_oI6_71_a_i,ImmmImmmImmm,71,ReSi2 Structure
+41,AgAsMg,3,3,cF12,C1bC1bC1_{b},ABC_cF12_216_b_c_a,Fˉ43mF4¯3mF\bar{4}3m,216,Half–Heusler (C1b) Structure
+42,Sb2Tl7,2,27,cI54,L22L22L2_{2},A2B7_cI54_229_e_afh,Imˉ3mIm3¯mIm\bar{3}m,229,Sb2Tl7 (L22) Structure
+43,Al5C3N,3,18,hP18,E94E94E9_{4},A5B3C_hP18_186_2a3b_2ab_b,P63mcP63mcP6_{3}mc,186,Al5C3N (E94) Structure
+44,HgS,2,6,hP6,B9B9B9,AB_hP6_154_a_b,P3221P3221P3_{2}21,154,Cinnabar (B9) Structure
+45,Al3Ti,2,4,tI8,D022D022D0_{22},A3B_tI8_139_bd_a,I4/mmmI4/mmmI4/mmm,139,Al3Ti (D022) Structure
+46,C,1,4,tI8,,A_tI8_139_h,I4/mmmI4/mmmI4/mmm,139,Hypothetical Tetrahedrally Bonded Carbon with 4–Member Rings
+47,AuCd,2,4,oP4,B19B19B19,AB_oP4_51_e_f,PmmaPmmaPmma,51,β′β′\beta'–AuCd (B19) Structure
+48,MoNi4,2,5,tI10,D1aD1aD1_{a},AB4_tI10_87_a_h,I4/mI4/mI4/m,87,Ni4Mo (D1a) Structure
+49,"Al,Mg32(Zn)49",3,81,cI162,D8eD8eD8_{e},AB32C48_cI162_204_a_2efg_2gh,Imˉ3Im3¯Im\bar{3},204,"Bergman [Mg32(Al,Zn)49] Structure"
+50,BaPtSb,3,3,hP3,,ABC_hP3_187_a_d_f,Pˉ6m2P6¯m2P\bar{6}m2,187,BaPtSb Structure
+51,CoU,2,8,cI16,BaBaB_{a},AB_cI16_199_a_a,I213I213I2_{1}3,199,CoU (Ba) Structure
+52,Al3Ni2,2,5,hP5,D513D513D5_{13},A3B2_hP5_164_ad_d,Pˉ3m1P3¯m1P\bar{3}m1,164,Al3Ni2 (D513) Structure
+53,Cu2FeS4Sn,4,8,tI16,H26H26H2_{6},A2BC4D_tI16_121_d_a_i_b,Iˉ42mI4¯2mI\bar{4}2m,121,"Stannite (Cu2FeS4Sn, H26) Structure"
+54,alpha-Pa,1,1,tI2,AaAaA_{a},A_tI2_139_a,I4/mmmI4/mmmI4/mmm,139,αα\alpha–Pa (Aa) Structure
+55,BN,2,4,hP4,B12B12B12,AB_hP4_186_b_a,P63mcP63mcP6_{3}mc,186,Original BN (B12) Structure
+56,MnP,2,8,oP8,B31B31B31,AB_oP8_62_c_c,PnmaPnmaPnma,62,MnP (B31) Structure
+57,CrFe4Ni3,3,8,cI16,,AB4C3_cI16_229_a_c_b,Imˉ3mIm3¯mIm\bar{3}m,229,Model of Ferrite Structure (cI16)
+58,As3Co,2,16,cI32,D02D02D0_{2},A3B_cI32_204_g_c,Imˉ3Im3¯Im\bar{3},204,"Skutterudite (CoAs3, D02) Structure"
+59,CuTi3,2,4,tP4,L60L60L6_{0},AB3_tP4_123_a_ce,P4/mmmP4/mmmP4/mmm,123,CuTi3 (L60) Structure
+60,eta-Fe2C,2,6,oP6,,AB2_oP6_58_a_g,PnnmPnnmPnnm,58,ηη\eta–Fe2C Structure
+61,FTl,2,2,oF8,B24B24B24,AB_oF8_69_a_b,FmmmFmmmFmmm,69,TlF (B24) Structure
+62,alpha-Ga,1,4,oC8,A11A11A11,A_oC8_64_f,CmcaCmcaCmca,64,αα\alpha–Ga (A11) Structure
+63,H3S,2,4,cI8,,A3B_cI8_229_b_a,Imˉ3mIm3¯mIm\bar{3}m,229,High–pressure H3S Structure
+64,FTl,2,8,oP8,,AB_oP8_57_d_d,PbcmPbcmPbcm,57,TlF–II Structure
+65,Po,1,1,cP1,AhAhA_{h},A_cP1_221_a,Pmˉ3mPm3¯mPm\bar{3}m,221,αα\alpha–Po (Ah) Structure
+66,LiNbO3,3,10,hR10,,ABC3_hR10_167_a_b_e,Rˉ3cR3¯cR\bar{3}c,167,Paraelectric LiNbO3 Structure
+67,BiI3,2,8,hR8,D05D05D0_{5},AB3_hR8_148_c_f,Rˉ3R3¯R\bar{3},148,BiI3 (D05) Structure
+68,O4Pt3,2,7,cI14,,A4B3_cI14_229_c_b,Imˉ3mIm3¯mIm\bar{3}m,229,Pt3O4 Structure
+69,Si,1,12,tP12,,A_tP12_96_ab,P43212P43212P4_{3}2_{1}2,96,ST12 Structure of Si
+70,BeO,2,8,tP8,,AB_tP8_136_g_f,P42/mnmP42/mnmP4_{2}/mnm,136,ββ\beta–BeO Structure
+71,Al2Cu,2,6,tI12,C16C16C16,A2B_tI12_140_h_a,I4/mcmI4/mcmI4/mcm,140,"Khatyrkite (Al2Cu, C16) Structure"
+72,ClKO3,3,10,mP10,G06G06G0_{6},ABC3_mP10_11_e_e_ef,P21/mP21/mP2_{1}/m,11,KClO3 (G06) Structure
+73,B,1,12,hR12,,A_hR12_166_2h,Rˉ3mR3¯mR\bar{3}m,166,αα\alpha–B (hR12) Structure
+74,NbP,2,4,tI8,"""40""""40""""40""",AB_tI8_141_a_b,I41/amdI41/amdI4_{1}/amd,141,"NbP (""40"") Structure"
+75,CW,2,2,hP2,BhBhB_{h},AB_hP2_187_d_a,Pˉ6m2P6¯m2P\bar{6}m2,187,Tungsten Carbide (Bh) Structure
+76,CuPt,2,2,hR2,L11L11L1_{1},AB_hR2_166_a_b,Rˉ3mR3¯mR\bar{3}m,166,CuPt (L11) Structure
+77,NiS,2,6,hR6,B13B13B13,AB_hR6_160_b_b,R3mR3mR3m,160,"Millerite (NiS, B13) Structure"
+78,O2Si,2,36,tP36,,A2B_tP36_96_3b_ab,P43212P43212P4_{3}2_{1}2,96,Keatite (SiO2) Structure
+79,Cl3Cr,2,24,hP24,D04D04D0_{4},A3B_hP24_151_3c_2a,P3112P3112P3_{1}12,151,CrCl3 (D04) Crystal Structure
+80,HgCl2,2,12,oP12,C25C25C25,A2B_oP12_62_2c_c,PnmaPnmaPnma,62,HgCl2 (C25) Structure
+81,CaFeO6Si2,4,20,mC40,,ABC6D2_mC40_15_e_e_3f_f,C2/cC2/cC2/c,15,Esseneite Structure
+82,AuCu,2,2,tP2,L10L10L1_{0},AB_tP2_123_a_d,P4/mmmP4/mmmP4/mmm,123,CuAu (L10) Structure
+83,Sm,1,3,hR3,C19C19C19,A_hR3_166_ac,Rˉ3mR3¯mR\bar{3}m,166,αα\alpha–Sm (C19) Structure
+84,Cr9Fe16Ni7,3,32,cF128,,A9B16C7_cF128_225_acd_2f_be,Fmˉ3mFm3¯mFm\bar{3}m,225,Model of Ferrite Structure (cF128)
+85,Ag2Se,2,12,oP12,,A2B_oP12_19_2a_a,P212121P212121P2_{1}2_{1}2_{1},19,Naumannite (Ag2Se) Structure
+86,PdS,2,16,tP16,B34B34B34,AB_tP16_84_cej_k,P42/mP42/mP4_{2}/m,84,PdS (B34) Structure
+87,Po,1,6,mC12,A19A19A19,A_mC12_5_3c,C2C2C2,5,Po (A19) Structure
+88,Al2O3,2,10,hR10,D51D51D5_{1},A2B3_hR10_167_c_e,Rˉ3cR3¯cR\bar{3}c,167,"Corundum (Al2O3, D51) Structure"
+89,CuO,2,4,mC8,B26B26B26,AB_mC8_15_c_e,C2/cC2/cC2/c,15,"Tenorite (CuO, B26) Structure"
+90,CSi,2,12,hP12,B6B6B6,AB_hP12_186_a2b_a2b,P63mcP63mcP6_{3}mc,186,Moissanite–6H SiC (B6) Structure
+91,CrFe,5,30,tP30,D8bD8bD8_{b},sigma_tP30_136_bf2ij,P42/mnmP42/mnmP4_{2}/mnm,136,σσ\sigma–CrFe (D8b) Structure
+92,CKNS,4,16,oP16,F59F59F5_{9},ABCD_oP16_57_d_c_d_d,PbcmPbcmPbcm,57,KCNS (F59) Structure
+93,Si2Zr,2,6,oC12,C49C49C49,A2B_oC12_63_2c_c,CmcmCmcmCmcm,63,ZrSi2 (C49) Structure
+94,MgNi2,2,24,hP24,C36C36C36,AB2_hP24_194_ef_fgh,P63/mmcP63/mmcP6_{3}/mmc,194,MgNi2 Hexagonal Laves (C36) Structure
+95,CSi,2,6,hR6,,AB_hR6_160_3a_3a,R3mR3mR3m,160,Moissanite 9R Crystal Structure
+96,O2Si,2,9,hP9,C8C8,A2B_hP9_180_j_c,P6222P6_{2}22,180,"β\beta–Quartz (SiO2, C8)"
+97,B2C2Mg,3,40,oC80,,A2B2C_oC80_64_efg_efg_df,CmcaCmca,64,MgB2C2 Crystal Structure
+98,O2Si,2,24,mC48,,A2B_mC48_15_ae3f_2f,C2/cC2/c,15,Coesite (SiO2) Structure
+99,Li,1,8,cI16,,A_cI16_220_c,Iˉ43dI\bar{4}3d,220,High–pressure cI16 Li Structure
+100,CaCu5,2,6,hP6,D2dD2_{d},AB5_hP6_191_a_cg,P6/mmmP6/mmm,191,CaCu5 (D2d) Structure
+101,AuBe5,2,6,cF24,C15bC15_{b},AB5_cF24_216_a_ce,Fˉ43mF\bar{4}3m,216,AuBe5 (C15b) Structure
+102,Ga4Ni,2,20,cI40,,A4B_cI40_197_cde_c,I23I23,197,Ga4Ni Structure
+103,C3Pu2,2,20,cI40,D5cD5_{c},A3B2_cI40_220_d_c,Iˉ43dI\bar{4}3d,220,Pu2C3 (D5c) Structure
+104,Cu2Mg,2,6,cF24,C15C15,A2B_cF24_227_d_a,Fdˉ3mFd\bar{3}m,227,Cu2Mg Cubic Laves Structure (C15)
+105,Bi2Te3,2,5,hR5,C33C33,A2B3_hR5_166_c_ac,Rˉ3mR\bar{3}m,166,Bi2Te3 Structure (C33)
+106,AlCCr2,3,8,hP8,,ABC2_hP8_194_d_a_f,P63/mmcP6_{3}/mmc,194,AlCCr2 Structure
+107,CoGa5Ho,3,7,tP7,,AB5C_tP7_123_b_ci_a,P4/mmmP4/mmm,123,HoCoGa5 Structure
+108,Te,1,4,mP4,,A_mP4_4_2a,P21P2_{1},4,High–pressure Te Structure
+109,NbO,2,6,cP6,,AB_cP6_221_c_d,Pmˉ3mPm\bar{3}m,221,NbO Structure
+110,AsNi,2,4,hP4,B81B8_{1},AB_hP4_194_c_a,P63/mmcP6_{3}/mmc,194,NiAs (B81) Structure
+111,InNi2,2,6,hP6,B82B8_{2},AB2_hP6_194_c_ad,P63/mmcP6_{3}/mmc,194,Ni2In (B82) Structure
+112,O3Pb(Ti0.48)Zr0.52,3,5,mC10,,A3BC_mC10_8_ab_a_a,CmCm,8,Monoclinic PZT [Pb(ZrxTi1–x)O3] Structure
+113,O2Zr,2,12,mP12,C43C43,A2B_mP12_14_2e_e,P21/cP2_{1}/c,14,"Baddeleyite (ZrO2, C43) Structure"
+114,Mn,1,29,cI58,A12A12,A_cI58_217_ac2g,Iˉ43mI\bar{4}3m,217,α\alpha–Mn (A12) Structure
+115,CoSn,2,6,hP6,B35B35,AB_hP6_191_f_ad,P6/mmmP6/mmm,191,CoSn (B35) Structure
+116,CaCuO2,3,4,tP4,,ABC2_tP4_123_d_a_f,P4/mmmP4/mmm,123,CaCuO2 Structure
+117,Si,1,8,cI16,,A_cI16_206_c,Iaˉ3Ia\bar{3},206,BC8 (Si) Structure
+118,ClCu,2,16,cP16,,AB_cP16_205_c_c,Paˉ3Pa\bar{3},205,SC16 (CuCl) Structure
+119,Np,1,4,tP4,AdA_{d},A_tP4_129_ac,P4/nmmP4/nmm,129,β\beta–Np (Ad) Structure
+120,FeS2,2,12,aP12,,AB2_aP12_1_4a_8a,P1P1,1,FeS2 (P1) Structure
+121,CaO3Ti,3,20,oP20,,AB3C_oP20_62_c_cd_a,PnmaPnma,62,CaTiO3 Pnma Perovskite Structure
+122,Si2U3,2,10,tP10,D5aD5_{a},A2B3_tP10_127_g_ah,P4/mbmP4/mbm,127,Si2U3 (D5a) Structure
+123,Cu2O,2,6,cP6,C3C3,A2B_cP6_224_b_a,Pnˉ3mPn\bar{3}m,224,"Cuprite (Cu2O, C3) Structure"
+124,Pu,1,16,mP16,,A_mP16_11_8e,P21/mP2_{1}/m,11,α\alpha–Pu Structure
+125,AsGa,2,2,oI4,,AB_oI4_44_a_b,Imm2Imm2,44,High–pressure GaAs Structure
+126,SiU3,2,8,tI16,D0cD0_{c},AB3_tI16_140_b_ah,I4/mcmI4/mcm,140,SiU3 (D0c) Structure
+127,CdTe,2,2,oP2,,AB_oP2_25_b_a,Pmm2Pmm2,25,High–pressure CdTe Structure
+128,BaS3,2,8,tP8,D017D0_{17},AB3_tP8_113_a_ce,Pˉ421mP\bar{4}2_{1}m,113,BaS3 (D017) Structure
+129,ClNa,2,2,cF8,B1B1,AB_cF8_225_a_b,Fmˉ3mFm\bar{3}m,225,"Rock Salt (NaCl, B1) Structure"
+130,Mn,1,20,cP20,A13A13,A_cP20_213_cd,P4132P4_{1}32,213,β\beta–Mn (A13) Structure
+131,AlB4Mg,3,6,hP6,,AB4C_hP6_191_a_h_b,P6/mmmP6/mmm,191,AlB4Mg Structure
+132,Ni3S2,2,5,hR5,D5eD5_{e},A3B2_hR5_155_e_c,R32R32,155,"Hazelwoodite (Ni3S2, D5e) Structure"
+133,Np,1,8,oP8,AcA_{c},A_oP8_62_2c,PnmaPnma,62,α\alpha–Np (Ac) Structure
+134,Mg,1,2,hP2,A3A3,A_hP2_194_c,P63/mmcP6_{3}/mmc,194,"Hexagonal Close Packed (Mg, A3) Structure"
+135,CFe3,2,16,oP16,D011D0_{11},AB3_oP16_62_c_cd,PnmaPnma,62,"Cementite (Fe3C, D011) Structure"
+136,B,1,50,tP50,AgA_{g},A_tP50_134_b2m2n,P42/nnmP4_{2}/nnm,134,T–50 B (Ag) Structure
+137,Br2Hg,2,6,oC12,C24C24,A2B_oC12_36_2a_a,Cmc21Cmc2_{1},36,HgBr2 (C24) Structure
+138,N,1,8,cP8,,A_cP8_205_c,Paˉ3Pa\bar{3},205,α\alpha–N (Pa3) Structure
+139,Fe2P,2,9,hP9,C22C22,A2B_hP9_150_ef_bd,P321P321,150,Original Fe2P (C22) Structure
+140,Cu,1,1,cF4,A1A1,A_cF4_225_a,Fmˉ3mFm\bar{3}m,225,"Face–Centered Cubic (Cu, A1) Structure"
+141,CuTe,2,4,oP4,,AB_oP4_59_a_b,PmmnPmmn,59,Vulcanite (CuTe) Structure
+142,MoS2,2,6,hP6,C7C7,AB2_hP6_194_c_f,P63/mmcP6_{3}/mmc,194,"Molybdenite (MoS2, C7) Structure"
+143,AlPd,2,26,hR26,,AB_hR26_148_b2f_a2f,Rˉ3R\bar{3},148,PdAl Structure
+144,Cu5Zn8,2,26,cI52,D82D8_{2},A5B8_cI52_217_ce_cg,Iˉ43mI\bar{4}3m,217,"γ\gamma–Brass (Cu5Zn8, D82D8_{2}) Structure"
+145,FeS2,2,12,cP12,C2C2,AB2_cP12_205_a_c,Paˉ3Pa\bar{3},205,"Pyrite (FeS2, C2) Structure"
+146,SeTl,2,8,tI16,B37B37,AB_tI16_140_ab_h,I4/mcmI4/mcm,140,SeTl (B37) Structure
+147,CuS,2,12,hP12,B18B18,AB_hP12_194_df_ce,P63/mmcP6_{3}/mmc,194,"Covellite (CuS, B18) Structure"
+148,PtSn4,2,10,oC20,D1cD1_{c},AB4_oC20_41_a_2b,Aba2Aba2,41,PtSn4 Structure
+149,CrFe27MoNi3,4,32,cP32,,AB27CD3_cP32_221_a_dij_b_c,Pmˉ3mPm\bar{3}m,221,Model of Austenite Structure (cP32)
+150,Ba2Cu3O7–xY,4,13,oP13,,A2B3C7D_oP13_47_t_aq_eqrs_h,PmmmPmmm,47,1212C [YBa2Cu3O7–x] High–Tc Structure
+151,CrFe12Ni3,3,16,cI32,,AB12C3_cI32_229_a_h_b,Imˉ3mIm\bar{3}m,229,Model of Austenite Structure (cI32)
+152,Fe2P,2,9,hP9,C22C22,A2B_hP9_189_fg_bc,Pˉ62mP\bar{6}2m,189,Revised Fe2P (C22) Crystal Structure
+153,CFe4,2,5,cP5,,AB4_cP5_215_a_e,Pˉ43mP\bar{4}3m,215,Fe4C Structure
+154,CuS2Sb,3,16,oP16,F56F5_{6},AB2C_oP16_62_c_2c_c,PnmaPnma,62,"Chalcostibite (CuSbS2, F56)"
+155,U,1,30,tP30,AbA_{b},A_tP30_136_bf2ij,P42/mnmP4_{2}/mnm,136,β\beta–U (Ab) Structure
+156,CaF2,2,3,cF12,C1C1,AB2_cF12_225_a_c,Fmˉ3mFm\bar{3}m,225,"Fluorite (CaF2, C1) Structure"
+157,Mg2Ni,2,18,hP18,CaC_{a},A2B_hP18_180_fi_bd,P6222P6_{2}22,180,Mg2Ni (Ca) Structure
+158,C,1,2,hR2,,A_hR2_166_c,Rˉ3mR\bar{3}m,166,Rhombohedral Graphite Structure
+159,CrFe18Ni8,3,27,cF108,,AB18C8_cF108_225_a_eh_f,Fmˉ3mFm\bar{3}m,225,Model of Austenite Structure (cF108)
+160,AlN3Ti4,3,16,hP16,,AB3C4_hP16_194_c_af_ef,P63/mmcP6_{3}/mmc,194,AlN3Ti4 Structure
+161,S3Sb2,2,20,oP20,D58D5_{8},A3B2_oP20_62_3c_2c,PnmaPnma,62,"Stibnite (Sb2S3, D58) Structure"
+162,PtS,2,4,tP4,B17B17,AB_tP4_131_c_e,P42/mmcP4_{2}/mmc,131,"Cooperite (PtS, B17B17) Structure"
+163,U,1,2,oC4,A20A20,A_oC4_63_c,CmcmCmcm,63,α\alpha–U (A20) Structure
+164,CrFe11MoNi3,4,16,cP16,,AB11CD3_cP16_221_a_dg_b_c,Pmˉ3mPm\bar{3}m,221,Model of Ferrite Structure (cP16)
+165,SnS,2,8,oP8,B29B29,AB_oP8_62_c_c,PnmaPnma,62,SnS (B29) Structure
+166,MgZn2,2,12,hP12,C14C14,AB2_hP12_194_f_ah,P63/mmcP6_{3}/mmc,194,MgZn2 Hexagonal Laves (C14) Structure
+167,AsCo,2,8,oP8,,AB_oP8_33_a_a,Pna21Pna2_{1},33,Modderite (CoAs) Structure
+168,C,1,6,hP6,,A_hP6_194_h,P63/mmcP6_{3}/mmc,194,Hypothetical Tetrahedrally Bonded Carbon with 3–Member Rings
+169,N,1,8,cP8,,A_cP8_198_2a,P213P2_{1}3,198,α\alpha–N (P213) Structure
+170,AlPS4,3,12,oP12,,ABC4_oP12_16_ag_cd_2u,P222P222,16,AlPS4 Structure
+171,O2Si,2,6,cF24,C9C9,A2B_cF24_227_c_a,Fdˉ3mFd\bar{3}m,227,"Ideal β\beta–Cristobalite (SiO2, C9) Structure"
+172,B12U,2,13,cF52,D2fD2_{f},A12B_cF52_225_i_a,Fmˉ3mFm\bar{3}m,225,UB12 Structure
+173,CFe3,2,8,hP8,,AB3_hP8_182_c_g,P6322P6_{3}22,182,Bainite (Fe3C) Structure
+174,BiF3,2,4,cF16,D03D0_{3},AB3_cF16_225_a_bc,Fmˉ3mFm\bar{3}m,225,BiF3 (D03) Structure
+175,Si,1,46,cP46,,A_cP46_223_dik,Pmˉ3nPm\bar{3}n,223,Si46 Clathrate Structure
+176,B2Pd5,2,14,mC28,,A2B5_mC28_15_f_e2f,C2/cC2/c,15,B2Pd5 Structure
+177,CdPt3,2,4,oC8,L13L1_{3},AB3_oC8_65_a_bf,CmmmCmmm,65,Predicted CdPt3 (L13) Structure
+178,Ag(CKN)2,4,36,hP36,F510F5_{10},AB2CD2_hP36_163_h_i_bf_i,Pˉ31cP\bar{3}1c,163,KAg(CN)2 (F510) Structure
+179,I,1,4,oC8,A14A14,A_oC8_64_f,CmcaCmca,64,Molecular Iodine (I) Crystal Structure (A14)
+180,O2Ti,2,6,tI12,C5C5,A2B_tI12_141_e_a,I41/amdI4_{1}/amd,141,"Anatase (TiO2, C5) Structure"
+181,Pu,1,2,oF8,,A_oF8_70_a,FdddFddd,70,γ\gamma–Pu Structure
+182,NV2,2,9,hP9,,AB2_hP9_162_ad_k,Pˉ31mP\bar{3}1m,162,β\beta–V2N Structure
+183,AuTe2,2,24,oP24,C46C46,AB2_oP24_28_acd_2c3d,Pma2Pma2,28,"Krennerite (AuTe2, C46) Structure"
+184,Mn2O3,3,40,cI80,D53D5_{3},AB3C6_cI80_206_a_d_e,Iaˉ3Ia\bar{3},206,"Bixbyite (Mn2O3, D53) Structure"
+185,Se,1,3,hP3,A8A8,A_hP3_152_a,P3121P3_{1}21,152,γ\gamma–Se (A8) Structure
+186,O2Ti,2,6,tP6,C4C4,A2B_tP6_136_f_a,P42/mnmP4_{2}/mnm,136,"Rutile (TiO2, C4) Structure"
+187,alpha-CO,2,8,cP8,B21B21,AB_cP8_198_a_a,P213P2_{1}3,198,α\alpha–CO (B21) Structure
+188,NiTi,2,4,mP4,,AB_mP4_11_e_e,P21/mP2_{1}/m,11,NiTi Structure
+189,NiSSb,3,12,cP12,F01F0_{1},ABC_cP12_198_a_a_a,P213P2_{1}3,198,"Ullmanite (NiSSb, F01) Structure"
+190,beta-Po,1,1,hR1,AiA_{i},A_hR1_166_a,Rˉ3mR\bar{3}m,166,β\beta–Po (Ai) Structure
+191,CrSi2,2,9,hP9,C40C40,AB2_hP9_180_d_j,P6222P6_{2}22,180,CrSi2 (C40) Structure
+192,Al2CdS4,3,7,tI14,E3E3,A2BC4_tI14_82_bc_a_g,Iˉ4I\bar{4},82,CdAl2S4 (E3) Structure
+193,B5Mo2,2,7,hR7,D8iD8_{i},A5B2_hR7_166_a2c_c,Rˉ3mR\bar{3}m,166,Mo2B5 (D8i) Structure
+194,GeS2,2,18,oF72,C44C44,AB2_oF72_43_ab_3b,Fdd2Fdd2,43,GeS2 (C44) Structure
+195,C,1,4,hP4,,A_hP4_186_ab,P63mcP6_{3}mc,186,Buckled Graphite Structure
+196,ClCs,2,2,cP2,B2B2,AB_cP2_221_b_a,Pmˉ3mPm\bar{3}m,221,CsCl (B2) Structure
+197,HgSn6–10,1,1,hP1,AfA_{f},A_hP1_191_a,P6/mmmP6/mmm,191,Simple Hexagonal Lattice (Af)
+198,AgZn,2,9,hP9,BbB_{b},A2B_hP9_147_g_ad,Pˉ3P\bar{3},147,ζ\zeta–AgZn (Bb) Structure
+199,BMo,2,8,tI16,BgB_{g},AB_tI16_141_e_e,I41/amdI4_{1}/amd,141,MoB (Bg) Structure
+200,H3N,2,16,cP16,D1D1,A3B_cP16_198_b_a,P213P2_{1}3,198,"Ammonia (NH3, D1) Structure"
+201,C2CeNi,3,4,oC8,,A2BC_oC8_38_e_a_b,Amm2Amm2,38,C2CeNi Structure
+202,N,1,4,tP4,,A_tP4_136_f,P42/mnmP4_{2}/mnm,136,γ\gamma–N Structure
+203,AlB2,2,3,hP3,C32C32,AB2_hP3_191_a_d,P6/mmmP6/mmm,191,Hexagonal ω\omega (C32) Structure
+204,alpha-Hg,1,1,hR1,A10A10,A_hR1_166_a,Rˉ3mR\bar{3}m,166,α\alpha–Hg (A10) Structure
+205,AsNa3,2,8,hP8,D018D0_{18},AB3_hP8_194_c_bf,P63/mmcP6_{3}/mmc,194,Na3As (D018) Structure
+206,S,1,32,oF128,A16A16,A_oF128_70_4h,FdddFddd,70,α\alpha–S (A16) Structure
+207,Si,1,2,tI4,,A_tI4_139_e,I4/mmmI4/mmm,139,Hypothetical BCT5 Si Structure
+208,B,1,105,hR105,,A_hR105_166_bc9h4i,Rˉ3mR\bar{3}m,166,β\beta–B (R–105) Structure
+209,C,1,4,hP4,A9A9,A_hP4_194_bc,P63/mmcP6_{3}/mmc,194,Hexagonal Graphite (A9) Crystal Structure
+210,O4SiZr,3,12,tI24,S11S1_{1},A4BC_tI24_141_h_b_a,I41/amdI4_{1}/amd,141,"Zircon (ZrSiO4, S11S1_{1}) Structure"
+211,BO4P,3,6,tI12,H07H0_{7},AB4C_tI12_82_c_g_a,Iˉ4I\bar{4},82,BPO4 (H07) Structure
+212,FeS2,2,6,oP6,C18C18,AB2_oP6_58_a_g,PnnmPnnm,58,"Marcasite (FeS2, C18) Structure"
+213,CaO3Ti,3,5,cP5,E21E2_{1},AB3C_cP5_221_a_c_b,Pmˉ3mPm\bar{3}m,221,"Cubic Perovskite (CaTiO3, E21) Structure"
+214,CdSb,2,16,oP16,BeB_{e},AB_oP16_61_c_c,PbcaPbca,61,CdSb (Be) Structure
+215,Se,1,32,mP32,AlA_{l},A_mP32_14_8e,P21/cP2_{1}/c,14,β\beta–Se (Al) Structure
+216,SZn,2,4,hP4,B4B4,AB_hP4_186_b_b,P63mcP6_{3}mc,186,"Wurtzite (ZnS, B4) Structure"
+217,IrV,2,4,oC8,,AB_oC8_65_j_g,CmmmCmmm,65,α\alpha–IrV Crystal Structure
+218,BCLi,3,6,hP6,,ABC_hP6_194_c_d_a,P63/mmcP6_{3}/mmc,194,LiBC Structure
+219,CTi2,2,12,cF48,,AB2_cF48_227_c_e,Fdˉ3mFd\bar{3}m,227,CTi2 Structure
+220,F4Si,2,5,cI10,D12D1_{2},A4B_cI10_217_c_a,Iˉ43mI\bar{4}3m,217,SiF4 (D12D1_{2}) Structure
+221,P,1,84,mP84,,A_mP84_13_21g,P2/cP2/c,13,Monoclinic (Hittorf's) Phosphorus Structure
+222,H3Ho,2,24,hP24,,A3B_hP24_165_adg_f,Pˉ3c1P\bar{3}c1,165,H3Ho Structure
+223,B6Ca,2,7,cP7,D21D2_{1},A6B_cP7_221_f_a,Pmˉ3mPm\bar{3}m,221,CaB6 (D21) Structure
+224,O2Si,2,9,hP9,,A2B_hP9_152_c_a,P3121P3_{1}21,152,α\alpha–Quartz (low Quartz) Structure
+225,CuFeS2,3,8,tI16,E11E1_{1},ABC2_tI16_122_a_b_d,Iˉ42dI\bar{4}2d,122,"Chalcopyrite (CuFeS2, E11) Structure"
+226,Ga4Ni3,2,56,cI112,,A4B3_cI112_230_af_g,Iaˉ3dIa\bar{3}d,230,Ga4Ni3 Structure
+227,BCr,2,4,oC8,B33B33,AB_oC8_63_c_c,CmcmCmcm,63,CrB (B33) Structure
+228,NiTi2,2,24,cF96,,AB2_cF96_227_e_cf,Fdˉ3mFd\bar{3}m,227,NiTi2 Structure
+229,Al4Ba,2,5,tI10,D13D1_{3},A4B_tI10_139_de_a,I4/mmmI4/mmm,139,Al4Ba (D13) Structure
+230,PdSn2,2,12,oC24,CeC_{e},AB2_oC24_41_2a_2b,Aba2Aba2,41,PdSn2 (Ce) Structure
+231,Al12W,2,13,cI26,,A12B_cI26_204_g_a,Imˉ3Im\bar{3},204,Al12W Structure
+232,SZn,2,2,cF8,B3B3,AB_cF8_216_c_a,Fˉ43mF\bar{4}3m,216,"Zincblende (ZnS, B3) Structure"
+233,NaTl,2,4,cF16,B32B32,AB_cF16_227_a_b,Fdˉ3mFd\bar{3}m,227,NaTl (B32) Structure
+234,CaCl2,2,6,oP6,C35C35,AB2_oP6_58_a_g,PnnmPnnm,58,"Hydrophilite (CaCl2, C35) Structure"
+235,alpha-As,1,2,hR2,A7A7,A_hR2_166_c,Rˉ3mR\bar{3}m,166,α\alpha–As (A7) Structure
+236,Pu,1,17,mC34,,A_mC34_12_ah3i2j,C2/mC2/m,12,β\beta–Pu Structure
+237,B4Mg,2,20,oP20,,A4B_oP20_62_2cd_c,PnmaPnma,62,MgB4 Structure
+238,Cu2Sb,2,6,tP6,C38C38,A2B_tP6_129_ac_c,P4/nmmP4/nmm,129,Cu2Sb (C38) Structure
+239,In2S3,2,40,tI80,,A2B3_tI80_141_ceh_3h,I41/amdI4_{1}/amd,141,β\beta–In2S3 Crystal Structure
+240,CFe3W3,3,28,cF112,E93E9_{3},AB3C3_cF112_227_c_de_f,Fdˉ3mFd\bar{3}m,227,Fe3W3C Structure
+241,FeO3Ti,3,10,hR10,E22E2_{2},AB3C_hR10_148_c_f_c,Rˉ3R\bar{3},148,"Ilmenite (FeTiO3, E22E2_{2}) Structure"
+242,PPrS4,3,48,tI96,,ABC4_tI96_142_e_ab_2g,I41/acdI4_{1}/acd,142,PPrS4 Structure
+243,Mn12Th,2,13,tI26,D2bD2_{b},A12B_tI26_139_fij_a,I4/mmmI4/mmm,139,Mn12Th (D2b) Structure
+244,CuO2Sr,3,8,oC16,,AB2C_oC16_63_c_2c_c,CmcmCmcm,63,SrCuO2 Structure
+245,CuLa2O4,3,7,tI14,,AB2C4_tI14_139_a_e_ce,I4/mmmI4/mmm,139,"0201 [(La,Ba)2CuO4] High–Tc Structure"
+246,Sn,1,2,tI4,A5A5,A_tI4_141_a,I41/amdI4_{1}/amd,141,β\beta–Sn (A5) Structure
+247,Au5Mn2,2,7,mC14,,A5B2_mC14_12_a2i_i,C2/mC2/m,12,Au5Mn2 Structure
+248,CSi,2,8,hP8,B5B5,AB_hP8_186_ab_ab,P63mcP6_{3}mc,186,Moissanite–4H SiC (B5) Structure
+249,AlCl3,2,8,mC16,D015D0_{15},AB3_mC16_12_g_ij,C2/mC2/m,12,AlCl3 (D015) Structure
+250,C6Ca,2,7,hR7,,A6B_hR7_166_g_a,Rˉ3mR\bar{3}m,166,CaC6 Structure
+251,H2Th,2,3,tI6,L′2L'2,A2B_tI6_139_d_a,I4/mmmI4/mmm,139,ThH2 (L'2) Structure
+252,AlF3,2,8,hR8,D014D0_{14},AB3_hR8_155_c_de,R32R32,155,AlF3 (D014) Structure
+253,PbCl2,2,12,oP12,C23C23,A2B_oP12_62_2c_c,PnmaPnma,62,"Cotunnite (PbCl2, C23) Structure"
+254,CaIn2,2,6,hP6,,AB2_hP6_194_b_f,P63/mmcP6_{3}/mmc,194,CaIn2 Structure
+255,C3Cr7,2,40,oP40,D101D10_{1},A3B7_oP40_62_cd_3c2d,PnmaPnma,62,C3Cr7 (D101) Structure
+256,Cu2Te,2,6,hP6,ChC_{h},A2B_hP6_191_h_e,P6/mmmP6/mmm,191,Cu2Te (Ch) Structure
+257,S2Si,2,6,oI12,C42C42,A2B_oI12_72_j_a,IbamIbam,72,SiS2 Structure
+258,Si2Ti,2,6,oF24,C54C54,A2B_oF24_70_e_a,FdddFddd,70,TiSi2 (C54) Structure
+259,O2Si,2,12,oC24,,A2B_oC24_20_abc_c,C2221C222_{1},20,Orthorhombic Tridymite (SiO2) Structure
+260,AsCu3S4,3,8,cP8,,AB3C4_cP8_215_a_c_e,Pˉ43mP\bar{4}3m,215,Cubic Lazarevićite (AsCu3S4) Structure
+261,beta-O,1,2,hR2,,A_hR2_166_c,Rˉ3mR\bar{3}m,166,β\beta–O Structure
+262,O2Si,2,12,hP12,C10C10,A2B_hP12_194_cg_f,P63/mmcP6_{3}/mmc,194,β\beta–Tridymite (SiO2) Structure (C10)
+263,Te4Ti5,2,9,tI18,,A4B5_tI18_87_h_ah,I4/mI4/m,87,Ti5Te4 Structure
+264,La,1,4,hP4,A3′A3',A_hP4_194_ac,P63/mmcP6_{3}/mmc,194,α\alpha–La (A3') Structure
+265,CMo,2,12,hP12,,AB_hP12_194_af_bf,P63/mmcP6_{3}/mmc,194,CMo Structure
+266,O3Sb2,2,20,oP20,D511D5_{11},A3B2_oP20_56_ce_e,PccnPccn,56,Sb2O3 (D511) Structure
+267,Au2V,2,6,oC12,,A2B_oC12_38_de_ab,Amm2Amm2,38,Au2V Structure
+268,AgAuTe4,3,12,mP12,E1bE1_{b},ABC4_mP12_13_e_a_2g,P2/cP2/c,13,"Sylvanite (AgAuTe4, E1b) Structure"
+269,Pt8Ti,2,9,tI18,,A8B_tI18_139_hi_a,I4/mmmI4/mmm,139,Pt8Ti Structure
+270,Cf,1,4,aP4,,A_aP4_2_aci,Pˉ1P\bar{1},2,Cf Structure
+271,Ga3Pt5,2,8,oC16,,A3B5_oC16_65_ah_bej,CmmmCmmm,65,Ga3Pt5 Structure
+272,I4P2,2,6,aP6,,A2B_aP6_2_2i_i,Pˉ1P\bar{1},2,P2I4 Structure
+273,P,1,4,oC8,A17A17,A_oC8_64_f,CmcaCmca,64,Black Phosphorus (A17) Crystal Structure
+274,MoPt2,2,3,oI6,,AB2_oI6_71_a_g,ImmmImmm,71,MoPt2 Structure
+275,C8H8,2,16,hR16,,AB_hR16_148_cf_cf,Rˉ3R\bar{3},148,Solid Cubane (C8H8) Structure
+276,Co2Si,2,12,oP12,C37C37,A2B_oP12_62_2c_c,PnmaPnma,62,Co2Si (C37) Structure
+277,W,1,1,cI2,A2A2,A_cI2_229_a,Imˉ3mIm\bar{3}m,229,"Body–Centered Cubic (W, A2) Structure"
+278,MoSi2,2,3,tI6,C11bC11_{b},AB2_tI6_139_a_e,I4/mmmI4/mmm,139,MoSi2 (C11b) Structure
+279,Cl,1,16,tP16,A18A18,A_tP16_138_j,P42/ncmP4_{2}/ncm,138,Cl (A18) Structure
+280,ClFPb,3,6,tP6,E01E0_{1},ABC_tP6_129_c_a_c,P4/nmmP4/nmm,129,"Matlockite (E01, PbFCl) Structure"
+281,C,1,2,cF8,A4A4,A_cF8_227_a,Fdˉ3mFd\bar{3}m,227,Diamond (A4) Structure
+282,CdI2,2,3,hP3,C6C6,AB2_hP3_164_a_d,Pˉ3m1P\bar{3}m1,164,ω\omega (C6) Phase
+283,AsKSe2,3,16,aP16,,ABC2_aP16_1_4a_4a_8a,P1P1,1,AsKSe2 (P1) Structure
+284,Ni3Sn,2,8,hP8,D019D0_{19},A3B_hP8_194_h_c,P63/mmcP6_{3}/mmc,194,Ni3Sn (D019) Structure
+285,AlCu2Mn,3,4,cF16,L21L2_{1},AB2C_cF16_225_a_c_b,Fmˉ3mFm\bar{3}m,225,Heusler (L21) Structure
+286,BN,2,4,hP4,BkB_{k},AB_hP4_194_c_d,P63/mmcP6_{3}/mmc,194,BN (Bk) Structure
+287,In,1,1,tI2,A6A6,A_tI2_139_a,I4/mmmI4/mmm,139,In (A6) Structure
+288,As2Ba,2,18,mP18,,A2B_mP18_7_6a_3a,PcPc,7,As2Ba Structure
+289,ClH,2,4,oC8,,AB_oC8_36_a_a,Cmc21Cmc2_{1},36,HCl Structure
+290,Mn5Si3,2,16,hP16,D88D8_{8},A5B3_hP16_193_dg_g,P63/mcmP6_{3}/mcm,193,"Mavlyanovite (Mn5Si3, D88D8_{8}) Structure"
+291,Al2Ca3O6,3,33,cP33,E91E9_{1},A2B3C6_cP33_221_cd_ag_fh,Pmˉ3mPm\bar{3}m,221,Ca3Al2O6 (E91E9_{1}) Structure
+292,P12PrRu4,3,34,cP34,,A12BC4_cP34_195_2j_ab_2e,P23P23,195,PrRu4P12 Structure
+293,NaZn,2,28,cF112,D23D2_{3},AB13_cF112_226_a_bi,Fmˉ3cFm\bar{3}c,226,NaZn13 (D23D2_{3}) Structure
+294,P4Th3,2,14,cI28,D73D7_{3},A4B3_cI28_220_c_a,Iˉ43dI\bar{4}3d,220,Th3P4 (D73D7_{3}) Structure
+295,Ag3IS,3,5,hR5,,A3BC_hR5_146_b_a_a,R3R3,146,γ\gamma–Ag3SI (Low–temperature) Structure
+296,AlO4P,2,72,hP72,,AB2_hP72_192_m_j2kl,P6/mccP6/mcc,192,AlPO4 Structure
+297,O3W,2,16,mP16,,A3B_mP16_7_6a_2a,PcPc,7,ϵ\epsilon–WO3 (Low–temperature) Structure
+298,La2NiO4,3,28,oP28,,A2BC4_oP28_50_ij_ac_ijm,PbanPban,50,La2NiO4 Structure
+299,Al2S3,2,30,hP30,,A2B3_hP30_170_2a_3a,P65P6_{5},170,Al2S3 Structure
+300,Co3O4,2,14,cF56,D72D7_{2},A3B4_cF56_227_ad_e,Fdˉ3mFd\bar{3}m,227,"Spinel (Co3O4, D72D7_{2}) Structure"
+301,Bi2O3,2,20,hP20,,A2B3_hP20_159_bc_2c,P31cP31c,159,Bi2O3 (High–pressure) Structure
+302,B2H)6MgOO(,4,64,tP64,,A2B6CD7_tP64_77_2d_6d_d_ab6d,P42P4_{2},77,Pinnoite (MgB2O(OH)6) Structure
+303,B4CeCo4,3,18,tP18,,A4BC4_tP18_137_g_b_g,P42/nmcP4_{2}/nmc,137,CeCo4B4 Structure
+304,NbO2,2,48,tI96,,AB2_tI96_88_2f_4f,I41/aI4_{1}/a,88,α\alpha–NbO2 Structure
+305,Ni3P,2,16,tI32,D0eD0_{e},A3B_tI32_82_3g_g,Iˉ4I\bar{4},82,Ni3P (D0eD0_{e}) Structure
+306,O10W3,2,13,oF52,,A10B3_oF52_42_2abce_ab,Fmm2Fmm2,42,W3O10 Structure
+307,BaO4S,3,24,oP24,H02H0_{2},AB4C_oP24_62_c_2cd_c,PnmaPnma,62,"Barite (BaSO4, H02H0_{2}) Structure"
+308,Ba2O8Si2Ti,4,26,tP26,,A2B8C2D_tP26_100_c_abcd_c_a,P4bmP4bm,100,Fresnoite (Ba2TiSi2O8) Structure
+309,CCu2Fe[N]6,3,15,cF60,,A12B2C_cF60_196_h_bc_a,F23F23,196,Cu2Fe[CN]6 Structure
+310,Ge3Ti2,2,10,tP10,,A3B2_tP10_83_adk_j,P4/mP4/m,83,Ti2Ge3 Structure
+311,ISSm,3,6,hR6,,ABC_hR6_166_c_c_c,Rˉ3mR\bar{3}m,166,SmSI Structure
+312,Ag5O6Pb2,3,13,hP13,,A5B6C2_hP13_157_2ac_2c_b,P31mP31m,157,Ag5Pb2O6 Structure
+313,Mg2O4Si,3,28,oP28,S12S1_{2},A2B4C_oP28_62_ac_2cd_c,PnmaPnma,62,"Forsterite (Mg2SiO4, S12S1_{2}) Structure"
+314,S,1,8,tI16,,A_tI16_142_f,I41/acdI4_{1}/acd,142,S–III Structure
+315,Cl3Ru,2,8,hP8,,A3B_hP8_158_d_a,P3c1P3c1,158,β\beta–RuCl3 Structure
+316,C,1,8,mP8,,A_mP8_10_2m2n,P2/mP2/m,10,S–carbon Structure
+317,As2BaGe2,3,20,tP20,,A2BC2_tP20_105_f_ac_2e,P42mcP4_{2}mc,105,BaGe2As2 Structure
+318,Fe3Th7,2,20,hP20,D102D10_{2},A3B7_hP20_186_c_b2c,P63mcP6_{3}mc,186,Fe3Th7 (D102D10_{2}) Structure
+319,Ag3AuTe2,3,24,cI48,,A3BC2_cI48_214_f_a_e,I4132I4_{1}32,214,Petzite (Ag3AuTe2) Structure
+320,AgAuTe2,3,8,mP8,,ABC2_mP8_10_ac_eh_mn,P2/mP2/m,10,Muthmannite (AuAgTe2) Structure
+321,C7H8,2,120,oP120,,A7B8_oP120_60_7d_8d,PbcnPbcn,60,β\beta–Toluene Structure
+322,Si2Sr,2,12,cP12,,A2B_cP12_212_c_a,P4332P4_{3}32,212,SrSi2 Structure
+323,C17FeO4Pt,4,184,tP184,,A17BC4D_tP184_89_17p_p_4p_io,P422P422,89,C17FeO4Pt Structure
+324,FeS2,2,12,oP12,,AB2_oP12_29_a_2a,Pca21Pca2_{1},29,"Pyrite (FeS2, Low–temperature) Structure"
+325,ClH3,2,8,mC16,,AB3_mC16_15_e_cf,C2/cC2/c,15,H3Cl (50 GPa) Structure
+326,GeP,2,2,tI4,,AB_tI4_107_a_a,I4mmI4mm,107,"GeP (High–pressure, superconducting) Structure"
+327,Ge3Rh5,2,16,oP16,,A3B5_oP16_55_ch_agh,PbamPbam,55,Rh5Ge3 Structure
+328,H2S,2,12,oP12,,A2B_oP12_26_abc_ab,Pmc21Pmc2_{1},26,H2S (70 GPa) Structure
+329,NiO3Pr,3,10,hR10,,AB3C_hR10_167_b_e_a,Rˉ3cR\bar{3}c,167,PrNiO3 Structure
+330,Hg2K,2,6,oI12,,A2B_oI12_74_h_e,ImmaImma,74,KHg2 Structure
+331,O2Se,2,24,tP24,C47C47,A2B_tP24_135_gh_h,P42/mbcP4_{2}/mbc,135,"Downeyite (SeO2, C47C47) Structure"
+332,B4Th,2,20,tP20,D1eD1_{e},A4B_tP20_127_ehj_g,P4/mbmP4/mbm,127,ThB4 (D1eD1_{e}) Structure
+333,H3S,2,16,oI32,,A3B_oI32_23_ij2k_k,I222I222,23,H3S (5 GPa) Structure
+334,AuCN,3,3,hP3,,ABC_hP3_183_a_a_a,P6mmP6mm,183,AuCN Structure
+335,Mn23Th6,2,29,cF116,D8aD8_{a},A23B6_cF116_225_bd2f_e,Fmˉ3mFm\bar{3}m,225,Th6Mn23 (D8aD8_{a}) Structure
+336,Ge7Ir3,2,20,cI40,D8fD8_{f},A7B3_cI40_229_df_e,Imˉ3mIm\bar{3}m,229,Ir3Ge7 (D8fD8_{f}) Structure
+337,H2O6][O]4S2Sr[,3,39,hP39,,A10B2C_hP39_172_5c_c_a,P64P6_{4},172,Sr[S2O6][H2O]4 Structure
+338,FeSb2,2,6,oP6,,AB2_oP6_34_a_c,Pnn2Pnn2,34,FeSb2 Structure
+339,Si3Sr5,2,16,tI32,,A3B5_tI32_108_ac_a2c,I4cmI4cm,108,Sr5Si3 Structure
+340,CCs2Fe[N]6Zn,5,64,cP64,,A6B2CD6E_cP64_208_m_ad_b_m_c,P4232P4_{2}32,208,Cs2ZnFe[CN]6 Structure
+341,Bi2CuO4,3,28,tP28,,A2BC4_tP28_130_f_c_g,P4/nccP4/ncc,130,CuBi2O4 Structure
+342,O5Ta2,2,14,oP14,,A5B2_oP14_49_dehq_ab,PccmPccm,49,β\beta–Ta2O5 Structure
+343,Al2Gd3,2,20,tP20,,A2B3_tP20_102_2c_b2c,P42nmP4_{2}nm,102,Gd3Al2 Structure
+344,AlU,2,10,oI20,D1bD1_{b},A4B_oI20_74_beh_e,ImmaImma,74,Al4U (D1bD1_{b}) Structure
+345,Al[O4]P,3,72,hP72,,AB4C_hP72_168_2d_8d_2d,P6P6,168,Al[PO4] Structure
+346,Al3Ni,2,16,oP16,D020D0_{20},A3B_oP16_62_cd_c,PnmaPnma,62,ϵ\epsilon–NiAl3 (D020D0_{20}) Structure
+347,BrCuSe3,3,20,oP20,,ABC3_oP20_30_2a_c_3c,Pnc2Pnc2,30,CuBrSe3 Structure
+348,Mo8P5,2,13,mP13,,A8B5_mP13_6_a7b_3a2b,PmPm,6,Mo8P5 (High–temperature) Structure
+349,Cl6K2Pt,3,9,cF36,J11J1_{1},A6B2C_cF36_225_e_c_a,Fmˉ3mFm\bar{3}m,225,K2PtCl6 (J11J1_{1}) Structure
+350,F14Fe3Na5,3,44,tP44,,A14B3C5_tP44_94_c3g_ad_bg,P42212P4_{2}2_{1}2,94,Na5Fe3F14 (High–temperature) Structure
+351,Al4C3,2,7,hR7,D71D7_{1},A4B3_hR7_166_2c_ac,Rˉ3mR\bar{3}m,166,Al4C3 (D71D7_{1}) Structure
+352,ClH3,2,8,mC16,,AB3_mC16_9_a_3a,CcCc,9,H3Cl (20 GPa) Structure
+353,N4Si3,2,14,hP14,,A4B3_hP14_173_bc_c,P63P6_{3},173,β\beta–Si3N4 Structure
+354,As4CaFe4Rb,4,10,tP10,,A4BC4D_tP10_123_gh_a_i_d,P4/mmmP4/mmm,123,CaRbFe4As4 (Superconducting) Structure
+355,FeNi,2,4,mP4,,AB_mP4_6_2b_2a,PmPm,6,FeNi Structure
+356,F2Mn,2,12,tP12,,A2B_tP12_111_2n_adf,Pˉ42mP\bar{4}2m,111,MnF2 Structure
+357,Ag2Se,2,12,oP12,,A2B_oP12_17_abe_e,P2221P222_{1},17,α\alpha–Naumannite (Ag2Se) Structure
+358,CuI,2,4,hP4,,AB_hP4_156_ab_ab,P3m1P3m1,156,β\beta–CuI Structure
+359,Cs3P7,2,40,tP40,,A3B7_tP40_76_3a_7a,P41P4_{1},76,Cs3P7 Structure
+360,HgI6Tl4,3,22,tP22,,AB6C4_tP22_104_a_2ac_c,P4ncP4nc,104,Tl4HgI6 Structure
+361,Al2S3,2,30,hP30,,A2B3_hP30_169_2a_3a,P61P6_{1},169,α\alpha–Al2S3 Structure
+362,NbTe4,2,10,tP10,,AB4_tP10_103_a_d,P4ccP4cc,103,NbTe4 Structure
+363,BaO9Si4,3,28,hP28,S32S3_{2},AB9C4_hP28_188_e_kl_ak,Pˉ6c2P\bar{6}c2,188,BaSi4O9 (S32S3_{2}) Structure
+364,Al4Cu9,2,52,cP52,D83D8_{3},A4B9_cP52_215_ei_3efgi,Pˉ43mP\bar{4}3m,215,"γ\gamma–brass (Cu9Al4, D83D8_{3}) Structure"
+365,MoS2,2,12,hP12,,AB2_hP12_143_cd_ab2d,P3P3,143,MoS2 Structure
+366,Cu15Si4,2,38,cI76,D86D8_{6},A15B4_cI76_220_ae_c,Iˉ43dI\bar{4}3d,220,Cu15Si4 (D86D8_{6}) Structure
+367,H]3NaOZn[,4,64,tP64,,A3BC3D_tP64_106_3c_c_3c_c,P42bcP4_{2}bc,106,NaZn[OH]3 Structure
+368,Fe12P7Zr2,3,21,hP21,,A12B7C2_hP21_174_2j2k_ajk_cf,Pˉ6P\bar{6},174,Fe12Zr2P7 Structure
+369,Pb4Pt,2,10,tP10,,A4B_tP10_125_m_a,P4/nbmP4/nbm,125,PtPb4 Structure
+370,Pd17Se15,2,64,cP64,,A17B15_cP64_207_acfk_eij,P432P432,207,Pd17Se15 Structure
+371,NRe3,2,4,hP4,,AB3_hP4_187_e_fh,Pˉ6m2P\bar{6}m2,187,Re3N Structure
+372,NbPS,3,6,oI12,,ABC_oI12_71_h_j_g,ImmmImmm,71,NbPS Structure
+373,BaCr2O12Ru4,4,76,tP76,,AB2C12D4_tP76_75_2a2b_2d_12d_4d,P4P4,75,BaCr2Ru4O12 Structure
+374,Al2BiS4,3,28,tP28,,A2BC4_tP28_126_cd_e_k,P4/nncP4/nnc,126,BiAl2S4 Structure
+375,Ga9Rh2,2,22,mP22,,A9B2_mP22_7_9a_2a,PcPc,7,Rh2Ga9 Structure
+376,B8Nb7Ru6,3,21,hP21,,A8B7C6_hP21_175_ck_aj_k,P6/mP6/m,175,Nb7Ru6B8 Structure
+377,SeO2,2,12,oP12,,A2B_oP12_26_abc_ab,Pmc21Pmc2_{1},26,β\beta–SeO2 Structure
+378,BiGaO3,3,20,oP20,,ABC3_oP20_54_e_d_cf,PccaPcca,54,BiGaO3 Structure
+379,CCa3[F3[H2NaO3]2O],5,48,hP48,,A2B3C3DE7_hP48_145_2a_3a_3a_a_7a,P32P3_{2},145,Sheldrickite (NaCa3[CO3]2F3[H2O]) Structure
+380,ClNaO3,3,20,cP20,G3G3,ABC3_cP20_198_a_a_b,P213P2_{1}3,198,"Sodium Chlorate (NaClO3, G3G3) Structure"
+381,As2Ge,2,24,oP24,,A2B_oP24_55_2g2h_gh,PbamPbam,55,GeAs2 Structure
+382,ClH3,2,16,oP16,,AB3_oP16_19_a_3a,P212121P2_{1}2_{1}2_{1},19,H3Cl (100 GPa) Structure
+383,H2S,2,12,mP12,,A2B_mP12_13_2g_ef,P2/cP2/c,13,H2S (15 GPa) Structure
+384,Ce3N11Si6,3,40,tP40,,A3B11C6_tP40_100_ac_bc2d_cd,P4bmP4bm,100,Ce3Si6N11 Structure
+385,MgO3Si,3,10,oC20,,AB3C_oC20_63_a_cf_c,CmcmCmcm,63,Post–perovskite (MgSiO3) Structure
+386,Al6Ca4O16S,4,108,oP108,,A6B4C16D_oP108_27_abcd4e_4e_16e_e,Pcc2Pcc2,27,Ca4Al6O16S Structure
+387,AgF6U,3,16,tP16,,AB6C_tP16_132_d_io_a,P42/mcmP4_{2}/mcm,132,AgUF6 Structure
+388,La2O3,2,5,hP5,D52D5_{2},A2B3_hP5_164_d_ad,Pˉ3m1P\bar{3}m1,164,La2O3 (D52D5_{2}) Structure
+389,S,1,9,hP9,,A_hP9_154_bc,P3221P3_{2}21,154,S–II Structure
+390,CoNb4Si,3,12,tP12,,AB4C_tP12_124_a_m_c,P4/mccP4/mcc,124,Nb4CoSi Structure
+391,O2Si,2,9,hP9,,A2B_hP9_181_j_c,P6422P6_{4}22,181,β\beta–SiO2 Structure
+392,P2Zn3,2,40,tP40,D59D5_{9},A2B3_tP40_137_cdf_3g,P42/nmcP4_{2}/nmc,137,Zn3P2 (D59D5_{9}) Structure
+393,OTi3,2,24,hP24,,AB3_hP24_149_acgi_3l,P312P312,149,Ti3O (Room–temperature) Structure
+394,H2O6][O]4S2Sr[,3,39,hP39,,A10B2C_hP39_171_5c_c_a,P62P6_{2},171,Sr[S2O6][H2O]4 Structure
+395,H2S,2,48,tP48,,A2B_tP48_77_8d_4d,P42P4_{2},77,H2S III Structure
+396,AlLiN,3,48,cI96,E9dE9_{d},AB3C2_cI96_206_c_e_ad,Iaˉ3Ia\bar{3},206,AlLi3N2 (E9dE9_{d}) Structure
+397,PdSn4,2,10,oC20,,AB4_oC20_68_a_i,CccaCcca,68,PdSn4 Structure
+398,ClH3,2,16,mP16,,AB3_mP16_10_mn_3m3n,P2/mP2/m,10,H3Cl (400 GPa) Structure
+399,Mg2Zn11,2,39,cP39,D8cD8_{c},A2B11_cP39_200_f_aghij,Pmˉ3Pm\bar{3},200,Mg2Zn11 (D8cD8_{c}) Structure
+400,Cu2Rb2Se4Ti,4,18,tP18,,A2B2C4D_tP18_132_e_i_o_d,P42/mcmP4_{2}/mcm,132,Rb2TiCu2S4 Structure
+401,CClCo(Na3O3)2,5,52,cF208,,A2BCD3E6_cF208_203_e_c_d_f_g,Fdˉ3Fd\bar{3},203,Pyrochlore (Na3Co(CO3)2Cl) Structure
+402,BN,2,2,oF8,,AB_oF8_42_a_a,Fmm2Fmm2,42,"BN (High–pressure, high–temperature) Structure"
+403,Ga2MnSb2,3,10,oI20,,A2BC2_oI20_45_c_b_c,Iba2Iba2,45,MnGa2Sb2 Structure
+404,Cl5[CrCuH3]6N,4,104,cF416,,A5BCD6_cF416_228_eg_c_b_h,Fdˉ3cFd\bar{3}c,228,CuCrCl5[NH3]6 Structure
+405,CaO4S,3,12,oC24,H01H0_{1},AB4C_oC24_63_c_fg_c,CmcmCmcm,63,"Anhydrite (CaSO4, H01H0_{1}) Structure"
+406,HIINW2,2,9,hP9,,AB2_hP9_164_bd_c2d,Pˉ3m1P\bar{3}m1,164,deltaHII–NW2 Structure
+407,Ge4Ir,2,15,hP15,,A4B_hP15_144_4a_a,P31P3_{1},144,IrGe4 Structure
+408,LaPtSi,3,6,tI12,,ABC_tI12_109_a_a_a,I41mdI4_{1}md,109,LaPtSi Structure
+409,H2Na4O22[O]4Si8Ti2,4,40,tP40,,A4B2C13D_tP40_90_g_d_cef2g_c,P4212P42_{1}2,90,Na4Ti2Si8O22[H2O]4 Structure
+410,Bi5Nb3O15,3,46,oP46,,A5B3C15_oP46_30_a2c_bc_a7c,Pnc2Pnc2,30,Bi5Nb3O15 Structure
+411,B6H6K,3,26,cF104,,A6B6C_cF104_202_h_h_c,Fmˉ3Fm\bar{3},202,KB6H6 Structure
+412,H2S,2,6,aP6,,A2B_aP6_2_aei_i,Pˉ1P\bar{1},2,H2S (90 GPa) Structure
+413,BCTh,3,24,tP24,,ABC_tP24_91_d_d_d,P4122P4_{1}22,91,ThBC Structure
+414,F6KP,3,26,cF104,,A24BC_cF104_209_j_a_b,F432F432,209,F6KP Structure
+415,BaCo4O7Yb,4,26,hP26,,AB4C7D_hP26_159_b_ac_a2c_b,P31cP31c,159,YbBaCo4O7 Structure
+416,C2Cr3,2,20,oP20,D510D5_{10},A2B3_oP20_62_2c_3c,PnmaPnma,62,"Tongbaite (Cr3C2, D510D5_{10}) Structure"
+417,Cl2Pd,2,6,mP6,,A2B_mP6_10_mn_bg,P2/mP2/m,10,δ\delta–PdCl2 Structure
+418,SrH2,2,12,oP12,C29C29,A2B_oP12_62_2c_c,PnmaPnma,62,SrH2 (C29C29) Structure
+419,Be,2,48,oP48,,AB_oP48_61_3c_3c,PbcaPbca,61,Benzene Structure
+420,H3P,2,16,cP16,,A3B_cP16_208_j_b,P4232P4_{2}32,208,PH3 Structure
+421,B4Ta3,2,7,oI14,D7bD7_{b},A4B3_oI14_71_gh_cg,ImmmImmm,71,Ta3B4 (D7bD7_{b}) Structure
+422,NbTe4,2,10,tP10,,AB4_tP10_124_a_m,P4/mccP4/mcc,124,NbTe4 Structure
+423,CdK2Pb,3,8,oC16,,AB2C_oC16_40_a_2b_b,Ama2Ama2,40,K2CdPb Structure
+424,Al2Se4Sr,3,14,oC28,,A2B4C_oC28_66_l_kl_a,CccmCccm,66,SrAl2Se4 Structure
+425,Bi3Sr2,2,20,oP20,,A3B2_oP20_52_de_cd,PnnaPnna,52,Sr2Bi3 Structure
+426,MgNiSn,3,32,tP32,,A7B7C2_tP32_101_bde_ade_d,P42cmP4_{2}cm,101,γ\gamma–MgNiSn Structure
+427,O2Si,2,36,cI72,,A2B_cI72_211_hi_i,I432I432,211,SiO2 Structure
+428,BKO2,3,24,hR24,F513F5_{13},ABC2_hR24_167_e_e_2e,Rˉ3cR\bar{3}c,167,KBO2 (F513F5_{13}) Structure
+429,H2S,2,12,oC24,,A2B_oC24_64_2f_f,CmcaCmca,64,H2S (170 GPa) Structure
+430,C,1,16,oP16,,A_oP16_55_2g2h,PbamPbam,55,R–carbon Structure
+431,Fe2KS3,3,12,oC24,,A2BC3_oC24_63_e_c_cg,CmcmCmcm,63,Rasvumite (KFe2S3) Structure
+432,AlF7MgNa2,4,22,oI44,,AB7CD2_oI44_24_a_b3d_c_ac,I212121I2_{1}2_{1}2_{1},24,Weberite (Na2MgAlF7) Structure
+433,HTa2,2,3,oC6,,AB2_oC6_21_a_k,C222C222,21,Ta2H Structure
+434,Al8Cr5,2,26,hR26,D810D8_{10},A8B5_hR26_160_a3bc_a3b,R3mR3m,160,Cr5Al8 (D810D8_{10}) Structure
+435,Co5Ge7,2,12,tI24,,A5B7_tI24_107_ac_abd,I4mmI4mm,107,Co5Ge7 Structure
+436,Al2O3,2,40,oP40,,A2B3_oP40_33_4a_6a,Pna21Pna2_{1},33,κ\kappa–alumina (Al2O3) Structure
+437,Cu3P,2,24,hP24,D021D0_{21},A3B_hP24_165_bdg_f,Pˉ3c1P\bar{3}c1,165,Cu3P (D021D0_{21}) Structure
+438,Cl3KNi,3,30,hP30,,A3BC_hP30_185_cd_c_ab,P63cmP6_{3}cm,185,KNiCl3 (Room–temperature) Structure
+439,H]6OTe[,3,152,cF608,,A12B6C_cF608_210_4h_2h_e,F4132F4_{1}32,210,Te[OH]6 Structure
+440,La43Mg5Ni17,3,130,oC260,,A43B5C17_oC260_63_c8fg6h_cfg_ce3f2h,CmcmCmcm,63,La43Ni17Mg5 Structure
+441,NbO2,2,24,tI48,,AB2_tI48_80_2b_4b,I41I4_{1},80,β\beta–NbO2 Structure
+442,Ag[CKO3],4,24,oI48,,ABCD3_oI48_73_d_e_e_ef,IbcaIbca,73,KAg[CO3] Structure
+443,Cu2F8GdNa,4,12,tI24,,A2B8CD_tI24_97_d_k_a_b,I422I422,97,NaGdCu2F8 Structure
+444,Cl6K2Sn,3,18,tP18,,A6B2C_tP18_128_eh_d_a,P4/mncP4/mnc,128,K2SnCl6 (Low–temperature) Structure
+445,F6Li2Mo,3,18,tP18,,A6B2C_tP18_94_eg_c_a,P42212P4_{2}2_{1}2,94,Li2MoF6 Structure
+446,Al6Mn,2,14,oC28,D2hD2_{h},A6B_oC28_63_efg_c,CmcmCmcm,63,MnAl6 (D2hD2_{h}) Structure
+447,HgI2,2,12,tP12,,AB2_tP12_115_j_egi,Pˉ4m2P\bar{4}m2,115,HgI2 Structure
+448,FeSe,2,4,oC8,,AB_oC8_67_a_g,CmmaCmma,67,α\alpha–FeSe Structure
+449,B7ClMg3O13,4,48,cF192,,A7BC3D13_cF192_219_de_b_c_ah,Fˉ43cF\bar{4}3c,219,Boracite (Mg3B7ClO13) Structure
+450,P5Tl,2,24,oP24,,A5B_oP24_26_3a3b2c_ab,Pmc21Pmc2_{1},26,TlP5 Structure
+451,P2Rh3,2,5,tP5,,A2B3_tP5_115_g_ag,Pˉ4m2P\bar{4}m2,115,Rh3P2 Structure
+452,H6O6Te,2,56,cF224,,A6B_cF224_228_h_c,Fdˉ3cFd\bar{3}c,228,TeO6H6 Structure
+453,I3Th,2,32,oC64,,A3B_oC64_66_kl2m_bdl,CccmCccm,66,β\beta–ThI3 Structure
+454,Ag3[O4]P,3,16,cP16,H21H2_{1},A3B4C_cP16_218_c_e_a,Pˉ43nP\bar{4}3n,218,Ag3[PO4] Structure
+455,CuHoP2,3,8,oC16,,ABC2_oC16_67_b_g_ag,CmmaCmma,67,HoCuP2 Structure
+456,Cl2Hg2,2,4,tI8,D31D3_{1},AB_tI8_139_e_e,I4/mmmI4/mmm,139,"Calomel (Hg2Cl2, D31D3_{1}) Structure"
+457,N4Si3,2,28,hP28,,A4B3_hP28_159_ab2c_2c,P31cP31c,159,Nierite (α\alpha–Si3N4) Structure
+458,Al9FeMg3Si5,4,18,hP18,,A9BC3D5_hP18_189_fi_a_g_bh,Pˉ62mP\bar{6}2m,189,π\pi–FeMg3Al9Si5 Structure
+459,CeTe3,2,8,oC16,,AB3_oC16_40_b_3b,Ama2Ama2,40,CeTe3 Structure
+460,Al4H]OO13[Ta3,3,21,hP21,,A4B14C3_hP21_143_bd_ac4d_d,P3P3,143,Simpsonite (Ta3Al4O13[OH]) Structure
+461,Si3W5,2,16,tI32,D8mD8_{m},A3B5_tI32_140_ah_bk,I4/mcmI4/mcm,140,W5Si3 (D8mD8_{m}) Structure
+462,BrCuSe3,3,20,oP20,,ABC3_oP20_53_e_g_hi,PmnaPmna,53,CuBrSe3 Structure
+463,Cl2Pd,2,6,oP6,C50C50,A2B_oP6_58_g_a,PnnmPnnm,58,α\alpha–PdCl2 (C50C50) Structure
+464,Ca2MgO7Si2,4,24,tP24,S53S5_{3},A2BC7D2_tP24_113_e_a_cef_e,Pˉ421mP\bar{4}2_{1}m,113,"Akermanite (Ca2MgSi2O7, S53S5_{3}) Structure"
+465,Si2Th,2,6,tI12,CcC_{c},A2B_tI12_141_e_a,I41/amdI4_{1}/amd,141,α\alpha–ThSi2 (CcC_{c}) Structure
+466,Al[O4]P,3,72,hP72,,AB4C_hP72_184_d_4d_d,P6ccP6cc,184,Al[PO4] (Framework type AFI) Structure
+467,C,1,8,mC16,,A_mC16_12_4i,C2/mC2/m,12,M–carbon Structure
+468,O2Zr,2,6,tP6,,A2B_tP6_137_d_a,P42/nmcP4_{2}/nmc,137,ZrO2 (High–temperature) Structure
+469,Cl3U,2,8,hP8,,A3B_hP8_176_h_c,P63/mP6_{3}/m,176,UCl3 Structure
+470,Ge5Sm3,2,16,hP16,,A5B3_hP16_190_bdh_g,Pˉ62cP\bar{6}2c,190,α\alpha–Sm3Ge5 (High–temperature) Structure
+471,Al5Co2,2,28,hP28,D811D8_{11},A5B2_hP28_194_ahk_ch,P63/mmcP6_{3}/mmc,194,Co2Al5 (D811D8_{11}) Structure
+472,LiSn,2,6,mP6,,AB_mP6_10_en_am,P2/mP2/m,10,LiSn Structure
+473,Rh2S3,2,20,oP20,,A2B3_oP20_60_d_cd,PbcnPbcn,60,Rh2S3 Structure
+474,GaSb,2,2,tI4,,AB_tI4_119_c_a,Iˉ4m2I\bar{4}m2,119,GaSb Structure
+475,C7H8,2,120,mP120,,A7B8_mP120_14_14e_16e,P21/cP2_{1}/c,14,α\alpha–Toluene Structure
+476,MoO8V2,3,11,oC22,,AB8C2_oC22_35_a_ab3e_e,Cmm2Cmm2,35,V2MoO8 Structure
+477,Al8FeMg3Si6,4,18,hP18,E9bE9_{b},A8BC3D6_hP18_189_bfh_a_g_i,Pˉ62mP\bar{6}2m,189,π\pi–FeMg3Al8Si6 (E9bE9_{b}) Structure
+478,Be2O4Si,3,42,hR42,S13S1_{3},A2B4C_hR42_148_2f_4f_f,Rˉ3R\bar{3},148,"Phenakite (Be2SiO4, S13S1_{3}) Structure"
+479,"Cu8(Fe,S12Sn2Zn)3",5,25,oI50,,A8B2C12D2E_oI50_23_bcfk_i_3k_j_a,I222I222,23,"Stannoidite (Cu8(Fe,Zn)3Sn2S12) Structure"
+480,BBe[H4]2,3,88,tI176,,A2BC8_tI176_110_2b_b_8b,I41cdI4_{1}cd,110,Be[BH4]2 Structure
+481,BaCu4[O4]4O][PV,5,54,tP54,,AB4C17D4E_tP54_90_a_g_c4g_g_c,P4212P42_{1}2,90,BaCu4[VO][PO4]4 Structure
+482,C2LaRh,3,16,tP16,,A2BC_tP16_76_2a_a_a,P41P4_{1},76,LaRhC2 Structure
+483,FeNaS2,3,8,oI16,,ABC2_oI16_23_ab_i_k,I222I222,23,NaFeS2 Structure
+484,FeS,2,24,hP24,,AB_hP24_190_i_afh,Pˉ62cP\bar{6}2c,190,Troilite (FeS) Structure
+485,H2S,2,12,mP12,,A2B_mP12_7_4a_2a,PcPc,7,H2S IV Structure
+486,Pd4Se,2,10,tP10,,A4B_tP10_114_e_a,Pˉ421cP\bar{4}2_{1}c,114,Pd4Se Structure
+487,TeZn,2,6,hP6,,AB_hP6_144_a_a,P31P3_{1},144,ZnTe (High–pressure) Structure
+488,AsCoS,3,12,oP12,,ABC_oP12_29_a_a_a,Pca21Pca2_{1},29,Cobaltite (CoAsS) Structure
+489,GeSe2,2,12,tP12,,AB2_tP12_81_adg_2h,Pˉ4P\bar{4},81,GeSe2 (High–pressure) Structure
+490,B12H2H12[MgO]12,4,122,cF488,,A12B36CD12_cF488_210_h_3h_a_fg,F4132F4_{1}32,210,MgB12H12[H2O]12 Structure
+491,FeAs,2,8,oP8,B14B14,AB_oP8_62_c_c,PnmaPnma,62,"Westerveldite (FeAs, B14B14) Structure"
+492,O2Zr,2,12,oP12,,A2B_oP12_29_2a_a,Pca21Pca2_{1},29,ZrO2 Structure
+493,CMg2(Na6O3)4O4)(S,5,58,cF232,,A4B2C6D16E_cF232_203_e_d_f_eg_a,Fdˉ3Fd\bar{3},203,Tychite (Na6Mg2(SO4)(CO3)4) Structure
+494,MoO3,2,16,oP16,D08D0_{8},AB3_oP16_62_c_3c,PnmaPnma,62,"Molybdite (MoO3, D08D0_{8}) Structure"
+495,H3S,2,4,hR4,,A3B_hR4_160_b_a,R3mR3m,160,H3S (130 GPa) Structure
+496,Sc,1,6,hP6,,A_hP6_178_a,P6122P6_{1}22,178,Sc–V (High–pressure) Structure
+497,NV,2,8,tP8,,AB_tP8_111_n_n,Pˉ42mP\bar{4}2m,111,VN (Low–temperature) Structure
+498,ISe8Ta2,3,22,tI44,,AB8C2_tI44_97_e_2k_cd,I422I422,97,Ta2Se8I Structure
+499,BPS4,3,6,oI12,,ABC4_oI12_23_a_b_k,I222I222,23,BPS4 Structure
+500,Br2Sr,2,30,tP30,,A2B_tP30_85_ab2g_cg,P4/nP4/n,85,SrBr2 Structure
+501,B2CeRu2,3,10,oF40,,A2BC2_oF40_22_fi_ad_gh,F222F222,22,CeRu2B2 Structure
+502,FeSiTi,3,18,oI36,,ABC_oI36_46_ac_bc_3b,Ima2Ima2,46,TiFeSi Structure
+503,Cl2Pd,2,6,mP6,,A2B_mP6_14_e_a,P21/cP2_{1}/c,14,γ\gamma–PdCl2 Structure
+504,B3Cr5,2,16,tI32,D8lD8_{l},A3B5_tI32_140_ah_cl,I4/mcmI4/mcm,140,Cr5B3 (D8lD8_{l}) Structure
+505,Al2Ca3O6,3,264,cP264,,A2B3C6_cP264_205_2d_ab2c2d_6d,Paˉ3Pa\bar{3},205,Ca3Al2O6 Structure
+506,Cl3Ru,2,8,hP8,,A3B_hP8_185_c_a,P63cmP6_{3}cm,185,β\beta–RuCl3 Structure
+507,AsNb,2,4,tI8,,AB_tI8_109_a_a,I41mdI4_{1}md,109,NbAs Structure
+508,HgI,2,6,tP6,C13C13,AB2_tP6_137_a_d,P42/nmcP4_{2}/nmc,137,HgI2 (C13C13) Structure
+509,C,1,12,tP12,,A_tP12_138_bi,P42/ncmP4_{2}/ncm,138,C (T12 Group IV) Structure
+510,Au4KSn2,3,14,tI28,,A4BC2_tI28_120_i_d_e,Iˉ4c2I\bar{4}c2,120,KAu4Sn2 Structure
+511,O3Se,2,32,tP32,,A3B_tP32_114_3e_e,Pˉ421cP\bar{4}2_{1}c,114,SeO3 Structure
+512,AuF3,2,24,hP24,,AB3_hP24_179_b_ac,P6522P6_{5}22,179,AuF3 Structure
+513,I3P,2,8,hP8,,A3B_hP8_173_c_b,P63P6_{3},173,PI3 Structure
+514,GdIS,3,12,hP12,,ABC_hP12_174_cj_fk_aj,Pˉ6P\bar{6},174,GdSI Structure
+515,Eu2Ir2O7,3,22,cF88,,A2B2C7_cF88_227_c_d_af,Fdˉ3mFd\bar{3}m,227,Pyrochlore Iridate (Eu2Ir2O7) Structure
+516,Cl2Pd,2,18,hR18,,A2B_hR18_148_2f_f,Rˉ3R\bar{3},148,β\beta–PdCl2 Structure
+517,AlCl4Cu,3,12,tP12,,AB4C_tP12_112_b_n_e,Pˉ42cP\bar{4}2c,112,α\alpha–CuAlCl4 Structure
+518,FeS,2,2,oF8,,AB_oF8_22_a_c,F222F222,22,FeS (Low–temperature) Structure
+519,Al2Be3O18Si6,4,58,hP58,G31G3_{1},A2B3C18D6_hP58_192_c_f_lm_l,P6/mccP6/mcc,192,"Beryl (Be3Al2Si6O18, G31G3_{1}) Structure"
+520,N5P3,2,16,mC32,,A5B3_mC32_9_5a_3a,CcCc,9,α\alpha–P3N5 Structure
+521,ClFeO,3,6,oP6,E05E0_{5},ABC_oP6_59_a_b_a,PmmnPmmn,59,FeOCl (E05E0_{5}) Structure
+522,Ce5Mo3O16,3,96,cP96,,A5B3C16_cP96_222_ce_d_fi,Pnˉ3nPn\bar{3}n,222,Ce5Mo3O16 Structure
+523,Al2Br8Ti,3,22,oP22,,A2B8C_oP22_34_c_4c_a,Pnn2Pnn2,34,TiAl2Br8 Structure
+524,Ru2Sn3,2,20,tP20,,A2B3_tP20_116_bci_fj,Pˉ4c2P\bar{4}c2,116,Ru2Sn3 Structure
+525,Ni3Ti,2,16,hP16,D024D0_{24},A3B_hP16_194_gh_ac,P63/mmcP6_{3}/mmc,194,Ni3Ti (D024D0_{24}) Structure
+526,CuI,2,12,hP12,,AB_hP12_156_2ab3c_2ab3c,P3m1P3m1,156,CuI Structure
+527,Al2Co3O12Si3,4,80,cI160,S14S1_{4},A2B3C12D3_cI160_230_a_c_h_d,Iaˉ3dIa\bar{3}d,230,"Garnet (Co3Al2Si3O12, S14S1_{4}) Structure"
+528,CuFe2S3,3,24,oP24,E9eE9_{e},AB2C3_oP24_62_c_d_cd,PnmaPnma,62,"Cubanite (CuFe2S3, E9eE9_{e}) Structure"
+529,Cl9PV,3,22,oC44,,A9BC_oC44_39_3c3d_a_c,Abm2Abm2,39,VPCl9 Structure
+530,Cu3P,2,24,hP24,,A3B_hP24_185_ab2c_c,P63cmP6_{3}cm,185,Cu3P Structure
+531,P4Rh6Sc,3,11,hP11,,A4B6C_hP11_143_bd_2d_a,P3P3,143,ScRh6P4 Structure
+532,Li2O5Si2,3,18,oC36,,A2B5C2_oC36_37_d_c2d_d,Ccc2Ccc2,37,Li2Si2O5 Structure
+533,BMn2,2,12,oF48,D1fD1_{f},AB2_oF48_70_f_fg,FdddFddd,70,Mn2B (D1fD1_{f}) Structure
+534,SV3,2,32,tP32,,AB3_tP32_133_h_i2j,P42/nbcP4_{2}/nbc,133,β\beta–V3S Structure
+535,H]Mg[N,3,36,hP36,,ABC_hP36_175_jk_jk_jk,P6/mP6/m,175,Mg[NH] Structure
+536,In3Ru,2,16,tP16,,A3B_tP16_118_ei_f,Pˉ4n2P\bar{4}n2,118,RuIn3 Structure
+537,PTi3,2,32,tP32,,AB3_tP32_86_g_3g,P42/nP4_{2}/n,86,Ti3P Structure
+538,As2Cd,2,6,tI12,,A2B_tI12_98_f_a,I4122I4_{1}22,98,CdAs2 Structure
+539,C,1,60,cF240,,A_cF240_202_h2i,Fmˉ3Fm\bar{3},202,FCC C60 Buckminsterfullerene Structure
+540,Li2Sb,2,18,hP18,,A2B_hP18_190_gh_bf,Pˉ62cP\bar{6}2c,190,Li2Sb Structure
+541,Hg4Pt,2,5,cI10,,A4B_cI10_229_c_a,Imˉ3mIm\bar{3}m,229,β\beta–Hg4Pt Structure
+542,As2O7Sr2,3,88,tP88,,A2B7C2_tP88_78_4a_14a_4a,P43P4_{3},78,Sr2As2O7 Structure
+543,O4]2O5[Re2S,3,34,oP34,,A13B2C2_oP34_32_a6c_c_c,Pba2Pba2,32,Re2O5[SO4]2 Structure
+544,Al7Cu2Fe,3,40,tP40,E9aE9_{a},A7B2C_tP40_128_egi_h_e,P4/mncP4/mnc,128,FeCu2Al7 (E9aE9_{a}) Structure
+545,I3LiSc,3,10,hP10,,A3BC_hP10_188_k_c_a,Pˉ6c2P\bar{6}c2,188,LiScI3 Structure
+546,CeKSe4,3,12,tP12,,ABC4_tP12_125_a_b_m,P4/nbmP4/nbm,125,KCeSe4 Structure
+547,CsMoO4]2Pr[,4,24,oP24,,AB2C8D_oP24_49_g_q_2qr_e,PccmPccm,49,CsPr[MoO4]2 Structure
+548,MgOS,3,12,oC24,,AB4C_oC24_63_a_fg_c,CmcmCmcm,63,MgSO4 Structure
+549,O3W,2,32,oP32,,A3B_oP32_60_3d_d,PbcnPbcn,60,WO3 Structure
+550,Fe3Te3Tl,3,14,hP14,,A3B3C_hP14_176_h_h_c,P63/mP6_{3}/m,176,Fe3Te3Tl Structure
+551,MoO4]2Pr[Rb,4,24,oP24,,A2B8CD_oP24_48_k_2m_d_b,PnnnPnnn,48,α\alpha–RbPr[MoO4]2 Structure
+552,AsCeMe8P4Ph4S8,5,184,tP184,,AB32CD4E8_tP184_93_i_16p_af_2p_4p,P4222P4_{2}22,93,AsPh4CeS8P4Me8 Structure
+553,Ga3Rb,2,12,tI24,,A3B_tI24_119_b2i_af,Iˉ4m2I\bar{4}m2,119,RbGa3 Structure
+554,S2Ta3,2,20,oC40,,A2B3_oC40_39_2d_2c2d,Abm2Abm2,39,Ta3S2 Structure
+555,AuLiMgSn,4,4,cF16,,ABCD_cF16_216_c_d_b_a,Fˉ43mF\bar{4}3m,216,Quaternary Heusler (LiMgAuSn) Structure
+556,COS,3,3,hR3,F02F0_{2},ABC_hR3_160_a_a_a,R3mR3m,160,"Carbonyl Sulphide (COS, F02F0_{2}) Structure"
+557,Bi2O3,2,20,tP20,D512D5_{12},A2B3_tP20_117_i_adgh,Pˉ4b2P\bar{4}b2,117,"β\beta–Bi2O3 (High–temperature, D512D5_{12}) Structure"
+558,C,1,240,cP240,,A_cP240_205_10d,Paˉ3Pa\bar{3},205,Simple Cubic C60 Buckminsterfullerene Structure
+559,H3S,2,32,oC64,,A3B_oC64_66_gi2lm_2l,CccmCccm,66,H3S (60 GPa) Structure
+560,CuNiSb,3,4,hP4,,ABC2_hP4_164_a_b_d,Pˉ3m1P\bar{3}m1,164,CuNiSb2 Structure
+561,CrFe3NiSn5,2,6,hP6,,AB_hP6_183_c_ab,P6mmP6mm,183,CrFe3NiSn5 Structure
+562,CSi,2,10,hR10,B7B7,AB_hR10_160_5a_5a,R3mR3m,160,"Moissanite–15R (SiC, B7B7) Structure"
+563,Sb2TlZn2,3,10,tI20,,A2BC2_tI20_79_c_2a_c,I4I4,79,TlZn2Sb2 Structure
+564,Er3Ru2,2,10,hP10,,A3B2_hP10_176_h_bc,P63/mP6_{3}/m,176,Er3Ru2 Structure
+565,PbO,2,4,oC8,,AB_oC8_67_a_g,CmmaCmma,67,α\alpha–PbO Structure
+566,Al9Mn3Si,3,26,hP26,E9cE9_{c},A9B3C_hP26_194_hk_h_a,P63/mmcP6_{3}/mmc,194,Al9Mn3Si (E9cE9_{c}) Structure
+567,KO3Sb,3,60,cP60,,AB3C_cP60_201_be_fh_g,Pnˉ3Pn\bar{3},201,KSbO3 (High–temperature) Structure
+568,AsNa3,2,24,hP24,,AB3_hP24_185_c_ab2c,P63cmP6_{3}cm,185,Na3As Structure
+569,F4K2O9Ta4,3,57,hP57,,A2B13C4_hP57_168_d_c6d_2d,P6P6,168,K2Ta4O9F4 Structure
+570,AsRb3Se16,3,40,cF160,,AB3C16_cF160_203_a_bc_eg,Fdˉ3Fd\bar{3},203,Rb3AsSe16 Structure
+571,FePSe3,3,10,hR10,,ABC3_hR10_146_2a_2a_2b,R3R3,146,FePSe3 Structure
+572,Cl2Ga,2,24,oP24,,A2B_oP24_52_2e_cd,PnnaPnna,52,GaCl2 (High–temperature) Structure
+573,O3TeTl2,3,48,oP48,,A3BC2_oP48_50_3m_m_2m,PbanPban,50,α\alpha–Tl2TeO3 Structure
+574,BCTh,3,24,tP24,,ABC_tP24_95_d_d_d,P4322P4_{3}22,95,ThBC Structure
+575,CdI2,2,9,hP9,,AB2_hP9_156_b2c_3a2bc,P3m1P3m1,156,CdI2 (Polytype 6H1) Structure
+576,"O7Sc,Si2Y]2",3,11,mC22,S21S2_{1},A7B2C2_mC22_12_aij_h_i,C2/mC2/m,12,"Thortveitite ([Sc,Y]2Si2O7, S21S2_{1}) Structure"
+577,H,1,12,mC24,,A_mC24_15_2e2f,C2/cC2/c,15,H–III (300 GPa) Structure
+578,Cl4Th,2,10,tI20,,A4B_tI20_88_f_a,I41/aI4_{1}/a,88,ThCl4 Structure
+579,O2Si,2,36,hP36,,A2B_hP36_177_j2lm_n,P622P622,177,SiO2 Structure
+580,Al2CuIr,3,8,oC16,,A2BC_oC16_67_ag_b_g,CmmaCmma,67,Al2CuIr Structure
+581,NiTaTe2,3,16,oP16,,ABC2_oP16_53_h_e_gh,PmnaPmna,53,TaNiTe2 Structure
+582,Ba5Bi5In4,3,28,tP28,,A5B5C4_tP28_104_ac_ac_c,P4ncP4nc,104,Ba5In4Bi5 Structure
+583,O4Sb2Zn,3,28,tP28,,A4B2C_tP28_135_gh_h_d,P42/mbcP4_{2}/mbc,135,ZnSb2O4 Structure
+584,Ca3I3P,3,28,cI56,,A3B3C_cI56_214_g_h_a,I4132I4_{1}32,214,Ca3PI3 Structure
+585,Ga5Ir3,2,32,tP32,,A5B3_tP32_118_g2i_aceh,Pˉ4n2P\bar{4}n2,118,Ir3Ga5 Structure
+586,Fe3Zn10,2,26,cI52,D81D8_{1},A3B10_cI52_229_e_fh,Imˉ3mIm\bar{3}m,229,"γ\gamma–brass (Fe3Zn10, D81D8_{1}) Structure"
+587,AuF3,2,24,hP24,,AB3_hP24_178_b_ac,P6122P6_{1}22,178,AuF3 Structure
+588,BaSi,2,32,tP32,,A5B3_tP32_130_cg_cf,P4/nccP4/ncc,130,Ba5Si3 Structure
+589,Cl3Cr,2,24,hP24,,A3B_hP24_153_3c_2b,P3212P3_{2}12,153,CrCl3 Structure

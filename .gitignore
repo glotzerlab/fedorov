@@ -1,0 +1,10 @@
+*.ipynb
+*.py
+*.txt
+build/
+dist/
+chromedriver
+.DS_Store
+__pycache__/
+doc/
+fedorov.egg-info
