@@ -3,10 +3,10 @@
 
 # Maintainer: Pengji Zhou
 
-# NOTE: this is the code for record that was last used in Jan 2020 to generate all the Wyckoff
-# site data for each space group. The use of this code is not required to this this package
-# unless would like to abtain the most updated data again. However this code is not
-# maintained and not quaranteed to work if the website it queried is changed afterwards.
+# NOTE: this is the code for record that was last used in Jan 2020 to generate all crystal
+# data record from Aflow. The use of this code is not required to use this package
+# unless user would like to abtain the most updated data again. However this code is not
+# maintained and not quaranteed to work if the website it queries is changed afterwards.
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options

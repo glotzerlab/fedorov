@@ -4,7 +4,7 @@
 # Maintainer: Pengji Zhou
 
 # NOTE: this is the code for record that generates the space group number - lattice type mapping.
-# The use of this code is not required to this this package
+# The use of this code is not required to use this package
 
 # generate spacegroup and Pearson symbol mapping
 import json

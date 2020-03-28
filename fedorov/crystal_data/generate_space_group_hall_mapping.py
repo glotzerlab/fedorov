@@ -4,7 +4,7 @@
 # Maintainer: Pengji Zhou
 
 # NOTE: this is the code for record that generates the hall number - space group number mapping.
-# The use of this code is not required to this this package
+# The use of this code is not required to use this package
 
 # hall_spacegroup_mapping
 import spglib as spg
