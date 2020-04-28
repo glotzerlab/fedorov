@@ -44,7 +44,7 @@ for num in range(1, 231):
     with open('space_group_{}_Wyckoff_site_data.json'.format(num), 'w') as f:
         json.dump(Wyckoff_positions, f)
 
-use Rhombohedral axes choice for hR structures
+# use Rhombohedral axes choice for hR structures
 for num in (146, 148, 155, 160, 161, 166, 167):
 
     Wyckoff_positions_list = []
