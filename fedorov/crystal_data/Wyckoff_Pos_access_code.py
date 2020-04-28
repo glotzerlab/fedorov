@@ -60,7 +60,6 @@ for num in (146, 148, 155, 160, 161, 166, 167):
     genpos = re.findall(r"<i><i>(.*?)</i></i>", str(genpos))
     Wyckoff_positions_list.append(genpos)
 
-
     table = soup.find_all('table',{'class':'specpos'})[-1]
     table = table.find_all('table',{'class':'specposcoords'})
     for line in table:
