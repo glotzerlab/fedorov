@@ -12,6 +12,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import json
+import re
+import panda as pd
 
 
 # instantiate a chrome options object so you can set the size and headless preference
@@ -45,6 +47,9 @@ for num in range(1, 231):
         json.dump(Wyckoff_positions, f)
 
 # use Rhombohedral axes choice for hR structures
+
+letter = 'abcdefghijklmnopqrstuvwxyz'
+
 for num in (146, 148, 155, 160, 161, 166, 167):
 
     Wyckoff_positions_list = []
@@ -54,20 +59,20 @@ for num in (146, 148, 155, 160, 161, 166, 167):
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
 
-    table = soup.find_all('table',{'class':'genpos'})[-1]
-    table = table.find('table',{'class':'genposcoords'})
-    genpos = table.find('td', {'class':'genposcoords'})
+    table = soup.find_all('table', {'class': 'genpos'})[-1]
+    table = table.find('table', {'class': 'genposcoords'})
+    genpos = table.find('td', {'class': 'genposcoords'})
     genpos = re.findall(r"<i><i>(.*?)</i></i>", str(genpos))
     Wyckoff_positions_list.append(genpos)
 
-    table = soup.find_all('table',{'class':'specpos'})[-1]
-    table = table.find_all('table',{'class':'specposcoords'})
+    table = soup.find_all('table', {'class': 'specpos'})[-1]
+    table = table.find_all('table', {'class': 'specposcoords'})
     for line in table:
-        pos = pd.read_html(str(line))[0].iloc[0,0].replace(u'\xa0', u'').split(',')
+        pos = pd.read_html(str(line))[0].iloc[0, 0].replace(u'\xa0', u'').split(',')
         Wyckoff_positions_list.append(pos)
     n = len(Wyckoff_positions_list)
-    for i in range(0,n):
-        Wyckoff_positions[letter[n-1-i]] = Wyckoff_positions_list[i]
+    for i in range(0, n):
+        Wyckoff_positions[letter[n - 1 - i]] = Wyckoff_positions_list[i]
 
     with open(f'space_group_{num}_Wyckoff_site_data.json', 'w') as f:
         json.dump(Wyckoff_positions, f)
