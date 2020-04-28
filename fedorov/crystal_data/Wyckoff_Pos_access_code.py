@@ -8,12 +8,12 @@
 # unless user would like to abtain the most updated data again. However this code is not
 # maintained and not quaranteed to work if the website it queries is changed afterwards.
 
+import panda as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import json
 import re
-import panda as pd
 
 
 # instantiate a chrome options object so you can set the size and headless preference
@@ -74,5 +74,5 @@ for num in (146, 148, 155, 160, 161, 166, 167):
     for i in range(0, n):
         Wyckoff_positions[letter[n - 1 - i]] = Wyckoff_positions_list[i]
 
-    with open(f'space_group_{num}_Wyckoff_site_data.json', 'w') as f:
+    with open('space_group_{}_Wyckoff_site_data.json'.format(num), 'w') as f:
         json.dump(Wyckoff_positions, f)
