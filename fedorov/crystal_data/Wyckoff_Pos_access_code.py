@@ -43,3 +43,32 @@ for num in range(1, 231):
         i += 1
     with open('space_group_{}_Wyckoff_site_data.json'.format(num), 'w') as f:
         json.dump(Wyckoff_positions, f)
+
+use Rhombohedral axes choice for hR structures
+for num in (146, 148, 155, 160, 161, 166, 167):
+
+    Wyckoff_positions_list = []
+    Wyckoff_positions = {}
+
+    driver.get(f'https://it.iucr.org/Ac/ch2o3v0001/sgtable2o3o{num}/')
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+
+    table = soup.find_all('table',{'class':'genpos'})[-1]
+    table = table.find('table',{'class':'genposcoords'})
+    genpos = table.find('td', {'class':'genposcoords'})
+    genpos = re.findall(r"<i><i>(.*?)</i></i>", str(genpos))
+    Wyckoff_positions_list.append(genpos)
+
+
+    table = soup.find_all('table',{'class':'specpos'})[-1]
+    table = table.find_all('table',{'class':'specposcoords'})
+    for line in table:
+        pos = pd.read_html(str(line))[0].iloc[0,0].replace(u'\xa0', u'').split(',')
+        Wyckoff_positions_list.append(pos)
+    n = len(Wyckoff_positions_list)
+    for i in range(0,n):
+        Wyckoff_positions[letter[n-1-i]] = Wyckoff_positions_list[i]
+
+    with open(f'space_group_{num}_Wyckoff_site_data.json', 'w') as f:
+        json.dump(Wyckoff_positions, f)

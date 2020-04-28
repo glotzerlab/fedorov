@@ -139,5 +139,24 @@ def test_prototype_accuracy():
             norms = np.amin(norms, axis=1)
             assert np.linalg.norm(norms) < 1e-6
 
-
-test_prototype_accuracy()
+# test aflow_database parameter is complete
+def test_aflow_database_accuracy():
+    for i,name in AflowPrototype.Aflow_database['id'].iteritems():
+        cdbs=AflowPrototype(i,print_info=False)
+        keys=set(cdbs.lattice_params.keys())
+        if name.startswith('a'): #triclinic
+            assert(keys==set(('a','b','c','alpha','beta','gamma')))
+        elif name.startswith('m'): #monoclinic
+            assert(keys==set(('a','b','c','beta')))
+        elif name.startswith('o'): #orthorhombic
+            assert(keys==set(('a','b','c')))
+        elif name.startswith('t'): #tetragonal
+            assert(keys==set(('a','c')))
+        elif name.startswith('hR'): #rhombohedral
+            assert(keys==set(('a','alpha')))
+        elif name.startswith('h'): #hexagonal
+            assert(keys==set(('a','c')))
+        elif name.startswith('c'): #cubic
+            assert(keys==set(('a')))
+        else:
+            raise(name+'not start with a Pearson symbol')
