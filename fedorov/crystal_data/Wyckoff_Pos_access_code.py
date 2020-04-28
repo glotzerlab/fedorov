@@ -55,7 +55,7 @@ for num in (146, 148, 155, 160, 161, 166, 167):
     Wyckoff_positions_list = []
     Wyckoff_positions = {}
 
-    driver.get(f'https://it.iucr.org/Ac/ch2o3v0001/sgtable2o3o{num}/')
+    driver.get('https://it.iucr.org/Ac/ch2o3v0001/sgtable2o3o{}/'.format(num))
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
 
