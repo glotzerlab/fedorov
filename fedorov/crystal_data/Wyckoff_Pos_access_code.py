@@ -45,7 +45,7 @@ for num in range(1, 231):
         json.dump(Wyckoff_positions, f)
 
 # use Rhombohedral axes choice for hR structures
-for num in (146, 148, 155, 160, 161, 166, 167):
+for num in (146,148, 155, 160, 161, 166, 167):
 
     Wyckoff_positions_list = []
     Wyckoff_positions = {}
