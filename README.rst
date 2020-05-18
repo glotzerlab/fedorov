@@ -1,6 +1,6 @@
 Fedorov
 ==================================================
-A python package to initialize different crystal structures
+A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ or any user defined arbitrary crystal structures with proper space group and Wyckoff position information. The output of the crystal defined is provided through basis position: N by 3 numpy array with each row containing one particle position in the unit cell with N particles, and lattice vectors: 3 by 3 numpy array with each row vector describing the unit cell one unit cell dimension.
 
 Resources
 --------------------------------------------------
@@ -37,6 +37,26 @@ To build a PDF of the documentation (requires LaTeX and/or PDFLaTeX):
     make latexpdf
     # Then open _build/latex/fedorov.pdf
 
+Quickstart
+--------------------------------------------------
+
+This package provides simple ways to generate known or user defined crystal structures. For example, to generate any known crystal structures from this `list <https://github.com/glotzerlab/fedorov/blob/master/fedorov/crystal_data/Aflow_processed_data.csv>`_:
+
+.. code-block:: python
+
+    import numpy as np
+    from fedorov import SpaceGroup, Prototype, AflowPrototype
+    from fedorov import convert_to_box
+    # generate the exact prototype provided by Aflow, use prototype_index [0, 589]
+    prototype_index = 5
+    new_structure = AflowPrototype(prototype_index=prototype_index, print_info=True,
+                                   set_type=True)
+    basis_vectors, type_list = new_structure.get_basis_vectors()
+    lattice_vectors = new_structure.get_lattice_vectors()
+    Lx, Ly, Lz, xy, xz, yz = convert_to_box(lattice_vectors)
+
+More example can be found `here <https://github.com/glotzerlab/fedorov/tree/master/demo>`_.
+
 Testing
 --------------------------------------------------
 
@@ -47,6 +67,10 @@ You can test this package by executing:
     python -m pytest tests/
 
 within the repository root directory.
+
+Authors
+--------------------------------------------------
+- Pengji Zhou (zhoupj@umich.edu)
 
 Citation
 --------------------------------------------------
