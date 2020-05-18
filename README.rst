@@ -2,10 +2,40 @@ Fedorov
 ==================================================
 A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ or any user defined arbitrary crystal structures with proper space group and Wyckoff position information. The output of the crystal defined is provided through basis position: N by 3 numpy array with each row containing one particle position in the unit cell with N particles, and lattice vectors: 3 by 3 numpy array with each row vector describing the unit cell one unit cell dimension.
 
-Resources
+Installation
 --------------------------------------------------
-- `Installation guide <installation.rst>`_
-- Documentation: Website link to be added
+
+Install with pip
+================
+
+To install the package with the package manager pip_, execute
+
+.. code:: bash
+
+    $ pip install fedorov --user
+
+To upgrade the package, simply execute the same command with the ``--upgrade`` option.
+
+.. code:: bash
+
+    $ pip install fedorov --user --upgrade
+
+.. _pip: https://pip.pypa.io/en/stable/
+
+Install from source
+========================
+
+Alternatively you can clone the `git repository <https://github.com/glotzerlab/fedorov>`_ and execute the ``setup.py`` script to install the package.
+
+.. code:: bash
+
+  git clone https://github.com/glotzerlab/fedorov.git
+  cd fedorov
+  python setup.py install --user
+
+Documentation
+--------------------------------------------------
+- Documentation link: Website link to be added
 
 You can also build the documentation yourself with sphinx:
 
