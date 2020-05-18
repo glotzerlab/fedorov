@@ -1,6 +1,6 @@
 Fedorov
 ==================================================
-A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ or any user defined arbitrary crystal structures with proper space group and Wyckoff position information. The output of the crystal defined is provided through basis position: N by 3 numpy array with each row containing one particle position in the unit cell with N particles, and lattice vectors: 3 by 3 numpy array with each row vector describing the unit cell one unit cell dimension.
+A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ or any user defined arbitrary crystal structures with proper space group and Wyckoff position information. The main output of this package are the `basis_vectors`: N by 3 numpy array with each row containing one particle position in the unit cell with N particles, and `lattice_vectors`: 3 by 3 numpy array with each row vector describing one of the three unit cell dimension.
 
 Resources
 --------------------------------------------------
