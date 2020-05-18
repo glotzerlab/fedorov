@@ -7,6 +7,8 @@ This is the API for the **Fedorov** package.
 
 Class for crystal initialization
 --------------------------------
+This section contains three class that allows user to initialize a crystal structure with different
+user input.
 
 .. currentmodule:: fedorov
 
@@ -19,6 +21,13 @@ Class for crystal initialization
 .. autoclass:: AflowPrototype
     :show-inheritance:
     :members:
+
+    The list of crystal structures provided from Aflow are summarized below:
+
+    .. csv-table::
+       :file: ../fedorov/crystal_data/Aflow_processed_data.csv
+       :widths: 20, 20, 20, 20, 20, 20, 50, 20, 50
+       :header-rows: 1
 
 Class for unit cell
 -------------------
