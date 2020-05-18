@@ -1,12 +1,15 @@
+########################################
 Fedorov
-==================================================
+########################################
+
 A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ or any user defined arbitrary crystal structures with proper space group and Wyckoff position information. The main output of this package are the `basis_vectors`: N by 3 numpy array with each row containing one particle position in the unit cell with N particles, and `lattice_vectors`: 3 by 3 numpy array with each row vector describing one of the three unit cell dimension.
 
+****************************************
 Installation
---------------------------------------------------
+****************************************
 
 Install with pip
-================
+----------------------------------------
 
 To install the package with the package manager pip_, execute
 
@@ -23,7 +26,7 @@ To upgrade the package, simply execute the same command with the ``--upgrade`` o
 .. _pip: https://pip.pypa.io/en/stable/
 
 Install from source
-========================
+----------------------------------------
 
 Alternatively you can clone the `git repository <https://github.com/glotzerlab/fedorov>`_ and execute the ``setup.py`` script to install the package.
 
@@ -33,8 +36,10 @@ Alternatively you can clone the `git repository <https://github.com/glotzerlab/f
   cd fedorov
   python setup.py install --user
 
+****************************************
 Documentation
---------------------------------------------------
+****************************************
+
 - Documentation link: Website link to be added
 
 You can also build the documentation yourself with sphinx:
@@ -67,8 +72,9 @@ To build a PDF of the documentation (requires LaTeX and/or PDFLaTeX):
     make latexpdf
     # Then open _build/latex/fedorov.pdf
 
+****************************************
 Quickstart
---------------------------------------------------
+****************************************
 
 This package provides simple ways to generate known or user defined crystal structures. For example, to generate any known crystal structures from this `list <https://github.com/glotzerlab/fedorov/blob/master/fedorov/crystal_data/Aflow_processed_data.csv>`_:
 
@@ -87,8 +93,9 @@ This package provides simple ways to generate known or user defined crystal stru
 
 More example can be found `here <https://github.com/glotzerlab/fedorov/tree/master/demo>`_.
 
+****************************************
 Testing
---------------------------------------------------
+****************************************
 
 You can test this package by executing:
 
@@ -98,12 +105,14 @@ You can test this package by executing:
 
 within the repository root directory.
 
+****************************************
 Authors
---------------------------------------------------
+****************************************
 - Pengji Zhou (zhoupj@umich.edu)
 
-Citation
---------------------------------------------------
+****************************************
+Citations
+****************************************
 
 The pre-defined crystal structures are obtained by `Aflow <http://aflowlib.org/CrystalDatabase/>`_
 
