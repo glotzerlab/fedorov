@@ -377,7 +377,7 @@ lattice_system_dict = {'triclinic': Triclinic, 'monoclinic': Monoclinic,
 
 
 class SpaceGroup(object):
-    """A class for for space group symmetry operation.
+    """A class for space group symmetry operation.
 
     This class provides method to initialize a crystal unit cell with space group and Wyckoff
     possition information.
@@ -672,7 +672,7 @@ class AflowPrototype(Prototype):
     This class uses the crystal prototypes in Aflow database to initialize crystal structures.
 
     :param prototype_index:
-        prototype index [0, 529] for all 530 prototypes in AFLOW.
+        prototype index [0, 589] for all 590 prototypes in AFLOW.
     :type prototype_index:
         int
     :param set_type:
