@@ -174,6 +174,153 @@ def translate_to_vector(a=1, b=1, c=1, alpha=np.pi / 2, beta=np.pi / 2, gamma=np
     return lattice_vectors
 
 
+def translate_to_vector_2D(a=1, b=1, theta=np.pi / 2):
+    """Convert box parameters a, b, theta to lattice vectors [a1, a2].
+
+    :param a:
+    :type a:
+        float
+    :param b:
+    :type b:
+        float
+    :param theta:
+    :type theta:
+        float
+    :return:
+        lattice_vectors
+    :rtype:
+        np.ndarray
+    """
+    lattice_vectors = np.array([
+                               [a, 0],
+                               [b * np.cos(theta), b * np.sin(theta)]
+                               ])
+    return lattice_vectors
+
+
+# 2D systems
+class Monoclinic2D(object):
+    """A class for constructing a 2D monoclinic unitcell
+
+    This class provides method to initialize a 2D monoclinic unitcell
+    """
+    lattice_params = {'a': 1, 'b': 1, 'theta': np.pi / 2}
+
+    @classmethod
+    def update_lattice_params(cls, user_lattice_params):
+        params = copy.deepcopy(cls.lattice_params)
+        for param, value in user_lattice_params.items():
+            if param in params:
+                if value is not None:
+                    params[param] = value
+            else:
+                print('warning: {} is not required and not used to define this '
+                      'structure'.format(param))
+        return params
+
+    @classmethod
+    def get_lattice_vectors(cls, **user_lattice_params):
+        """Initialize a triclinic unitcell and return lattice vectors [a1, a2, a3].
+
+        :param user_lattice_params:
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+        :type user_lattice_params:
+            float
+        :return:
+            lattice_vectors
+        :rtype:
+            np.ndarray
+        """
+        params = cls.update_lattice_params(user_lattice_params)
+        lattice_vectors = translate_to_vector_2D(**params)
+        return lattice_vectors
+
+
+class Orthorhombic2D(object):
+    """A class for constructing a 2D monoclinic unitcell
+
+    This class provides method to initialize a 2D monoclinic unitcell
+    """
+    lattice_params = {'a': 1, 'b': 1}
+
+    @classmethod
+    def get_lattice_vectors(cls, **user_lattice_params):
+        """Initialize a 2D orthorhombic unitcell and return lattice vectors [a1, a2].
+
+        :param user_lattice_params:
+            unit cell parameters, provide a, b, theta where applicable
+        :type user_lattice_params:
+            float
+        :return:
+            lattice_vectors
+        :rtype:
+            np.ndarray
+        """
+        params = cls.update_lattice_params(user_lattice_params)
+        lattice_vectors = np.array([
+                                   [params['a'], 0.0],
+                                   [0.0, params['b']]
+                                   ])
+        return lattice_vectors
+
+
+class Hexagonal2D(object):
+    """A class for constructing a 2D hexagonal unitcell
+
+    This class provides method to initialize a 2D hexagonal unitcell
+    """
+    lattice_params = {'a': 1}
+
+    @classmethod
+    def get_lattice_vectors(cls, **user_lattice_params):
+        """Initialize a 2D hexagonal unitcell and return lattice vectors [a1, a2].
+
+        :param user_lattice_params:
+            unit cell parameters, provide a, b, theta where applicable
+        :type user_lattice_params:
+            float
+        :return:
+            lattice_vectors
+        :rtype:
+            np.ndarray
+        """
+        params = cls.update_lattice_params(user_lattice_params)
+        lattice_vectors = np.array([
+                                   [params['a'], 0.0],
+                                   [-params['a'] / 2, params['a'] * np.sqrt(3) / 2]
+                                   ])
+        return lattice_vectors
+
+
+class Tetragonal2D(object):
+    """A class for constructing a 2D tetragonal unitcell
+
+    This class provides method to initialize a 2D tetragonal unitcell
+    """
+    lattice_params = {'a': 1}
+
+    @classmethod
+    def get_lattice_vectors(cls, **user_lattice_params):
+        """Initialize a 2D tetragonal unitcell and return lattice vectors [a1, a2].
+
+        :param user_lattice_params:
+            unit cell parameters, provide a, b, theta where applicable
+        :type user_lattice_params:
+            float
+        :return:
+            lattice_vectors
+        :rtype:
+            np.ndarray
+        """
+        params = cls.update_lattice_params(user_lattice_params)
+        lattice_vectors = np.array([
+                                   [params['a'], 0.0],
+                                   [0.0, params['a']]
+                                   ])
+        return lattice_vectors
+
+
+# 3D systems
 class Triclinic(object):
     """A class for constructing a triclinic unitcell."""
     Pearson = 'a'
