@@ -8,10 +8,12 @@
 # unless user would like to abtain the most updated data again. However this code is not
 # maintained and not quaranteed to work if the website it queries is changed afterwards.
 
+import panda as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import json
+import re
 
 
 # instantiate a chrome options object so you can set the size and headless preference
@@ -41,5 +43,36 @@ for num in range(1, 231):
         position = row.find_all('td')[3].text.split(' ')[0].strip("()").split(',')
         Wyckoff_positions[Wyckoff_site] = position
         i += 1
+    with open('space_group_{}_Wyckoff_site_data.json'.format(num), 'w') as f:
+        json.dump(Wyckoff_positions, f)
+
+# use Rhombohedral axes choice for hR structures
+
+letter = 'abcdefghijklmnopqrstuvwxyz'
+
+for num in (146, 148, 155, 160, 161, 166, 167):
+
+    Wyckoff_positions_list = []
+    Wyckoff_positions = {}
+
+    driver.get('https://it.iucr.org/Ac/ch2o3v0001/sgtable2o3o{}/'.format(num))
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+
+    table = soup.find_all('table', {'class': 'genpos'})[-1]
+    table = table.find('table', {'class': 'genposcoords'})
+    genpos = table.find('td', {'class': 'genposcoords'})
+    genpos = re.findall(r"<i><i>(.*?)</i></i>", str(genpos))
+    Wyckoff_positions_list.append(genpos)
+
+    table = soup.find_all('table', {'class': 'specpos'})[-1]
+    table = table.find_all('table', {'class': 'specposcoords'})
+    for line in table:
+        pos = pd.read_html(str(line))[0].iloc[0, 0].replace(u'\xa0', u'').split(',')
+        Wyckoff_positions_list.append(pos)
+    n = len(Wyckoff_positions_list)
+    for i in range(0, n):
+        Wyckoff_positions[letter[n - 1 - i]] = Wyckoff_positions_list[i]
+
     with open('space_group_{}_Wyckoff_site_data.json'.format(num), 'w') as f:
         json.dump(Wyckoff_positions, f)
