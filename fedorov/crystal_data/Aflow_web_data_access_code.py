@@ -105,11 +105,11 @@ def process_parameters(parameters):
             params1.append('b/a')
         elif para == 'c/a':
             params1.append('c/a')
-        elif para == '\\alpha':
+        elif para == '\\\\alpha':
             params1.append('alpha')
-        elif para == '\\beta':
+        elif para == '\\\\beta':
             params1.append('beta')
-        elif para == '\\gamma':
+        elif para == '\\\\gamma':
             params1.append('gamma')
         else:
             params2.append(''.join(re.findall(r'[0-9a-z]', para)))
