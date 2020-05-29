@@ -4,6 +4,7 @@ import pandas as pd
 import fedorov
 from fedorov import wrap, convert_to_box, convert_to_vectors, translate_to_vector
 from fedorov import SpaceGroup, Prototype, AflowPrototype
+from fedorov import PlaneGroup
 import json
 import re
 import os
@@ -139,24 +140,42 @@ def test_prototype_accuracy():
             norms = np.amin(norms, axis=1)
             assert np.linalg.norm(norms) < 1e-6
 
+
 # test aflow_database parameter is complete
 def test_aflow_database_accuracy():
-    for i,name in AflowPrototype.Aflow_database['id'].iteritems():
-        cdbs=AflowPrototype(i,print_info=False)
-        keys=set(cdbs.lattice_params.keys())
-        if name.startswith('a'): #triclinic
-            assert(keys==set(('a','b','c','alpha','beta','gamma')))
-        elif name.startswith('m'): #monoclinic
-            assert(keys==set(('a','b','c','beta')))
-        elif name.startswith('o'): #orthorhombic
-            assert(keys==set(('a','b','c')))
-        elif name.startswith('t'): #tetragonal
-            assert(keys==set(('a','c')))
-        elif name.startswith('hR'): #rhombohedral
-            assert(keys==set(('a','alpha')))
-        elif name.startswith('h'): #hexagonal
-            assert(keys==set(('a','c')))
-        elif name.startswith('c'): #cubic
-            assert(keys==set(('a')))
+    for i, name in AflowPrototype.Aflow_database['id'].iteritems():
+        cdbs = AflowPrototype(i, print_info=False)
+        keys = set(cdbs.lattice_params.keys())
+        if name.startswith('a'):  # triclinic
+            assert(keys == set(('a', 'b', 'c', 'alpha', 'beta', 'gamma')))
+        elif name.startswith('m'):  # monoclinic
+            assert(keys == set(('a', 'b', 'c', 'beta')))
+        elif name.startswith('o'):  # orthorhombic
+            assert(keys == set(('a', 'b', 'c')))
+        elif name.startswith('t'):  # tetragonal
+            assert(keys == set(('a', 'c')))
+        elif name.startswith('hR'):  # rhombohedral
+            assert(keys == set(('a', 'alpha')))
+        elif name.startswith('h'):  # hexagonal
+            assert(keys == set(('a', 'c')))
+        elif name.startswith('c'):  # cubic
+            assert(keys == set(('a')))
         else:
-            raise(name+'not start with a Pearson symbol')
+            raise(name + 'not start with a Pearson symbol')
+
+
+# test generation from SpaceGroup
+def test_plane_group():
+    pg_test = PlaneGroup(9)
+    basis_positions = np.array([[0.1, 0.12], [0.14, 0.15]])
+    base_quaternions = np.array([[0, 0, 0, 0], [0.1, 0.1, 0.1, 0.1]])
+    basis_vectors, type_list = \
+        pg_test.get_basis_vectors(basis_positions, base_type=['B', 'A'],
+                                   base_quaternions=base_quaternions, apply_orientation=False)
+    lattice_vectors = pg_test.get_lattice_vectors(a=1, b=2)
+    # basis_vector_last = np.array([[0.61, 0.92, 0.1]])
+    # assert np.allclose(basis_vectors[-1, :], basis_vector_last)
+    assert basis_vectors.shape[0] == 16
+    assert np.allclose(lattice_vectors, np.array([[1, 0], [0, 2]]))
+    assert type_list == ['B', 'A'] * 8
+    # TODO test quaternion accuracy

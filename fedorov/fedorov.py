@@ -6,6 +6,7 @@
 import numpy as np
 import pandas as pd
 import json
+import pickle
 import spglib as spg
 import copy
 import re
@@ -199,10 +200,10 @@ def translate_to_vector_2D(a=1, b=1, theta=np.pi / 2):
 
 
 # 2D systems
-class Monoclinic2D(object):
-    """A class for constructing a 2D monoclinic unitcell
+class Oblique2D(object):
+    """A class for constructing a 2D oblique unitcell
 
-    This class provides method to initialize a 2D monoclinic unitcell
+    This class provides method to initialize a 2D oblique unitcell
     """
     lattice_params = {'a': 1, 'b': 1, 'theta': np.pi / 2}
 
@@ -220,7 +221,7 @@ class Monoclinic2D(object):
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a triclinic unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a 2D oblique unitcell and return lattice vectors [a1, a2, a3].
 
         :param user_lattice_params:
             unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
@@ -236,16 +237,16 @@ class Monoclinic2D(object):
         return lattice_vectors
 
 
-class Orthorhombic2D(object):
-    """A class for constructing a 2D monoclinic unitcell
+class Rectangular2D(Oblique2D):
+    """A class for constructing a 2D rectangular unitcell
 
-    This class provides method to initialize a 2D monoclinic unitcell
+    This class provides method to initialize a 2D rectangular unitcell
     """
     lattice_params = {'a': 1, 'b': 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a 2D orthorhombic unitcell and return lattice vectors [a1, a2].
+        """Initialize a 2D rectangular unitcell and return lattice vectors [a1, a2].
 
         :param user_lattice_params:
             unit cell parameters, provide a, b, theta where applicable
@@ -264,7 +265,7 @@ class Orthorhombic2D(object):
         return lattice_vectors
 
 
-class Hexagonal2D(object):
+class Hexagonal2D(Oblique2D):
     """A class for constructing a 2D hexagonal unitcell
 
     This class provides method to initialize a 2D hexagonal unitcell
@@ -292,16 +293,16 @@ class Hexagonal2D(object):
         return lattice_vectors
 
 
-class Tetragonal2D(object):
-    """A class for constructing a 2D tetragonal unitcell
+class Square2D(Rectangular2D):
+    """A class for constructing a 2D square unitcell
 
-    This class provides method to initialize a 2D tetragonal unitcell
+    This class provides method to initialize a 2D square unitcell
     """
     lattice_params = {'a': 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a 2D tetragonal unitcell and return lattice vectors [a1, a2].
+        """Initialize a 2D square unitcell and return lattice vectors [a1, a2].
 
         :param user_lattice_params:
             unit cell parameters, provide a, b, theta where applicable
@@ -318,6 +319,147 @@ class Tetragonal2D(object):
                                    [0.0, params['a']]
                                    ])
         return lattice_vectors
+
+
+lattice_system_dict_2D = {'oblique': Oblique2D, 'rectangular': Rectangular2D,
+                          'hexagonal': Hexagonal2D, 'square': Square2D}
+
+
+class PlaneGroup(object):
+    """A class for plane group symmetry operation.
+
+    This class provides method to initialize a crystal unit cell with plane group and Wyckoff
+    possition information.
+
+    :param plane_group_number:
+        Plane group number between 1 and 17.
+    :type plane_group_number:
+        int
+    :param print_info:
+        Print plane group information upon initialization.
+    :type print_info:
+        bool
+    """
+
+    dir_path = os.path.dirname(__file__)
+    plane_group_info_dir = os.path.join(dir_path,
+                                        'crystal_data/plane_group_info.pickle')
+    with open(plane_group_info_dir, 'rb') as f:
+        plane_group_info_dict = pickle.load(f)
+    plane_group_lattice_mapping_dir = os.path.join(dir_path,
+                                                   'crystal_data/plane_group_lattice_mapping.json')
+    with open(plane_group_lattice_mapping_dir, 'r') as f:
+        plane_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
+
+    def __init__(self, plane_group_number=1, print_info=False):
+        if plane_group_number <= 0 or plane_group_number > 17:
+            raise ValueError('plane_group_number must be an integer between 1 and 17')
+
+        self.plane_group_number = plane_group_number
+        self.lattice_type = self.plane_group_lattice_mapping[self.plane_group_number]
+        self.lattice = lattice_system_dict_2D[self.lattice_type]
+        info = self.plane_group_info_dict[plane_group_number]
+        self.translations = info['translations']
+        self.rotations = info['rotations']
+
+        if print_info:
+            print('Plane group number: {}\n'.format(plane_group_number),
+                  'lattice type: {}\n'.format(self.lattice_type),
+                  'Default parameters for lattice: {}'.format(self.lattice.lattice_params))
+
+    def get_basis_vectors(self, base_positions, base_type=[], base_quaternions=None,
+                          is_complete=False, apply_orientation=False):
+        """Get the basis vectors for the defined crystall structure.
+
+        :param base_positions:
+            N by 2 np array of the Wyckoff postions
+        :type base_positions:
+            np.ndarray
+        :param base_type:
+            a list of string for particle type name
+        :type base_type:
+            list
+        :param base_quaternions:
+            N by 4 np array of quaternions, default None
+        :type base_quaternions:
+            np.ndarray
+        :param is_complete:
+            bool value to indicate if the positions are complete postions in a unitcell
+        :type is_complete:
+            bool
+        :param apply_orientations:
+            bool value to indicate if the space group symmetry should be applied to orientatioin
+        :type apply_orientations:
+            bool
+        :return:
+            basis_vectors
+        :rtype:
+            np.ndarray
+        """
+
+        # check input accuracy
+        if not isinstance(base_positions, np.ndarray) or len(base_positions.shape) == 1 \
+           or base_positions.shape[1] != 2:
+            raise ValueError('base_positions must be an numpy array of shape Nx3')
+        if apply_orientation:
+            if not isinstance(base_quaternions, np.ndarray) or len(base_quaternions.shape) == 1 \
+               or base_quaternions.shape[1] != 4:
+                raise ValueError('base_quaternions must be an numpy array of shape Nx4')
+        if len(base_type):
+            if not isinstance(base_type, list) or len(base_type) != base_positions.shape[0] \
+               or not all(isinstance(i, str) for i in base_type):
+                raise ValueError('base_type must contain a list of type name the same length'
+                                 'as the number of basis positions')
+        else:
+            base_type = ['A'] * base_positions.shape[0]
+
+        threshold = 1e-6
+        for i in range(0, len(self.rotations)):
+            # Generate the new set of positions from the base
+            pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
+            if apply_orientation:
+                quat_rotate = rowan.from_matrix(self.rotations[i], require_orthogonal=False)
+                quat = rowan.multiply(quat_rotate, base_quaternions)
+
+            if i == 0:
+                positions = pos
+                type_list = copy.deepcopy(base_type)
+                if apply_orientation:
+                    quaternions = quat
+            else:
+                pos_comparisons = pos - positions[:, np.newaxis, :]
+                norms = np.linalg.norm(pos_comparisons, axis=2)
+                comps = np.all(norms > threshold, axis=0)
+                positions = np.append(positions, pos[comps], axis=0)
+                type_list += [x for x, y in zip(base_type, comps) if y]
+                if apply_orientation:
+                    quaternions = np.append(quaternions, quat[comps], axis=0)
+                    if norms.min() < threshold:
+                        print('Orientation quaterions may have multiple values for the same '
+                              'particle postion under the symmetry operation for this space group '
+                              'and is not well defined, only the first occurance is used.')
+
+        if is_complete and len(positions) != len(base_positions):
+            raise ValueError('the complete basis postions vector does not match the space group '
+                             'chosen. More positions are generated based on the symmetry operation '
+                             'within the provided space group')
+
+        if apply_orientation:
+            return wrap(positions), type_list, quaternions
+        else:
+            return wrap(positions), type_list
+
+    def get_lattice_vectors(self, **user_lattice_params):
+        """Initialize the unitcell and return lattice vectors [a1, a2, a3].
+
+        :param user_lattice_params:
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+        :type user_lattice_params:
+            float
+        :return: lattice_vectors
+        :rtype: np.ndarray
+        """
+        return self.lattice.get_lattice_vectors(**user_lattice_params)
 
 
 # 3D systems
@@ -518,9 +660,9 @@ class Cubic(Tetragonal):
         return lattice_vectors
 
 
-lattice_system_dict = {'triclinic': Triclinic, 'monoclinic': Monoclinic,
-                       'orthorhombic': Orthorhombic, 'tetragonal': Tetragonal,
-                       'hexagonal': Hexagonal, 'rhombohedral': Rhombohedral, 'cubic': Cubic}
+lattice_system_dict_3D = {'triclinic': Triclinic, 'monoclinic': Monoclinic,
+                          'orthorhombic': Orthorhombic, 'tetragonal': Tetragonal,
+                          'hexagonal': Hexagonal, 'rhombohedral': Rhombohedral, 'cubic': Cubic}
 
 
 class SpaceGroup(object):
@@ -531,7 +673,7 @@ class SpaceGroup(object):
 
     :param space_group_number:
         Space group number between 1 and 230.
-    :type space_group_numbers:
+    :type space_group_number:
         int
     :param print_info:
         Print space group information upon initialization.
@@ -550,11 +692,11 @@ class SpaceGroup(object):
 
     def __init__(self, space_group_number=1, print_info=False):
         if space_group_number <= 0 or space_group_number > 230:
-            raise ValueError('space_group number must be an integer between 1 and 230')
+            raise ValueError('space_group_number must be an integer between 1 and 230')
 
         self.space_group_number = space_group_number
         self.lattice_type = self.space_group_lattice_mapping[self.space_group_number]
-        self.lattice = lattice_system_dict[self.lattice_type]
+        self.lattice = lattice_system_dict_3D[self.lattice_type]
         info = spg.get_symmetry_from_database(self.space_group_hall_mapping[space_group_number])
         self.translations = info['translations']
         self.rotations = info['rotations']
