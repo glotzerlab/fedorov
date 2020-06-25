@@ -413,12 +413,18 @@ class PlaneGroup(object):
         else:
             base_type = ['A'] * base_positions.shape[0]
 
+        def expand2d(matrix2d):
+            matrix3d = np.identity(3)
+            matrix3d[0:2, 0:2] = matrix2d
+            return matrix3d
+
         threshold = 1e-6
         for i in range(0, len(self.rotations)):
             # Generate the new set of positions from the base
             pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
             if apply_orientation:
-                quat_rotate = rowan.from_matrix(self.rotations[i], require_orthogonal=False)
+                quat_rotate = rowan.from_matrix(expand2d(self.rotations[i]),
+                                                require_orthogonal=False)
                 quat = rowan.multiply(quat_rotate, base_quaternions)
 
             if i == 0:
