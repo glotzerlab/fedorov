@@ -288,7 +288,7 @@ class Hexagonal2D(Oblique2D):
         params = cls.update_lattice_params(user_lattice_params)
         lattice_vectors = np.array([
                                    [params['a'], 0.0],
-                                   [-params['a'] / 2, params['a'] * np.sqrt(3) / 2]
+                                   [-0.5 * params['a'], params['a'] * np.sqrt(3) / 2]
                                    ])
         return lattice_vectors
 
