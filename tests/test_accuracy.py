@@ -107,7 +107,7 @@ def test_vector_to_box():
 def test_space_group():
     spg_test = SpaceGroup(220)
     basis_positions = np.array([[0.1, 0.12, 0.13], [0.14, 0.15, 0.17]])
-    base_quaternions = np.array([[0, 0, 0, 0], [0.1, 0.1, 0.1, 0.1]])
+    base_quaternions = np.array([[0, 0, 0, 1], [0, 0, 1, 0]])
     basis_vectors, type_list, quaternions = \
         spg_test.get_basis_vectors(basis_positions, base_type=['B', 'A'],
                                    base_quaternions=base_quaternions, apply_orientation=True)
@@ -168,13 +168,13 @@ def test_aflow_database_accuracy():
 def test_plane_group():
     pg_test = PlaneGroup(9)
     basis_positions = np.array([[0.1, 0.12], [0.14, 0.15]])
-    base_quaternions = np.array([[0, 0, 0, 0], [0.1, 0.1, 0.1, 0.1]])
-    basis_vectors, type_list = \
+    base_quaternions = np.array([[0, 0, 0, 1], [0, 0, 1, 0]])
+    basis_vectors, type_list, quaternions = \
         pg_test.get_basis_vectors(basis_positions, base_type=['B', 'A'],
-                                   base_quaternions=base_quaternions, apply_orientation=False)
+                                   base_quaternions=base_quaternions, apply_orientation=True)
     lattice_vectors = pg_test.get_lattice_vectors(a=1, b=2)
-    # basis_vector_last = np.array([[0.61, 0.92, 0.1]])
-    # assert np.allclose(basis_vectors[-1, :], basis_vector_last)
+    basis_vector_last = np.array([0.64, 0.35])
+    assert np.allclose(basis_vectors[-1, :], basis_vector_last)
     assert basis_vectors.shape[0] == 16
     assert np.allclose(lattice_vectors, np.array([[1, 0], [0, 2]]))
     assert type_list == ['B', 'A'] * 8
