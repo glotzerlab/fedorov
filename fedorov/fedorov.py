@@ -1071,3 +1071,74 @@ class AflowPrototype(Prototype):
                   'Wyckoff sites: {}\n'.format(entry['Wyckoff_site']),
                   'available lattice parameters: {}\n'.format(lattice_params),
                   'available basis parameters: {}'.format(basis_params))
+
+
+# Point Group operations
+class PointGroup(object):
+    """A class to access all point group symmetry operations.
+
+    This class provides method to access all point group symmetry operation in both rotational
+    matrix form or quaternion form.
+
+    :param point_group_number:
+        Point group number between 1 and 32.
+    :type point_group_number:
+        int
+    :param print_info:
+        Print point group information upon initialization.
+    :type print_info:
+        bool
+    """
+
+    dir_path = os.path.dirname(__file__)
+    point_group_rotation_matrix_dir = os.path.join(dir_path,
+                                                   'crystal_data/'
+                                                   'point_group_rotation_matrix_dict.pickle')
+    with open(point_group_rotation_matrix_dir, 'rb') as f:
+        point_group_rotation_matrix_dict = pickle.load(f)
+
+    point_group_quat_dir = os.path.join(dir_path,
+                                            'crystal_data/point_group_quat_dict.json')
+    with open(point_group_quat_dir, 'r') as f:
+        point_group_quat_dict = json.load(f, object_hook=json_key_to_int)
+
+    point_group_name_mapping_dir = os.path.join(dir_path,
+                                                   'crystal_data/point_group_name_mapping.json')
+    with open(point_group_name_mapping_dir, 'r') as f:
+        point_group_name_mapping = json.load(f, object_hook=json_key_to_int)
+
+    def __init__(self, point_group_number=1, print_info=False):
+        if point_group_number <= 0 or point_group_number > 32:
+            raise ValueError('point_group_number must be an integer between 1 and 32')
+
+        self.point_group_number = point_group_number
+        self.point_group_name = self.point_group_name_mapping[point_group_number]
+        self.rotation_matrix = \
+            self.point_group_rotation_matrix_dict[point_group_number]['rotations']
+        self.quaternion = self.point_group_quat_dict[point_group_number]
+
+        if print_info:
+            print('Point group number: {}\n'.format(point_group_number),
+                  'Name {}'.format(self.point_group_name))
+
+    def get_quaternion(self):
+        """Get the quaternions for the point group symmetry.
+
+        :return:
+            list of quaternions
+        :rtype:
+            list
+        """
+
+        return self.quaternion
+
+    def get_rotation_matrix(self):
+        """Get the rotation matrixes for the point group symmetry.
+
+        :return:
+            n by 3 by 3 numpy array containing n rotational matrixes
+        :rtype:
+            numpy.ndarray
+        """
+
+        return self.rotation_matrix

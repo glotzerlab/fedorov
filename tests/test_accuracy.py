@@ -4,7 +4,7 @@ import pandas as pd
 import fedorov
 from fedorov import wrap, convert_to_box, convert_to_vectors, translate_to_vector
 from fedorov import SpaceGroup, Prototype, AflowPrototype
-from fedorov import PlaneGroup
+from fedorov import PlaneGroup, PointGroup
 import json
 import re
 import os
@@ -164,7 +164,7 @@ def test_aflow_database_accuracy():
             raise(name + 'not start with a Pearson symbol')
 
 
-# test generation from SpaceGroup
+# test generation from plane group
 def test_plane_group():
     pg_test = PlaneGroup(9)
     basis_positions = np.array([[0.1, 0.12], [0.14, 0.15]])
@@ -179,3 +179,13 @@ def test_plane_group():
     assert np.allclose(lattice_vectors, np.array([[1, 0], [0, 2]]))
     assert type_list == ['B', 'A'] * 8
     # TODO test quaternion accuracy
+
+
+# test generation from point group symmetry access
+def test_point_group():
+    point_group_test = PointGroup(29)
+    assert point_group_test.point_group_name == "m-3"
+    assert point_group_test.get_quaternion()[2] == [0.0, 0.0, -1.0, 0.0]
+    assert np.allclose(point_group_test.get_rotation_matrix()[2], np.array([[-1, 0, 0],
+                                                                            [0, 1, 0],
+                                                                            [0, 0, -1]]))

@@ -3,7 +3,7 @@
 
 # Maintainer: Pengji Zhou
 
-# NOTE: this is the code for record that was last used in May 2020 to generate all PointGroup info
+# NOTE: this is the code for record that was last used in June 2020 to generate all PointGroup info
 # The use of this code is not required to use this package
 # unless user would like to abtain the most updated data again. However this code is not
 # maintained and not quaranteed to work if the website it queries is changed afterwards.
@@ -15,8 +15,8 @@ from bs4 import BeautifulSoup
 import re
 import numpy as np
 import pickle
-import json
 import rowan
+import json
 
 
 # instantiate a chrome options object so you can set the size and headless preference
@@ -26,7 +26,7 @@ chrome_options.add_argument("--window-size=1920x1080")
 
 driver = webdriver.Chrome(chrome_options=chrome_options)
 
-pointgroup_dict = {}
+point_group_rotation_matrix_dict = {}
 for num in range(1, 33):
     driver.get('https://www.cryst.ehu.es/cgi-bin/cryst/programs/'
                'nph-point_genpos?num={}'.format(num))
@@ -48,30 +48,32 @@ for num in range(1, 33):
         rotations[i, 1, :] = value_list[3:6]
         rotations[i, 2, :] = value_list[6:9]
         i += 1
-    pointgroup_dict[num] = {'rotations': rotations}
+    point_group_rotation_matrix_dict[num] = {'rotations': rotations}
 
-with open('point_group_info.pickle', 'wb') as f:
-    pickle.dump(pointgroup_dict, f)
+
+with open('point_group_rotation_matrix_dict.pickle', 'wb') as f:
+    pickle.dump(point_group_rotation_matrix_dict, f)
 
 point_group_list = ['1', '-1', '2', 'm', '2/m', '222', 'mm2', 'mmm',
                     '4', '-4', '4/m', '422', '4mm', '-42m', '4/mmm', '3',
                     '-3', '32', '3m', '-3m', '6', '-6', '6/m', '622',
                     '6mm', '-6m2', '6/mmm', '23', 'm-3', '432', '-43m', 'm-3m']
-num = range(1, 33)
-point_group_dict = dict(zip(num, point_group_list))
 
-with open('point_group_info.pickle', 'rb') as f:
-    point_group_info_dict = pickle.load(f)
+num = range(1, 33)
+point_group_name_dict = dict(zip(num, point_group_list))
+
+with open('point_group_name_mapping.json', 'w') as f:
+    json.dump(point_group_name_dict, f)
 
 point_group_quat_dict = {}
-for key, item in point_group_info_dict.items():
+for key, item in point_group_rotation_matrix_dict.items():
     quats = []
     n = item['rotations'].shape[0]
     for i in range(0, n):
         qtemp = rowan.from_matrix(item['rotations'][i, :, :], require_orthogonal=False)
         quats.append(qtemp.tolist())
 
-    point_group_quat_dict[point_group_dict[key]] = quats
+    point_group_quat_dict[key] = quats
 
-with open('point_group_quat_info.json', 'w') as f:
+with open('point_group_quat_dict.json', 'w') as f:
     json.dump(point_group_quat_dict, f)
