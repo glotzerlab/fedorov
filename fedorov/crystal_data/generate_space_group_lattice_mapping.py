@@ -6,7 +6,7 @@
 # NOTE: this is the code for record that generates the space group number - lattice type mapping.
 # The use of this code is not required to use this package
 
-# generate spacegroup and Pearson symbol mapping
+# generate spacegroup and lattice type mapping
 import json
 
 space_group_lattice_mapping = {}
