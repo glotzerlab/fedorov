@@ -166,6 +166,9 @@ def translate_to_vector(a=1, b=1, c=1, alpha=np.pi / 2, beta=np.pi / 2, gamma=np
     ca = np.cos(alpha)
     cb = np.cos(beta)
     cy = (ca - cb * cg) / sg
+    if (1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg) < 0:
+        raise ValueError('Error: the box length and angle parameters provided are not feasible. '
+                         'Please not the unit used for angle paramters should be in unit of rad')
     cz = np.sqrt(1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg) / sg
     lattice_vectors = np.array([
                                [a, 0, 0],
@@ -430,7 +433,7 @@ class PlaneGroup(object):
                     quat = rowan.multiply(quat_rotate, base_quaternions)
                 else:
                     quat = base_quaternions
-                    reflection_exist = False
+                    reflection_exist = True
 
             if i == 0:
                 positions = pos
@@ -1031,6 +1034,11 @@ class AflowPrototype(Prototype):
 
         lattice_params = dict(zip(lattice_params_list, lattice_params_value_list))
         basis_params = dict(zip(basis_params_list, basis_params_value_list))
+
+        # convert Aflow angle unit from degree to rad
+        for key in ['alpha', 'beta', 'gamma']:
+            if key in lattice_params.keys():
+                lattice_params[key] = lattice_params[key] / 180 * np.pi
 
         # process proper unitcell params
         if space_group_number in [146, 148, 155, 160, 161, 166, 167]:

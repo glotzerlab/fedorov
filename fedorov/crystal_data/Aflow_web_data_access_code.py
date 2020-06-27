@@ -113,6 +113,7 @@ def process_parameters(parameters):
             params1.append('gamma')
         else:
             params2.append(''.join(re.findall(r'[0-9a-z]', para)))
+        # angle value are in degree unit
     return params1, params2
 
 

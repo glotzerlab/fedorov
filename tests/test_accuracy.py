@@ -23,6 +23,7 @@ def test_aflow_prototype():
         basis_vectors, type_list = structure_test.get_basis_vectors()
         lattice_vectors = structure_test.get_lattice_vectors()
         N = int(re.findall(r'\d+', database.loc[i, 'Pearson Symbol'])[0])
+        assert not np.isnan(lattice_vectors).any()
         assert len(basis_vectors) == N
         assert len(type_list) == N
         assert ''.join(type_list).isalpha()
