@@ -419,13 +419,18 @@ class PlaneGroup(object):
             return matrix3d
 
         threshold = 1e-6
+        reflection_exist = False
         for i in range(0, len(self.rotations)):
             # Generate the new set of positions from the base
             pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
             if apply_orientation:
-                quat_rotate = rowan.from_matrix(_expand2d(self.rotations[i]),
-                                                require_orthogonal=False)
-                quat = rowan.multiply(quat_rotate, base_quaternions)
+                if np.linalg.det(self.rotations[i]) == 1:
+                    quat_rotate = rowan.from_matrix(_expand2d(self.rotations[i]),
+                                                    require_orthogonal=False)
+                    quat = rowan.multiply(quat_rotate, base_quaternions)
+                else:
+                    quat = base_quaternions
+                    reflection_exist = False
 
             if i == 0:
                 positions = pos
@@ -444,6 +449,9 @@ class PlaneGroup(object):
                         print('Orientation quaterions may have multiple values for the same '
                               'particle postion under the symmetry operation for this space group '
                               'and is not well defined, only the first occurance is used.')
+        if reflection_exist:
+            print('Warning: reflection operation is included in this space group, '
+                  'and is ignored for quaternion calculation.')
 
         if is_complete and len(positions) != len(base_positions):
             raise ValueError('the complete basis postions vector does not match the space group '
@@ -759,12 +767,17 @@ class SpaceGroup(object):
             base_type = ['A'] * base_positions.shape[0]
 
         threshold = 1e-6
+        reflection_exist = False
         for i in range(0, len(self.rotations)):
             # Generate the new set of positions from the base
             pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
             if apply_orientation:
-                quat_rotate = rowan.from_matrix(self.rotations[i], require_orthogonal=False)
-                quat = rowan.multiply(quat_rotate, base_quaternions)
+                if np.linalg.det(self.rotations[i]) == 1:
+                    quat_rotate = rowan.from_matrix(self.rotations[i], require_orthogonal=False)
+                    quat = rowan.multiply(quat_rotate, base_quaternions)
+                else:
+                    quat = base_quaternions
+                    reflection_exist = True
 
             if i == 0:
                 positions = pos
@@ -783,6 +796,9 @@ class SpaceGroup(object):
                         print('Orientation quaterions may have multiple values for the same '
                               'particle postion under the symmetry operation for this space group '
                               'and is not well defined, only the first occurance is used.')
+        if reflection_exist:
+            print('Warning: reflection operation is included in this space group, '
+                  'and is ignored for quaternion calculation.')
 
         if is_complete and len(positions) != len(base_positions):
             raise ValueError('the complete basis postions vector does not match the space group '
