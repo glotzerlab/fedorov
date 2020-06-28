@@ -5,10 +5,10 @@ API Reference
 
 This is the API for the **Fedorov** package.
 
-Class for crystal initialization
---------------------------------
-This section contains three class that allows user to initialize a crystal structure with different
-user input.
+Class for 3D crystal initialization
+-------------------------------------------------
+This section contains three classes that allow user to initialize a 3D crystal structure with
+different user input.
 
 .. currentmodule:: fedorov
 
@@ -29,8 +29,8 @@ user input.
        :widths: 20, 20, 20, 20, 20, 20, 50, 20, 50
        :header-rows: 1
 
-Class for unit cell
--------------------
+Class for 3D unit cell
+-------------------------------------------------
 
 .. currentmodule:: fedorov
 
@@ -55,8 +55,44 @@ Class for unit cell
 .. autoclass:: Cubic
     :members:
 
+Class for 2D crystal initialization
+-------------------------------------------------
+This section contains one class that allows user to initialize a 2D crystal structure with different
+user input.
+
+.. currentmodule:: fedorov
+
+.. autoclass:: PlaneGroup
+   :members:
+
+Class for 2D unit cell
+-------------------------------------------------
+
+.. currentmodule:: fedorov
+
+.. autoclass:: Oblique2D
+   :members:
+
+.. autoclass:: Rectangular2D
+   :members:
+
+.. autoclass:: Hexagonal2D
+   :members:
+
+.. autoclass:: Square2D
+   :members:
+
+Class for Point group symmetry operations
+-------------------------------------------------
+This section contains one class that allows user to obtain all point group symmetry operations.
+
+.. currentmodule:: fedorov
+
+.. autoclass:: PointGroup
+  :members:
+
 Some methods for crystal initialization
----------------------------------------
+-------------------------------------------------
 
 .. currentmodule:: fedorov
 
@@ -71,3 +107,5 @@ Some methods for crystal initialization
 .. autofunction:: fractional_to_cartesian
 
 .. autofunction:: translate_to_vector
+
+.. autofunction:: translate_to_vector_2D

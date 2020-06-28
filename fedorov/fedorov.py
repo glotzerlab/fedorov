@@ -224,10 +224,10 @@ class Oblique2D(object):
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a 2D oblique unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a 2D oblique unitcell and return lattice vectors [a1, a2].
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, theta where applicable
         :type user_lattice_params:
             float
         :return:
@@ -467,10 +467,10 @@ class PlaneGroup(object):
             return wrap(positions), type_list
 
     def get_lattice_vectors(self, **user_lattice_params):
-        """Initialize the unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize the unitcell and return lattice vectors [a1, a2].
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, theta where applicable
         :type user_lattice_params:
             float
         :return: lattice_vectors
