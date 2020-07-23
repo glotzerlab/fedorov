@@ -10,11 +10,6 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-import fedorov
-# sys.path.insert(0, os.path.abspath('.'))
-
 
 # -- Project information -----------------------------------------------------
 
@@ -23,7 +18,7 @@ copyright = '2019-2020 The Regents of the University of Michigan'
 author = 'Pengji Zhou'
 
 # The full version, including alpha/beta/rc tags
-version = fedorov.__version__
+version = '0.0.0'
 release = version
 
 
