@@ -42,7 +42,7 @@ Documentation
 
 - Documentation link: Website link to be added
 
-You can also build the documentation yourself with sphinx:
+You can also build the documentation with sphinx:
 
 You can install sphinx using conda:
 
