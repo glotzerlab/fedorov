@@ -2,7 +2,7 @@
 Fedorov
 ########################################
 
-A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides simple ways to generate any user defined crystal structures in both 2D and 3D systems, and includes easy access to 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_. User can use this package to quickly construct any crystal structure and obtain the necessary data in form of numpy array to use for softwares such as `HOOMD-Blue <https://hoomd-blue.readthedocs.io/en/stable/index.html/>`_ to construct any systems with specific crystal structure for simulation and analysis. In addition, the package also provides easy access to all the 3D space group, 2D plane group as well as point group operations that allows user to apply different symmetry operations.
+A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides methods to generate any user defined crystal structures in both 2D and 3D systems, and includes access to 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_. Users can use this package to obtain the necessary data in form of numpy array to use for softwares such as `HOOMD-Blue <https://hoomd-blue.readthedocs.io/en/stable/index.html/>`_ to construct any systems with specific crystal structure for simulation and analysis. In addition, the package also provides access to all the 3D space group, 2D plane group as well as point group operations that allows user to apply different symmetry operations.
 
 ****************************************
 Installation
@@ -76,7 +76,7 @@ To build a PDF of the documentation (requires LaTeX and/or PDFLaTeX):
 Quickstart
 ****************************************
 
-This package provides simple ways to generate known or user defined crystal structures. For example, to generate any known crystal structures from this `list <https://github.com/glotzerlab/fedorov/blob/master/fedorov/crystal_data/Aflow_processed_data.csv>`_:
+This package provides methods to generate known or user defined crystal structures. For example, to generate any known crystal structures from this `list <https://github.com/glotzerlab/fedorov/blob/master/fedorov/crystal_data/Aflow_processed_data.csv>`_:
 
 .. code-block:: python
 
@@ -106,31 +106,6 @@ You can test this package by executing:
 within the repository root directory.
 
 ****************************************
-Authors
+Credits
 ****************************************
-- Pengji Zhou (zhoupj@umich.edu)
-
-****************************************
-Citations
-****************************************
-
-The pre-defined crystal structures are obtained by `Aflow <http://aflowlib.org/CrystalDatabase/>`_
-
-- \M. J. Mehl, D. Hicks, C. Toher, O. Levy, R. M. Hanson, G. L. W. Hart, and S. Curtarolo. The AFLOW Library of Crystallographic Prototypes: Part 1, Comp. Mat. Sci. 136, S1-S828 (2017). (`doi=10.1016/j.commatsci.2017.01.017 <http://doi.org/10.1016/j.commatsci.2017.01.017>`_)
-
-- \D. Hicks, M. J. Mehl, E. Gossett, C. Toher, O. Levy, R. M. Hanson, G. L. W. Hart, and S. Curtarolo. The AFLOW Library of Crystallographic Prototypes: Part 2, Comp. Mat. Sci. 161, S1-S1011 (2019). (`doi=10.1016/j.commatsci.2018.10.043 <http://doi.org/10.1016/j.commatsci.2018.10.043/>`_)
-
-The space group information are obtained from the `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_ :
-
-- \M. I. Aroyo, J. M. Perez-Mato, D. Orobengoa, E. Tasci, G. de la Flor, A. Kirov.
-  "Crystallography online: Bilbao Crystallographic Server"
-  Bulg. Chem. Commun. 43(2) 183-197 (2011).
-  (`<http://bcc.bas.bg/BCC_Volumes/Volume_43_Number_2_2011/Volume_43_Number_2_2011_PDF/2011_43_2_1.pdf/>`_)
-
-- \M. I. Aroyo, J. M. Perez-Mato, C. Capillas, E. Kroumova, S. Ivantchev, G. Madariaga, A. Kirov & H. Wondratschek.
-  "Bilbao Crystallographic Server I: Databases and crystallographic computing programs"
-  Z. Krist. 221, 1, 15-27 (2006). (`doi:10.1524/zkri.2006.221.1.15 <http://dx.doi.org/10.1524/zkri.2006.221.1.15/>`_)
-
-- \M. I. Aroyo, A. Kirov, C. Capillas, J. M. Perez-Mato & H. Wondratschek.
-  "Bilbao Crystallographic Server II: Representations of crystallographic point groups and space groups"
-  Acta Cryst. A62, 115-128 (2006). (`doi:10.1107/S0108767305040286 <http://dx.doi.org/10.1107/S0108767305040286/>`_)
+See `Credits <https://github.com/glotzerlab/fedorov/blob/master/Credits.rst>`_.

@@ -9,6 +9,8 @@ Contents
 
    installation
    api
+   license
+   credits
 
 Indices and tables
 ------------------

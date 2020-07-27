@@ -5,7 +5,7 @@ API Reference
 
 This is the API for the **Fedorov** package.
 
-Class for 3D crystal initialization
+Classes for 3D crystal initialization
 -------------------------------------------------
 This section contains three classes that allow user to initialize a 3D crystal structure with
 different user input.
@@ -29,7 +29,7 @@ different user input.
        :widths: 20, 20, 20, 20, 20, 20, 50, 20, 50
        :header-rows: 1
 
-Class for 3D unit cell
+Classes for 3D unit cell
 -------------------------------------------------
 
 .. currentmodule:: fedorov
@@ -65,7 +65,7 @@ user input.
 .. autoclass:: PlaneGroup
    :members:
 
-Class for 2D unit cell
+Classes for 2D unit cell
 -------------------------------------------------
 
 .. currentmodule:: fedorov
