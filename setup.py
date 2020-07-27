@@ -14,7 +14,8 @@ setuptools.setup(
     long_description_content_type="text/x-rst",
     url="https://github.com/zhou-pj/crystal_database",
     packages=['fedorov'],
-    package_data={'fedorov': ['crystal_data/*.csv', 'crystal_data/*.json']},
+    package_data={'fedorov': ['crystal_data/*.csv', 'crystal_data/*.json',
+                              'crystal_data/*.pickle']},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
