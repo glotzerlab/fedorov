@@ -13,6 +13,25 @@
 
 # -- Project information -----------------------------------------------------
 
+import os
+import sys
+from unittest.mock import MagicMock
+
+sys.path.insert(0, os.path.abspath('..'))
+
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        if name == '_mock_methods':
+            return []
+        return Mock()
+
+
+MOCK_MODULES = ['spglib', 'rowan']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+
 project = 'Fedorov'
 copyright = '2019-2020 The Regents of the University of Michigan'
 author = 'Pengji Zhou'
@@ -37,6 +56,9 @@ extensions = [
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# The master toctree document.
+master_doc = 'index'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
