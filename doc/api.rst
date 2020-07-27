@@ -15,14 +15,18 @@ different user input.
 .. autoclass:: SpaceGroup
     :members:
 
+    All the space group information was obtained from `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_
+
 .. autoclass:: Prototype
     :members:
+
+    All the space group and Wyckoff positions information was obtained from `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_
 
 .. autoclass:: AflowPrototype
     :show-inheritance:
     :members:
 
-    The list of crystal structures provided from Aflow are summarized below:
+    The list of crystal structures available in `Aflow <http://aflowlib.org/CrystalDatabase/>`_ are summarized below:
 
     .. csv-table::
        :file: ../fedorov/crystal_data/Aflow_processed_data.csv
@@ -63,7 +67,9 @@ user input.
 .. currentmodule:: fedorov
 
 .. autoclass:: PlaneGroup
-   :members:
+    :members:
+
+    All the plane group information was obtained from `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_
 
 Classes for 2D unit cell
 -------------------------------------------------
@@ -71,16 +77,16 @@ Classes for 2D unit cell
 .. currentmodule:: fedorov
 
 .. autoclass:: Oblique2D
-   :members:
+    :members:
 
 .. autoclass:: Rectangular2D
-   :members:
+    :members:
 
 .. autoclass:: Hexagonal2D
-   :members:
+    :members:
 
 .. autoclass:: Square2D
-   :members:
+    :members:
 
 Class for Point group symmetry operations
 -------------------------------------------------
@@ -89,7 +95,9 @@ This section contains one class that allows user to obtain all point group symme
 .. currentmodule:: fedorov
 
 .. autoclass:: PointGroup
-  :members:
+    :members:
+
+    All the point group information was obtained from `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_
 
 Some methods for crystal initialization
 -------------------------------------------------
