@@ -40,7 +40,8 @@ Alternatively you can clone the `git repository <https://github.com/glotzerlab/f
 Documentation
 ****************************************
 
-- Documentation link: Website link to be added
+- Documentation for the most recent release can be found here: `fedorov stable <https://fedorov.readthedocs.io/en/stable/>`_ 
+- Documentation with the latest changes can be found here: `fedorov latest <https://fedorov.readthedocs.io/en/latest/>`_ 
 
 You can also build the documentation with sphinx:
 
