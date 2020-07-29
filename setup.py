@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="fedorov",  # Replace with your own username
-    version="0.0.0",
+    version="0.1.0",
     author="Pengji Zhou",
     author_email="zhoupj@umich.edu",
     description="A python code repo to initialize different crystal structures "
