@@ -2,7 +2,7 @@
 Fedorov
 ########################################
 
-A python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov/>`_. This package provides methods to generate any user defined crystal structures in both 2D and 3D systems, and includes access to 590 known crystal structures defined in `Aflow <http://aflowlib.org/CrystalDatabase/>`_. Users can use this package to obtain the necessary data in form of numpy array to use for softwares such as `HOOMD-Blue <https://hoomd-blue.readthedocs.io/en/stable/index.html/>`_ to construct any systems with specific crystal structure for simulation and analysis. In addition, the package also provides access to all the 3D space group, 2D plane group as well as point group operations that allows user to apply different symmetry operations.
+A Python package to initialize different crystal structures. Named after the Russian mathematician, crystallographer and mineralogist: `Evgraf Fedorov <https://en.wikipedia.org/wiki/Evgraf_Fedorov>`_. This package provides methods to generate any user defined crystal structures in both 2D and 3D systems, and includes access to 590 known crystal structures defined in `Aflow <http://aflowlib.org/prototype-encyclopedia/>`_. Users can use this package to obtain the necessary data in form of numpy array to use for softwares such as `HOOMD-blue <https://hoomd-blue.readthedocs.io/>`_ to construct any systems with specific crystal structure for simulation and analysis. In addition, the package also provides access to all the 3D space group, 2D plane group as well as point group operations that allows user to apply different symmetry operations.
 
 ****************************************
 Installation
@@ -92,7 +92,7 @@ This package provides methods to generate known or user defined crystal structur
     lattice_vectors = new_structure.get_lattice_vectors()
     Lx, Ly, Lz, xy, xz, yz = convert_to_box(lattice_vectors)
 
-More example can be found `here <https://github.com/glotzerlab/fedorov/tree/master/demo>`_.
+More examples can be found `here <https://github.com/glotzerlab/fedorov/tree/master/demo>`_.
 
 ****************************************
 Testing
