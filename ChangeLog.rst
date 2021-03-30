@@ -7,6 +7,8 @@ Unreleased
 
 Added
 +++++
+- ``populate_system`` which helps create particle positions and box dimension given a crystal
+  lattice and the number of replicas in each dimension.
 
 Changed
 +++++++

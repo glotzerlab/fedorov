@@ -117,3 +117,5 @@ Some methods for crystal initialization
 .. autofunction:: translate_to_vector
 
 .. autofunction:: translate_to_vector_2D
+
+.. autofunction:: populate_system

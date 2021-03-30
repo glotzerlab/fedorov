@@ -3,6 +3,8 @@
 
 # Maintainer: Pengji Zhou
 
+import typing
+
 import numpy as np
 import pandas as pd
 import json
@@ -200,6 +202,103 @@ def translate_to_vector_2D(a=1, b=1, theta=np.pi / 2):
                                [b * np.cos(theta), b * np.sin(theta)]
                                ])
     return lattice_vectors
+
+
+def populate_system(
+        lattice: np.ndarray,
+        basis_vectors: np.ndarray,
+        num_replicas: typing.Union[int, np.ndarray],
+        center: bool = True,
+        **kwargs: np.ndarray):
+    r"""Return positions and box dimensions for given number of replicas.
+
+    Computes the location for particle positions within the translated lattice
+    using the basis vectors. The number of replicas determines the number of
+    times the lattice is translated in each dimension. The function can also
+    expand any number of other properties associated with a basis vector
+    through key word arguments.
+
+    Parameters
+    ----------
+    lattice: (3, :math:`N_{dim}`) array of floats
+        The lattice vectors for the crystal.
+    basis_vectors: (:math:`N_b, N_{dim}` ) array of float
+        The basis vectors in fraction coordinates with respect to the given
+        lattice. These are the positions of particles within the lattice.
+    num_replicas: int or (:math:`N_{dim}`,) array of int
+        Either an array of the number of lattice relicas in each direction or an
+        integer which signifies replicating the unit cell ``num_replicas`` times
+        in each dimension.
+    center: bool, optional
+        Whether to roughly center positions. This is commonly done for
+        simulations such as those using HOOMD-blue, defaults to ``True``.
+    \*\*kwargs: np.ndarray
+        Optional key word arguments which each represent a property specific to
+        a particular basis vector (particle position) within the lattice. These
+        are use to create arrays that are the same length as the returned
+        positions with the same properties per basis vector as passed. For
+        instance, particle types can be computed this way.
+
+    Returns
+    -------
+    positions: (:math:`N_p`, 3) np.ndarray of float
+        An array of positions that are the result of translating the lattice
+        across space based on ``num_replicas``.
+    box: (6,) np.ndarray of float
+        The values for the containing periodic box,
+        :math:`L_x,\ L_y,\ L_z,\ xy, xz, yz`.
+    property_arrays: dict[str, np.ndarray], optional
+        A dictionary with keys from the key word arguments passed to the
+        function with NumPy arrays as values. Each NumPy array has been repeated
+        such that its relation to the basis vectors is preserved and the array
+        covers all positions. This is only returned with at least one keyword
+        argument is passed.
+    """
+    N_dims = basis_vectors.shape[-1]
+    if isinstance(num_replicas, int):
+        num_replicas = np.array((num_replicas,) * N_dims)
+
+    if len(num_replicas) != N_dims:
+        raise ValueError(
+            f"num_replicas must be an int or array of shape=({N_dims},)")
+
+    for key, arr in kwargs.items():
+        if not isinstance(arr, np.ndarray):
+            arr = np.array(arr)
+            kwargs[key] = arr
+        if arr.shape[0] != basis_vectors.shape[0]:
+            raise ValueError(
+                f"key word argument, {key}, must be of "
+                f"shape={basis_vectors.shape[0], ...}")
+
+    # Particle positions within a single lattice box
+    unit_cell = np.sum(
+        basis_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :],
+        axis=1).reshape((-1, N_dims))
+
+    # An array of the kind [[0, 0, 0], [0, 0, 1], ... [N, N, N]]
+    n_lattice_vectors = np.indices(
+        num_replicas, dtype=float).reshape(N_dims, -1).T
+    # Get the distance vectors to translate the base particle positions
+    translate = np.sum(
+        n_lattice_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :],
+        axis=1)
+
+    positions = (
+        unit_cell[np.newaxis, :, :] + translate[:, np.newaxis, :]).reshape(
+            (-1, N_dims))
+
+    if center:
+        max_positions = positions[-1]
+        positions -= max_positions / 2
+    # Increase box size to fit all lattice replicas
+    box = np.array(convert_to_box(lattice))
+    box[:3] *= num_replicas
+    if kwargs:
+        repeat = num_replicas.prod()
+        return positions, box, {key: np.tile(arr, repeat)
+                                for key, arr in kwargs.items()}
+    return positions, box
 
 
 # 2D systems
