@@ -7,6 +7,7 @@ Unreleased
 
 Added
 +++++
+- ``pre-commit`` configuration with ``black``, ``isort``, and ``flake8``.
 
 Changed
 +++++++

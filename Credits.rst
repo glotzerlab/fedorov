@@ -7,6 +7,8 @@ Pengji Zhou <zhoupj@umich.edu>, University of Michigan - **Lead developer**.
 
 Vyas Ramasubramani <vramasub@umich.edu>, University of Michigan
 
+Brandon Butler <butlerbr@umich.edu>, University of Michigan
+
 Libraries
 ---------
 
