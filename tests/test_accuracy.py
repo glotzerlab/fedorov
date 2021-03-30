@@ -187,6 +187,95 @@ def test_point_group():
     point_group_test = PointGroup(29)
     assert point_group_test.point_group_name == "m-3"
     assert point_group_test.get_quaternion()[2] == [0.0, 0.0, -1.0, 0.0]
-    assert np.allclose(point_group_test.get_rotation_matrix()[2], np.array([[-1, 0, 0],
-                                                                            [0, 1, 0],
-                                                                            [0, 0, -1]]))
+    assert np.allclose(
+        point_group_test.get_rotation_matrix()[2],
+        np.array([[-1, 0, 0], [0, 1, 0], [0, 0, -1]]),
+    )
+
+
+def test_populate_system():
+    N_replicas = 2
+
+    basis_vectors = np.array([[0.5, 0.5, 0], [0, 0.5, 0.5]])
+
+    lattice = np.array([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])
+
+    expected_positions_centered = np.array(
+        [
+            [0.0, -0.25, -0.75],
+            [-0.5, -0.25, -0.25],
+            [0.0, -0.25, 0.25],
+            [-0.5, -0.25, 0.75],
+            [0.0, 0.75, -0.75],
+            [-0.5, 0.75, -0.25],
+            [0.0, 0.75, 0.25],
+            [-0.5, 0.75, 0.75],
+            [1.0, -0.25, -0.75],
+            [0.5, -0.25, -0.25],
+            [1.0, -0.25, 0.25],
+            [0.5, -0.25, 0.75],
+            [1.0, 0.75, -0.75],
+            [0.5, 0.75, -0.25],
+            [1.0, 0.75, 0.25],
+            [0.5, 0.75, 0.75],
+        ]
+    )
+
+    centered_positions, box = fedorov.populate_system(
+        lattice, basis_vectors, N_replicas
+    )
+
+    np.testing.assert_allclose(
+        np.sort(expected_positions_centered, axis=0),
+        np.sort(centered_positions, axis=0),
+    )
+
+    expected_box = np.array(
+        [
+            2.0,
+            2.0,
+            2.0,
+            0,
+            0,
+            0
+        ]
+    )
+    np.testing.assert_allclose(box, expected_box)
+
+    positions, box = fedorov.populate_system(
+        lattice, basis_vectors, N_replicas, center=False
+    )
+
+    expected_positions = np.array(
+        [
+            [0.5, 0.5, 0.0],
+            [0.0, 0.5, 0.5],
+            [0.5, 0.5, 1.0],
+            [0.0, 0.5, 1.5],
+            [0.5, 1.5, 0.0],
+            [0.0, 1.5, 0.5],
+            [0.5, 1.5, 1.0],
+            [0.0, 1.5, 1.5],
+            [1.5, 0.5, 0.0],
+            [1.0, 0.5, 0.5],
+            [1.5, 0.5, 1.0],
+            [1.0, 0.5, 1.5],
+            [1.5, 1.5, 0.0],
+            [1.0, 1.5, 0.5],
+            [1.5, 1.5, 1.0],
+            [1.0, 1.5, 1.5],
+        ]
+    )
+
+    np.testing.assert_allclose(
+        np.sort(expected_positions, axis=0), np.sort(positions, axis=0)
+    )
+
+    types = [0, 1]
+
+    positions, box, prop = fedorov.populate_system(
+        lattice, basis_vectors, N_replicas, center=False, types=types
+    )
+
+    assert all(prop['types'][::2] == 0)
+    assert all(prop['types'][1::2] == 1)
