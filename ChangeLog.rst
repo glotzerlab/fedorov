@@ -9,4 +9,9 @@ Added
 +++++
 
 Changed
-+++++
++++++++
+
+Removed
++++++++
+
+- Removed Python3.5 support
