@@ -1,19 +1,20 @@
 # Copyright (c) 2019-2020 The Regents of the University of Michigan
-# This file is part of the fedorov project, released under the BSD 3-Clause License.
+# This file is part of the fedorov project, released under the BSD 3-Clause
+# License.
 
 # Maintainer: Pengji Zhou
 
+import copy
+import json
+import os
+import pickle
+import re
 import typing
 
 import numpy as np
 import pandas as pd
-import json
-import pickle
-import spglib as spg
-import copy
-import re
 import rowan
-import os
+import spglib as spg
 
 
 def json_key_to_int(x):
@@ -68,7 +69,7 @@ def convert_to_box(lattice_vectors):
 
 
 def convert_to_vectors(Lx, Ly, Lz, xy, xz, yz):
-    """Convert box parameter: Lx, Ly, Lz, xy, xz, yz to lattice vectors [a1, a2, a3].
+    """Convert box parameter: Lx, Ly, Lz, xy, xz, yz to lattice vectors.
 
     :param Lx:
     :type Lx:
@@ -93,9 +94,9 @@ def convert_to_vectors(Lx, Ly, Lz, xy, xz, yz):
     :rtype:
         np.ndarray
     """
-    lattice_vectors = np.array([[Lx, 0, 0],
-                                [xy * Ly, Ly, 0],
-                                [xz * Lz, yz * Lz, Lz]])
+    lattice_vectors = np.array(
+        [[Lx, 0, 0], [xy * Ly, Ly, 0], [xz * Lz, yz * Lz, Lz]]
+    )
     return lattice_vectors
 
 
@@ -136,8 +137,10 @@ def fractional_to_cartesian(basis_vectors, lattice_vectors):
     return basis_vectors.dot(lattice_vectors)
 
 
-def translate_to_vector(a=1, b=1, c=1, alpha=np.pi / 2, beta=np.pi / 2, gamma=np.pi / 2):
-    """Convert box parameters a, b, c, alpha, beta, gamma to lattice vectors [a1, a2, a3].
+def translate_to_vector(
+    a=1, b=1, c=1, alpha=np.pi / 2, beta=np.pi / 2, gamma=np.pi / 2
+):
+    """Convert box parameters a, b, c, alpha, beta, gamma to lattice vectors.
 
     :param a:
     :type a:
@@ -169,14 +172,15 @@ def translate_to_vector(a=1, b=1, c=1, alpha=np.pi / 2, beta=np.pi / 2, gamma=np
     cb = np.cos(beta)
     cy = (ca - cb * cg) / sg
     if (1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg) < 0:
-        raise ValueError('Error: the box length and angle parameters provided are not feasible. '
-                         'Please not the unit used for angle paramters should be in unit of rad')
+        raise ValueError(
+            "Error: the box length and angle parameters provided are not "
+            "feasible. Please not the unit used for angle paramters should be "
+            "in unit of rad"
+        )
     cz = np.sqrt(1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg) / sg
-    lattice_vectors = np.array([
-                               [a, 0, 0],
-                               [b * cg, b * sg, 0],
-                               [c * cb, c * cy, c * cz]
-                               ])
+    lattice_vectors = np.array(
+        [[a, 0, 0], [b * cg, b * sg, 0], [c * cb, c * cy, c * cz]]
+    )
     return lattice_vectors
 
 
@@ -197,19 +201,17 @@ def translate_to_vector_2D(a=1, b=1, theta=np.pi / 2):
     :rtype:
         np.ndarray
     """
-    lattice_vectors = np.array([
-                               [a, 0],
-                               [b * np.cos(theta), b * np.sin(theta)]
-                               ])
+    lattice_vectors = np.array([[a, 0], [b * np.cos(theta), b * np.sin(theta)]])
     return lattice_vectors
 
 
 def populate_system(
-        lattice: np.ndarray,
-        basis_vectors: np.ndarray,
-        num_replicas: typing.Union[int, np.ndarray],
-        center: bool = True,
-        **kwargs: np.ndarray):
+    lattice: np.ndarray,
+    basis_vectors: np.ndarray,
+    num_replicas: typing.Union[int, np.ndarray],
+    center: bool = True,
+    **kwargs: np.ndarray,
+):
     r"""Return positions and box dimensions for given number of replicas.
 
     Computes the location for particle positions within the translated lattice
@@ -260,7 +262,8 @@ def populate_system(
 
     if len(num_replicas) != N_dims:
         raise ValueError(
-            f"num_replicas must be an int or array of shape=({N_dims},)")
+            f"num_replicas must be an int or array of shape=({N_dims},)"
+        )
 
     for key, arr in kwargs.items():
         if not isinstance(arr, np.ndarray):
@@ -269,24 +272,26 @@ def populate_system(
         if arr.shape[0] != basis_vectors.shape[0]:
             raise ValueError(
                 f"key word argument, {key}, must be of "
-                f"shape={basis_vectors.shape[0], ...}")
+                f"shape={basis_vectors.shape[0], ...}"
+            )
 
     # Particle positions within a single lattice box
     unit_cell = np.sum(
-        basis_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :],
-        axis=1).reshape((-1, N_dims))
+        basis_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :], axis=1
+    ).reshape((-1, N_dims))
 
     # An array of the kind [[0, 0, 0], [0, 0, 1], ... [N, N, N]]
-    n_lattice_vectors = np.indices(
-        num_replicas, dtype=float).reshape(N_dims, -1).T
+    n_lattice_vectors = (
+        np.indices(num_replicas, dtype=float).reshape(N_dims, -1).T
+    )
     # Get the distance vectors to translate the base particle positions
     translate = np.sum(
-        n_lattice_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :],
-        axis=1)
+        n_lattice_vectors[:, np.newaxis, :] * lattice[np.newaxis, :, :], axis=1
+    )
 
     positions = (
-        unit_cell[np.newaxis, :, :] + translate[:, np.newaxis, :]).reshape(
-            (-1, N_dims))
+        unit_cell[np.newaxis, :, :] + translate[:, np.newaxis, :]
+    ).reshape((-1, N_dims))
 
     if center:
         max_positions = positions[-1]
@@ -296,8 +301,11 @@ def populate_system(
     box[:3] *= num_replicas
     if kwargs:
         repeat = num_replicas.prod()
-        return positions, box, {key: np.tile(arr, repeat)
-                                for key, arr in kwargs.items()}
+        return (
+            positions,
+            box,
+            {key: np.tile(arr, repeat) for key, arr in kwargs.items()},
+        )
     return positions, box
 
 
@@ -307,7 +315,8 @@ class Oblique2D(object):
 
     This class provides method to initialize a 2D oblique unitcell
     """
-    lattice_params = {'a': 1, 'b': 1, 'theta': np.pi / 2}
+
+    lattice_params = {"a": 1, "b": 1, "theta": np.pi / 2}
 
     @classmethod
     def update_lattice_params(cls, user_lattice_params):
@@ -317,8 +326,10 @@ class Oblique2D(object):
                 if value is not None:
                     params[param] = value
             else:
-                print('warning: {} is not required and not used to define this '
-                      'structure'.format(param))
+                print(
+                    "warning: {} is not required and not used to define this "
+                    "structure".format(param)
+                )
         return params
 
     @classmethod
@@ -344,11 +355,12 @@ class Rectangular2D(Oblique2D):
 
     This class provides method to initialize a 2D rectangular unitcell
     """
-    lattice_params = {'a': 1, 'b': 1}
+
+    lattice_params = {"a": 1, "b": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a 2D rectangular unitcell and return lattice vectors [a1, a2].
+        """Initialize a 2D rectangular unitcell and return lattice vectors.
 
         :param user_lattice_params:
             unit cell parameters, provide a, b, theta where applicable
@@ -360,10 +372,7 @@ class Rectangular2D(Oblique2D):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0],
-                                   [0.0, params['b']]
-                                   ])
+        lattice_vectors = np.array([[params["a"], 0.0], [0.0, params["b"]]])
         return lattice_vectors
 
 
@@ -372,11 +381,12 @@ class Hexagonal2D(Oblique2D):
 
     This class provides method to initialize a 2D hexagonal unitcell
     """
-    lattice_params = {'a': 1}
+
+    lattice_params = {"a": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a 2D hexagonal unitcell and return lattice vectors [a1, a2].
+        """Initialize a 2D hexagonal unitcell and return lattice vectors.
 
         :param user_lattice_params:
             unit cell parameters, provide a, b, theta where applicable
@@ -388,10 +398,12 @@ class Hexagonal2D(Oblique2D):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0],
-                                   [-0.5 * params['a'], params['a'] * np.sqrt(3) / 2]
-                                   ])
+        lattice_vectors = np.array(
+            [
+                [params["a"], 0.0],
+                [-0.5 * params["a"], params["a"] * np.sqrt(3) / 2],
+            ]
+        )
         return lattice_vectors
 
 
@@ -400,7 +412,8 @@ class Square2D(Rectangular2D):
 
     This class provides method to initialize a 2D square unitcell
     """
-    lattice_params = {'a': 1}
+
+    lattice_params = {"a": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
@@ -416,22 +429,23 @@ class Square2D(Rectangular2D):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0],
-                                   [0.0, params['a']]
-                                   ])
+        lattice_vectors = np.array([[params["a"], 0.0], [0.0, params["a"]]])
         return lattice_vectors
 
 
-lattice_system_dict_2D = {'oblique': Oblique2D, 'rectangular': Rectangular2D,
-                          'hexagonal': Hexagonal2D, 'square': Square2D}
+lattice_system_dict_2D = {
+    "oblique": Oblique2D,
+    "rectangular": Rectangular2D,
+    "hexagonal": Hexagonal2D,
+    "square": Square2D,
+}
 
 
 class PlaneGroup(object):
     """A class for plane group symmetry operation.
 
-    This class provides method to initialize a crystal unit cell with plane group and Wyckoff
-    possition information.
+    This class provides method to initialize a crystal unit cell with plane
+    group and Wyckoff possition information.
 
     :param plane_group_number:
         Plane group number between 1 and 17.
@@ -444,33 +458,49 @@ class PlaneGroup(object):
     """
 
     dir_path = os.path.dirname(__file__)
-    plane_group_info_dir = os.path.join(dir_path,
-                                        'crystal_data/plane_group_info.pickle')
-    with open(plane_group_info_dir, 'rb') as f:
+    plane_group_info_dir = os.path.join(
+        dir_path, "crystal_data/plane_group_info.pickle"
+    )
+    with open(plane_group_info_dir, "rb") as f:
         plane_group_info_dict = pickle.load(f)
-    plane_group_lattice_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/plane_group_lattice_mapping.json')
-    with open(plane_group_lattice_mapping_dir, 'r') as f:
+    plane_group_lattice_mapping_dir = os.path.join(
+        dir_path, "crystal_data/plane_group_lattice_mapping.json"
+    )
+    with open(plane_group_lattice_mapping_dir, "r") as f:
         plane_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
     def __init__(self, plane_group_number=1, print_info=False):
         if plane_group_number <= 0 or plane_group_number > 17:
-            raise ValueError('plane_group_number must be an integer between 1 and 17')
+            raise ValueError(
+                "plane_group_number must be an integer between 1 and 17"
+            )
 
         self.plane_group_number = plane_group_number
-        self.lattice_type = self.plane_group_lattice_mapping[self.plane_group_number]
+        self.lattice_type = self.plane_group_lattice_mapping[
+            self.plane_group_number
+        ]
         self.lattice = lattice_system_dict_2D[self.lattice_type]
         info = self.plane_group_info_dict[plane_group_number]
-        self.translations = info['translations']
-        self.rotations = info['rotations']
+        self.translations = info["translations"]
+        self.rotations = info["rotations"]
 
         if print_info:
-            print('Plane group number: {}\n'.format(plane_group_number),
-                  'lattice type: {}\n'.format(self.lattice_type),
-                  'Default parameters for lattice: {}'.format(self.lattice.lattice_params))
+            print(
+                "Plane group number: {}\n".format(plane_group_number),
+                "lattice type: {}\n".format(self.lattice_type),
+                "Default parameters for lattice: {}".format(
+                    self.lattice.lattice_params
+                ),
+            )
 
-    def get_basis_vectors(self, base_positions, base_type=[], base_quaternions=None,
-                          is_complete=False, apply_orientation=False):
+    def get_basis_vectors(
+        self,
+        base_positions,
+        base_type=[],
+        base_quaternions=None,
+        is_complete=False,
+        apply_orientation=False,
+    ):
         """Get the basis vectors for the defined crystall structure.
 
         :param base_positions:
@@ -486,11 +516,13 @@ class PlaneGroup(object):
         :type base_quaternions:
             np.ndarray
         :param is_complete:
-            bool value to indicate if the positions are complete postions in a unitcell
+            bool value to indicate if the positions are complete postions in a
+            unitcell
         :type is_complete:
             bool
         :param apply_orientations:
-            bool value to indicate if the space group symmetry should be applied to orientatioin
+            bool value to indicate if the space group symmetry should be applied
+            to orientation
         :type apply_orientations:
             bool
         :return:
@@ -500,20 +532,35 @@ class PlaneGroup(object):
         """
 
         # check input accuracy
-        if not isinstance(base_positions, np.ndarray) or len(base_positions.shape) == 1 \
-           or base_positions.shape[1] != 2:
-            raise ValueError('base_positions must be an numpy array of shape Nx3')
+        if (
+            not isinstance(base_positions, np.ndarray)
+            or len(base_positions.shape) == 1
+            or base_positions.shape[1] != 2
+        ):
+            raise ValueError(
+                "base_positions must be an numpy array of shape Nx3"
+            )
         if apply_orientation:
-            if not isinstance(base_quaternions, np.ndarray) or len(base_quaternions.shape) == 1 \
-               or base_quaternions.shape[1] != 4:
-                raise ValueError('base_quaternions must be an numpy array of shape Nx4')
+            if (
+                not isinstance(base_quaternions, np.ndarray)
+                or len(base_quaternions.shape) == 1
+                or base_quaternions.shape[1] != 4
+            ):
+                raise ValueError(
+                    "base_quaternions must be an numpy array of shape Nx4"
+                )
         if len(base_type):
-            if not isinstance(base_type, list) or len(base_type) != base_positions.shape[0] \
-               or not all(isinstance(i, str) for i in base_type):
-                raise ValueError('base_type must contain a list of type name the same length'
-                                 'as the number of basis positions')
+            if (
+                not isinstance(base_type, list)
+                or len(base_type) != base_positions.shape[0]
+                or not all(isinstance(i, str) for i in base_type)
+            ):
+                raise ValueError(
+                    "base_type must contain a list of type name the same length"
+                    "as the number of basis positions"
+                )
         else:
-            base_type = ['A'] * base_positions.shape[0]
+            base_type = ["A"] * base_positions.shape[0]
 
         def _expand2d(matrix2d):
             matrix3d = np.identity(3)
@@ -524,11 +571,14 @@ class PlaneGroup(object):
         reflection_exist = False
         for i in range(0, len(self.rotations)):
             # Generate the new set of positions from the base
-            pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
+            pos = wrap(
+                self.rotations[i].dot(base_positions.T).T + self.translations[i]
+            )
             if apply_orientation:
                 if np.linalg.det(self.rotations[i]) == 1:
-                    quat_rotate = rowan.from_matrix(_expand2d(self.rotations[i]),
-                                                    require_orthogonal=False)
+                    quat_rotate = rowan.from_matrix(
+                        _expand2d(self.rotations[i]), require_orthogonal=False
+                    )
                     quat = rowan.multiply(quat_rotate, base_quaternions)
                 else:
                     quat = base_quaternions
@@ -548,17 +598,24 @@ class PlaneGroup(object):
                 if apply_orientation:
                     quaternions = np.append(quaternions, quat[comps], axis=0)
                     if norms.min() < threshold:
-                        print('Orientation quaterions may have multiple values for the same '
-                              'particle postion under the symmetry operation for this space group '
-                              'and is not well defined, only the first occurance is used.')
+                        print(
+                            "Orientation quaterions may have multiple values "
+                            "for the same particle postion under the symmetry "
+                            "operation for this space group and is not well "
+                            "defined, only the first occurance is used."
+                        )
         if reflection_exist:
-            print('Warning: reflection operation is included in this space group, '
-                  'and is ignored for quaternion calculation.')
+            print(
+                "Warning: reflection operation is included in this space "
+                "group, and is ignored for quaternion calculation."
+            )
 
         if is_complete and len(positions) != len(base_positions):
-            raise ValueError('the complete basis postions vector does not match the space group '
-                             'chosen. More positions are generated based on the symmetry operation '
-                             'within the provided space group')
+            raise ValueError(
+                "the complete basis postions vector does not match the space "
+                "group chosen. More positions are generated based on the "
+                "symmetry operation within the provided space group"
+            )
 
         if apply_orientation:
             return wrap(positions), type_list, quaternions
@@ -581,10 +638,17 @@ class PlaneGroup(object):
 # 3D systems
 class Triclinic(object):
     """A class for constructing a triclinic unitcell."""
-    Pearson = 'a'
+
+    Pearson = "a"
     dimensions = 3
-    lattice_params = {'a': 1, 'b': 1, 'c': 1, 'alpha': np.pi / 2, 'beta': np.pi / 2,
-                      'gamma': np.pi / 2}
+    lattice_params = {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "alpha": np.pi / 2,
+        "beta": np.pi / 2,
+        "gamma": np.pi / 2,
+    }
 
     @classmethod
     def update_lattice_params(cls, user_lattice_params):
@@ -594,16 +658,19 @@ class Triclinic(object):
                 if value is not None:
                     params[param] = value
             else:
-                print('warning: {} is not required and not used to define this '
-                      'structure'.format(param))
+                print(
+                    "warning: {} is not required and not used to define this "
+                    "structure".format(param)
+                )
         return params
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a triclinic unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a triclinic unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -621,15 +688,17 @@ class Monoclinic(Triclinic):
 
     This class provides method to initialize a monoclinic unitcell
     """
-    Pearson = 'm'
-    lattice_params = {'a': 1, 'b': 1, 'c': 1, 'beta': np.pi / 2}
+
+    Pearson = "m"
+    lattice_params = {"a": 1, "b": 1, "c": 1, "beta": np.pi / 2}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a monoclinic unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a monoclinic unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -638,22 +707,25 @@ class Monoclinic(Triclinic):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = translate_to_vector(a=params['a'], b=params['b'],
-                                              c=params['c'], beta=params['beta'])
+        lattice_vectors = translate_to_vector(
+            a=params["a"], b=params["b"], c=params["c"], beta=params["beta"]
+        )
         return lattice_vectors
 
 
 class Orthorhombic(Monoclinic):
     """A class for constructing a orthorhombic unitcell."""
-    Pearson = 'o'
-    lattice_params = {'a': 1, 'b': 1, 'c': 1}
+
+    Pearson = "o"
+    lattice_params = {"a": 1, "b": 1, "c": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a orthorhombi unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a orthorhombi unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -662,25 +734,29 @@ class Orthorhombic(Monoclinic):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0, 0.0],
-                                   [0.0, params['b'], 0.0],
-                                   [0.0, 0.0, params['c']]
-                                   ])
+        lattice_vectors = np.array(
+            [
+                [params["a"], 0.0, 0.0],
+                [0.0, params["b"], 0.0],
+                [0.0, 0.0, params["c"]],
+            ]
+        )
         return lattice_vectors
 
 
 class Tetragonal(Orthorhombic):
     """A class for constructing a tetragonal unitcell."""
-    Pearson = 't'
-    lattice_params = {'a': 1, 'c': 1}
+
+    Pearson = "t"
+    lattice_params = {"a": 1, "c": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a tetragona unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a tetragona unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -689,25 +765,29 @@ class Tetragonal(Orthorhombic):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0, 0.0],
-                                   [0.0, params['a'], 0.0],
-                                   [0.0, 0.0, params['c']]
-                                   ])
+        lattice_vectors = np.array(
+            [
+                [params["a"], 0.0, 0.0],
+                [0.0, params["a"], 0.0],
+                [0.0, 0.0, params["c"]],
+            ]
+        )
         return lattice_vectors
 
 
 class Hexagonal(Triclinic):
     """A class for constructing a hexagonal unitcell."""
-    Pearson = 'hP'
-    lattice_params = {'a': 1, 'c': 1}
+
+    Pearson = "hP"
+    lattice_params = {"a": 1, "c": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a hexagonal unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a hexagonal unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -716,25 +796,29 @@ class Hexagonal(Triclinic):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0, 0.0],
-                                   [-0.5 * params['a'], np.sqrt(3.0) / 2.0 * params['a'], 0.0],
-                                   [0.0, 0.0, params['c']]
-                                   ])
+        lattice_vectors = np.array(
+            [
+                [params["a"], 0.0, 0.0],
+                [-0.5 * params["a"], np.sqrt(3.0) / 2.0 * params["a"], 0.0],
+                [0.0, 0.0, params["c"]],
+            ]
+        )
         return lattice_vectors
 
 
 class Rhombohedral(Triclinic):
     """A class for constructing a rhombohedral unitcell."""
-    Pearson = 'hR'
-    lattice_params = {'a': 1, 'alpha': np.pi / 2}
+
+    Pearson = "hR"
+    lattice_params = {"a": 1, "alpha": np.pi / 2}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a rhombohedral unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a rhombohedral unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -743,23 +827,30 @@ class Rhombohedral(Triclinic):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = translate_to_vector(a=params['a'], b=params['a'], c=params['a'],
-                                              alpha=params['alpha'], beta=params['alpha'],
-                                              gamma=params['alpha'])
+        lattice_vectors = translate_to_vector(
+            a=params["a"],
+            b=params["a"],
+            c=params["a"],
+            alpha=params["alpha"],
+            beta=params["alpha"],
+            gamma=params["alpha"],
+        )
         return lattice_vectors
 
 
 class Cubic(Tetragonal):
     """A class for constructing a cubic unitcell."""
-    Pearson = 'c'
-    lattice_params = {'a': 1}
+
+    Pearson = "c"
+    lattice_params = {"a": 1}
 
     @classmethod
     def get_lattice_vectors(cls, **user_lattice_params):
-        """Initialize a cubicc unitcell and return lattice vectors [a1, a2, a3].
+        """Initialize a cubicc unitcell and return lattice vectors.
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -768,24 +859,32 @@ class Cubic(Tetragonal):
             np.ndarray
         """
         params = cls.update_lattice_params(user_lattice_params)
-        lattice_vectors = np.array([
-                                   [params['a'], 0.0, 0.0],
-                                   [0.0, params['a'], 0.0],
-                                   [0.0, 0.0, params['a']]
-                                   ])
+        lattice_vectors = np.array(
+            [
+                [params["a"], 0.0, 0.0],
+                [0.0, params["a"], 0.0],
+                [0.0, 0.0, params["a"]],
+            ]
+        )
         return lattice_vectors
 
 
-lattice_system_dict_3D = {'triclinic': Triclinic, 'monoclinic': Monoclinic,
-                          'orthorhombic': Orthorhombic, 'tetragonal': Tetragonal,
-                          'hexagonal': Hexagonal, 'rhombohedral': Rhombohedral, 'cubic': Cubic}
+lattice_system_dict_3D = {
+    "triclinic": Triclinic,
+    "monoclinic": Monoclinic,
+    "orthorhombic": Orthorhombic,
+    "tetragonal": Tetragonal,
+    "hexagonal": Hexagonal,
+    "rhombohedral": Rhombohedral,
+    "cubic": Cubic,
+}
 
 
 class SpaceGroup(object):
     """A class for space group symmetry operation.
 
-    This class provides method to initialize a crystal unit cell with space group and Wyckoff
-    possition information.
+    This class provides method to initialize a crystal unit cell with space
+    group and Wyckoff possition information.
 
     :param space_group_number:
         Space group number between 1 and 230.
@@ -796,34 +895,53 @@ class SpaceGroup(object):
     :type print_info:
         bool
     """
+
     dir_path = os.path.dirname(__file__)
-    space_group_hall_mapping_dir = os.path.join(dir_path,
-                                                'crystal_data/space_group_hall_mapping.json')
-    with open(space_group_hall_mapping_dir, 'r') as f:
+    space_group_hall_mapping_dir = os.path.join(
+        dir_path, "crystal_data/space_group_hall_mapping.json"
+    )
+    with open(space_group_hall_mapping_dir, "r") as f:
         space_group_hall_mapping = json.load(f, object_hook=json_key_to_int)
-    space_group_lattice_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/space_group_lattice_mapping.json')
-    with open(space_group_lattice_mapping_dir, 'r') as f:
+    space_group_lattice_mapping_dir = os.path.join(
+        dir_path, "crystal_data/space_group_lattice_mapping.json"
+    )
+    with open(space_group_lattice_mapping_dir, "r") as f:
         space_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
     def __init__(self, space_group_number=1, print_info=False):
         if space_group_number <= 0 or space_group_number > 230:
-            raise ValueError('space_group_number must be an integer between 1 and 230')
+            raise ValueError(
+                "space_group_number must be an integer between 1 and 230"
+            )
 
         self.space_group_number = space_group_number
-        self.lattice_type = self.space_group_lattice_mapping[self.space_group_number]
+        self.lattice_type = self.space_group_lattice_mapping[
+            self.space_group_number
+        ]
         self.lattice = lattice_system_dict_3D[self.lattice_type]
-        info = spg.get_symmetry_from_database(self.space_group_hall_mapping[space_group_number])
-        self.translations = info['translations']
-        self.rotations = info['rotations']
+        info = spg.get_symmetry_from_database(
+            self.space_group_hall_mapping[space_group_number]
+        )
+        self.translations = info["translations"]
+        self.rotations = info["rotations"]
 
         if print_info:
-            print('Space group number: {}\n'.format(space_group_number),
-                  'lattice type: {}\n'.format(self.lattice_type),
-                  'Default parameters for lattice: {}'.format(self.lattice.lattice_params))
+            print(
+                "Space group number: {}\n".format(space_group_number),
+                "lattice type: {}\n".format(self.lattice_type),
+                "Default parameters for lattice: {}".format(
+                    self.lattice.lattice_params
+                ),
+            )
 
-    def get_basis_vectors(self, base_positions, base_type=[], base_quaternions=None,
-                          is_complete=False, apply_orientation=False):
+    def get_basis_vectors(
+        self,
+        base_positions,
+        base_type=[],
+        base_quaternions=None,
+        is_complete=False,
+        apply_orientation=False,
+    ):
         """Get the basis vectors for the defined crystall structure.
 
         :param base_positions:
@@ -839,11 +957,13 @@ class SpaceGroup(object):
         :type base_quaternions:
             np.ndarray
         :param is_complete:
-            bool value to indicate if the positions are complete postions in a unitcell
+            bool value to indicate if the positions are complete postions in a
+            unitcell
         :type is_complete:
             bool
         :param apply_orientations:
-            bool value to indicate if the space group symmetry should be applied to orientatioin
+            bool value to indicate if the space group symmetry should be applied
+            to orientatioin
         :type apply_orientations:
             bool
         :return:
@@ -853,29 +973,48 @@ class SpaceGroup(object):
         """
 
         # check input accuracy
-        if not isinstance(base_positions, np.ndarray) or len(base_positions.shape) == 1 \
-           or base_positions.shape[1] != 3:
-            raise ValueError('base_positions must be an numpy array of shape Nx3')
+        if (
+            not isinstance(base_positions, np.ndarray)
+            or len(base_positions.shape) == 1
+            or base_positions.shape[1] != 3
+        ):
+            raise ValueError(
+                "base_positions must be an numpy array of shape Nx3"
+            )
         if apply_orientation:
-            if not isinstance(base_quaternions, np.ndarray) or len(base_quaternions.shape) == 1 \
-               or base_quaternions.shape[1] != 4:
-                raise ValueError('base_quaternions must be an numpy array of shape Nx4')
+            if (
+                not isinstance(base_quaternions, np.ndarray)
+                or len(base_quaternions.shape) == 1
+                or base_quaternions.shape[1] != 4
+            ):
+                raise ValueError(
+                    "base_quaternions must be an numpy array of shape Nx4"
+                )
         if len(base_type):
-            if not isinstance(base_type, list) or len(base_type) != base_positions.shape[0] \
-               or not all(isinstance(i, str) for i in base_type):
-                raise ValueError('base_type must contain a list of type name the same length'
-                                 'as the number of basis positions')
+            if (
+                not isinstance(base_type, list)
+                or len(base_type) != base_positions.shape[0]
+                or not all(isinstance(i, str) for i in base_type)
+            ):
+                raise ValueError(
+                    "base_type must contain a list of type name the same length"
+                    "as the number of basis positions"
+                )
         else:
-            base_type = ['A'] * base_positions.shape[0]
+            base_type = ["A"] * base_positions.shape[0]
 
         threshold = 1e-6
         reflection_exist = False
         for i in range(0, len(self.rotations)):
             # Generate the new set of positions from the base
-            pos = wrap(self.rotations[i].dot(base_positions.T).T + self.translations[i])
+            pos = wrap(
+                self.rotations[i].dot(base_positions.T).T + self.translations[i]
+            )
             if apply_orientation:
                 if np.linalg.det(self.rotations[i]) == 1:
-                    quat_rotate = rowan.from_matrix(self.rotations[i], require_orthogonal=False)
+                    quat_rotate = rowan.from_matrix(
+                        self.rotations[i], require_orthogonal=False
+                    )
                     quat = rowan.multiply(quat_rotate, base_quaternions)
                 else:
                     quat = base_quaternions
@@ -895,17 +1034,24 @@ class SpaceGroup(object):
                 if apply_orientation:
                     quaternions = np.append(quaternions, quat[comps], axis=0)
                     if norms.min() < threshold:
-                        print('Orientation quaterions may have multiple values for the same '
-                              'particle postion under the symmetry operation for this space group '
-                              'and is not well defined, only the first occurance is used.')
+                        print(
+                            "Orientation quaterions may have multiple values "
+                            "for the same particle postion under the symmetry "
+                            "operation for this space group and is not well "
+                            "defined, only the first occurance is used."
+                        )
         if reflection_exist:
-            print('Warning: reflection operation is included in this space group, '
-                  'and is ignored for quaternion calculation.')
+            print(
+                "Warning: reflection operation is included in this "
+                "space group, and is ignored for quaternion calculation."
+            )
 
         if is_complete and len(positions) != len(base_positions):
-            raise ValueError('the complete basis postions vector does not match the space group '
-                             'chosen. More positions are generated based on the symmetry operation '
-                             'within the provided space group')
+            raise ValueError(
+                "the complete basis postions vector does not match the space "
+                "group chosen. More positions are generated based on the "
+                "symmetry operation within the provided space group"
+            )
 
         if apply_orientation:
             return wrap(positions), type_list, quaternions
@@ -916,7 +1062,8 @@ class SpaceGroup(object):
         """Initialize the unitcell and return lattice vectors [a1, a2, a3].
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return: lattice_vectors
@@ -928,9 +1075,9 @@ class SpaceGroup(object):
 class Prototype(object):
     """Crystal prototype class.
 
-    This class uses the minimal necessay information needed to fully define a crystal structures
-    with space group number, wyckoff postions(in letter name convention) and free parameters for
-    each relavent wyckoff postions.
+    This class uses the minimal necessay information needed to fully define a
+    crystal structures with space group number, wyckoff postions(in letter name
+    convention) and free parameters for each relavent wyckoff postions.
 
     :param space_group_number:
         space group number between 1 and 230
@@ -952,38 +1099,56 @@ class Prototype(object):
 
     dir_path = os.path.dirname(__file__)
 
-    def __init__(self, space_group_number=1, wyckoff_site='', type_by_site='', print_info=False):
+    def __init__(
+        self,
+        space_group_number=1,
+        wyckoff_site="",
+        type_by_site="",
+        print_info=False,
+    ):
         if space_group_number > 230 or space_group_number < 1:
-            raise ValueError('space_group_number must be an integer between 0 and 230, '
-                             'default = 1')
+            raise ValueError(
+                "space_group_number must be an integer between 0 and 230, "
+                "default = 1"
+            )
 
         if not isinstance(wyckoff_site, str) or not wyckoff_site.isalpha():
-            raise ValueError('wyckoff_postions must be string consists of all the Wyckoff '
-                             'postions letters, e.g. \'abcc\' denotes one set of Wyckoff postions '
-                             'for both a and b, and two sets at Wyckoff postion c')
+            raise ValueError(
+                "wyckoff_postions must be string consists of all the Wyckoff "
+                "postions letters, e.g. 'abcc' denotes one set of Wyckoff "
+                "postions for both a and b, and two sets at Wyckoff postion c"
+            )
 
-        if type_by_site == '':
-            type_by_site = 'A' * len(wyckoff_site)
-        elif not isinstance(type_by_site, str) or len(type_by_site) != len(wyckoff_site) or \
-             not type_by_site.isalpha():
-            raise ValueError('type_by_site must be string consists of type name (A/B/C, etc)'
-                             'for each Wyckoff site, default all particles with same type A '
-                             'if not provided')
+        if type_by_site == "":
+            type_by_site = "A" * len(wyckoff_site)
+        elif (
+            not isinstance(type_by_site, str)
+            or len(type_by_site) != len(wyckoff_site)
+            or not type_by_site.isalpha()
+        ):
+            raise ValueError(
+                "type_by_site must be string consists of type name (A/B/C, etc)"
+                "for each Wyckoff site, default all particles with same type A "
+                "if not provided"
+            )
 
         wyckoff_site_list = list(wyckoff_site.lower())
         type_by_site = list(type_by_site.upper())
 
-        wyckoff_data_dir = os.path.join(self.dir_path, 'crystal_data/space_group_{}_Wyckoff'
-                                        '_site_data.json'.format(space_group_number))
-        with open(wyckoff_data_dir, 'r') as f:
+        wyckoff_data_dir = os.path.join(
+            self.dir_path,
+            "crystal_data/space_group_{}_Wyckoff"
+            "_site_data.json".format(space_group_number),
+        )
+        with open(wyckoff_data_dir, "r") as f:
             full_wyckoff_positions = json.load(f)
 
         basis_params_list = []
         order = 1
         for site in wyckoff_site_list:
             pos = copy.deepcopy(full_wyckoff_positions[site])
-            pos = ''.join(pos)
-            for letter in ('x', 'y', 'z'):
+            pos = "".join(pos)
+            for letter in ("x", "y", "z"):
                 if letter in pos:
                     basis_params_list.append(letter + str(order))
             order += 1
@@ -995,13 +1160,21 @@ class Prototype(object):
         self.full_wyckoff_positions = full_wyckoff_positions
         self.type_by_site = type_by_site
         self.lattice_params = self.space_group.lattice.lattice_params
-        self.basis_params = dict(zip(basis_params_list, basis_params_value_list))
+        self.basis_params = dict(
+            zip(basis_params_list, basis_params_value_list)
+        )
 
         if print_info:
-            print('Wyckoff sites:{}\n'.format(wyckoff_site_list),
-                  'Particle type for each Wyckoff sites:{}\n'.format(type_by_site),
-                  'lattice parameters list:{}\n'.format(list(self.lattice_params)),
-                  'basis parameters list:{}'.format(basis_params_list))
+            print(
+                "Wyckoff sites:{}\n".format(wyckoff_site_list),
+                "Particle type for each Wyckoff sites:{}\n".format(
+                    type_by_site
+                ),
+                "lattice parameters list:{}\n".format(
+                    list(self.lattice_params)
+                ),
+                "basis parameters list:{}".format(basis_params_list),
+            )
 
     def update_basis_params(self, user_basis_params):
         params = copy.deepcopy(self.basis_params)
@@ -1010,20 +1183,25 @@ class Prototype(object):
                 if value is not None:
                     params[param] = value
             else:
-                print('warning: {} is not required and not used to define this '
-                      'structure'.format(param))
+                print(
+                    "warning: {} is not required and not used to define this "
+                    "structure".format(param)
+                )
         for value in params.values():
             if value is None:
-                raise ValueError('not all necessary parameters were provided! Set print_info=True '
-                                 'at prototype initialization to see the full list of necessary '
-                                 'parameters')
+                raise ValueError(
+                    "not all necessary parameters were provided! Set "
+                    "print_info=True at prototype initialization to see the "
+                    "full list of necessary parameters"
+                )
         return params
 
     def get_basis_vectors(self, **user_basis_params):
         """Initialize fractional coordinates of the particles in the unitcell.
 
         :param user_basis_params:
-            user defined parameters for different Wyckoff site degree of freedom, when applicable
+            user defined parameters for different Wyckoff site degree of
+            freedom, when applicable
         :type user_basis_params:
             float
         :return:
@@ -1037,20 +1215,29 @@ class Prototype(object):
         order = 1
         for site in self.wyckoff_site_list:
             pos = copy.deepcopy(self.full_wyckoff_positions[site])
-            for letter in ('x', 'y', 'z'):
+            for letter in ("x", "y", "z"):
                 if letter + str(order) in basis_params.keys():
-                    exec('{} = {}'.format(letter, basis_params[letter + str(order)]))
+                    exec(
+                        "{} = {}".format(
+                            letter, basis_params[letter + str(order)]
+                        )
+                    )
             for i in range(0, 3):
                 # add * back for eval
                 target = re.findall(r"(\d[xyz])", pos[i])
                 for item in target:
-                    pos[i] = pos[i].replace(item,
-                                            '*'.join(re.findall(r"(\d)([xyz])", item)[0]))
+                    pos[i] = pos[i].replace(
+                        item, "*".join(re.findall(r"(\d)([xyz])", item)[0])
+                    )
                 pos[i] = eval(pos[i])
-            base_positions = np.append(base_positions, np.array(pos).reshape(1, -1), axis=0)
+            base_positions = np.append(
+                base_positions, np.array(pos).reshape(1, -1), axis=0
+            )
             order += 1
 
-        return self.space_group.get_basis_vectors(wrap(base_positions), base_type=self.type_by_site)
+        return self.space_group.get_basis_vectors(
+            wrap(base_positions), base_type=self.type_by_site
+        )
 
     def update_lattice_params(self, user_lattice_params):
         params = copy.deepcopy(self.lattice_params)
@@ -1059,15 +1246,18 @@ class Prototype(object):
                 if value is not None:
                     params[param] = value
             else:
-                print('warning: {} is not required and not used to define this '
-                      'structure'.format(param))
+                print(
+                    "warning: {} is not required and not used to define this "
+                    "structure".format(param)
+                )
         return params
 
     def get_lattice_vectors(self, **user_lattice_params):
         """Initialize the unitcell and return lattice vectors [a1, a2, a3]
 
         :param user_lattice_params:
-            unit cell parameters, provide a, b, c, alpha, beta, gamma where applicable
+            unit cell parameters, provide a, b, c, alpha, beta, gamma where
+            applicable
         :type user_lattice_params:
             float
         :return:
@@ -1082,14 +1272,16 @@ class Prototype(object):
 class AflowPrototype(Prototype):
     """Aflow prototype class.
 
-    This class uses the crystal prototypes in Aflow database to initialize crystal structures.
+    This class uses the crystal prototypes in Aflow database to initialize
+    crystal structures.
 
     :param prototype_index:
         prototype index [0, 589] for all 590 prototypes in AFLOW.
     :type prototype_index:
         int
     :param set_type:
-        allow setting different type name(in A, B, C order) for different atoms in AFLOW prototype
+        allow setting different type name(in A, B, C order) for different atoms
+        in AFLOW prototype
     :type set_type:
         bool
     :param print_info:
@@ -1099,84 +1291,106 @@ class AflowPrototype(Prototype):
     """
 
     dir_path = os.path.dirname(__file__)
-    Aflow_data_dir = os.path.join(dir_path,
-                                  'crystal_data/Aflow_processed_data.csv')
+    Aflow_data_dir = os.path.join(
+        dir_path, "crystal_data/Aflow_processed_data.csv"
+    )
     Aflow_database = pd.read_csv(Aflow_data_dir, index_col=0)
 
     def __init__(self, prototype_index=0, set_type=False, print_info=True):
-        # should do search, return best match and all options, define a Structure
-        # name search should support one or any combination of: Pearson symbol, space_group number
-        # and chemistry
-        # must define unitcell type and space_group now
+        # should do search, return best match and all options, define a
+        # Structure name search should support one or any combination of:
+        # Pearson symbol, space_group number and chemistry must define unitcell
+        # type and space_group now
         if prototype_index < 0 or prototype_index >= 590:
-            raise ValueError('prototype_index must be an integer between 0 and 590, default '
-                             'value of 0 will skip search by index and use Pearson symbol or '
-                             'chemistry for search')
+            raise ValueError(
+                "prototype_index must be an integer between 0 and 590, default "
+                "value of 0 will skip search by index and use Pearson symbol "
+                "or chemistry for search"
+            )
         if prototype_index + 1:
             entry = self.Aflow_database.iloc[prototype_index]
-        # TODO: a search and use best match feature with pearson and chemistry input
+        # TODO: a search and use best match feature with pearson and chemistry
+        # input
 
-        space_group_number = entry['space_group_number']
-        lattice_params_list = re.findall(r"'(.*?)'", entry['lattice_params_list'])
+        space_group_number = entry["space_group_number"]
+        lattice_params_list = re.findall(
+            r"'(.*?)'", entry["lattice_params_list"]
+        )
         try:
-            lattice_params_value_list = [float(i) for i in
-                                         entry['lattice_params_value_list'].strip('[]').split(',')]
+            lattice_params_value_list = [
+                float(i)
+                for i in entry["lattice_params_value_list"]
+                .strip("[]")
+                .split(",")
+            ]
         except BaseException:
             lattice_params_value_list = []
 
-        basis_params_list = re.findall(r"'(.*?)'", entry['basis_params_list'])
+        basis_params_list = re.findall(r"'(.*?)'", entry["basis_params_list"])
         try:
-            basis_params_value_list = [float(i) for i in
-                                       entry['basis_params_value_list'].strip('[]').split(',')]
+            basis_params_value_list = [
+                float(i)
+                for i in entry["basis_params_value_list"].strip("[]").split(",")
+            ]
         except BaseException:
             basis_params_value_list = []
 
-        lattice_params = dict(zip(lattice_params_list, lattice_params_value_list))
+        lattice_params = dict(
+            zip(lattice_params_list, lattice_params_value_list)
+        )
         basis_params = dict(zip(basis_params_list, basis_params_value_list))
 
         # convert Aflow angle unit from degree to rad
-        for key in ['alpha', 'beta', 'gamma']:
+        for key in ["alpha", "beta", "gamma"]:
             if key in lattice_params.keys():
                 lattice_params[key] = lattice_params[key] / 180 * np.pi
 
         # process proper unitcell params
         if space_group_number in [146, 148, 155, 160, 161, 166, 167]:
-            a = lattice_params.pop('a')
-            c = lattice_params.pop('c/a') * a
-            lattice_params['a'] = np.sqrt(a ** 2 / 3 + c ** 2 / 9)
-            lattice_params['alpha'] = np.arccos((2 * c ** 2 - 3 * a ** 2) / (
-                                                2 * (c ** 2 + 3 * a ** 2)))
+            a = lattice_params.pop("a")
+            c = lattice_params.pop("c/a") * a
+            lattice_params["a"] = np.sqrt(a ** 2 / 3 + c ** 2 / 9)
+            lattice_params["alpha"] = np.arccos(
+                (2 * c ** 2 - 3 * a ** 2) / (2 * (c ** 2 + 3 * a ** 2))
+            )
         else:
             # for others
-            a = lattice_params['a']
+            a = lattice_params["a"]
             try:
-                lattice_params['b'] = lattice_params.pop('b/a') * a
+                lattice_params["b"] = lattice_params.pop("b/a") * a
             except BaseException:
                 pass
             try:
-                lattice_params['c'] = lattice_params.pop('c/a') * a
+                lattice_params["c"] = lattice_params.pop("c/a") * a
             except BaseException:
                 pass
 
-        wyckoff_site_list_by_type = re.findall(r"'(.*?)'", entry['Wyckoff_site'])
-        wyckoff_site_list = list(''.join(wyckoff_site_list_by_type))
+        wyckoff_site_list_by_type = re.findall(
+            r"'(.*?)'", entry["Wyckoff_site"]
+        )
+        wyckoff_site_list = list("".join(wyckoff_site_list_by_type))
         wyckoff_site_list.sort()
 
-        wyckoff_data_dir = os.path.join(self.dir_path, 'crystal_data/space_group_{}_Wyckoff'
-                                        '_site_data.json'.format(space_group_number))
+        wyckoff_data_dir = os.path.join(
+            self.dir_path,
+            "crystal_data/space_group_{}_Wyckoff"
+            "_site_data.json".format(space_group_number),
+        )
 
-        with open(wyckoff_data_dir, 'r') as f:
+        with open(wyckoff_data_dir, "r") as f:
             full_wyckoff_positions = json.load(f)
 
         # get type label
-        type_by_site = list('A' * len(wyckoff_site_list))
+        type_by_site = list("A" * len(wyckoff_site_list))
         if set_type:
-            sorted_site_string = ''.join(wyckoff_site_list)
-            base = ord('A')
+            sorted_site_string = "".join(wyckoff_site_list)
+            base = ord("A")
             for wyckoffs in wyckoff_site_list_by_type:
                 for site in wyckoffs:
                     order = sorted_site_string.find(site)
-                    sorted_site_string = sorted_site_string.replace(site, '0', 1)
+                    sorted_site_string = sorted_site_string.replace(
+                        site, "0", 1
+                    )
                     type_by_site[order] = chr(base)
                 base += 1
 
@@ -1189,19 +1403,21 @@ class AflowPrototype(Prototype):
         self.basis_params = basis_params
 
         if print_info:
-            print('Info for the chosen crystal structure prototype:\n',
-                  'id: {}, (Pearson-Chemistry-SpaceGroup)\n'.format(entry['id']),
-                  'Wyckoff sites: {}\n'.format(entry['Wyckoff_site']),
-                  'available lattice parameters: {}\n'.format(lattice_params),
-                  'available basis parameters: {}'.format(basis_params))
+            print(
+                "Info for the chosen crystal structure prototype:\n",
+                "id: {}, (Pearson-Chemistry-SpaceGroup)\n".format(entry["id"]),
+                "Wyckoff sites: {}\n".format(entry["Wyckoff_site"]),
+                "available lattice parameters: {}\n".format(lattice_params),
+                "available basis parameters: {}".format(basis_params),
+            )
 
 
 # Point Group operations
 class PointGroup(object):
     """A class to access all point group symmetry operations.
 
-    This class provides method to access all point group symmetry operation in both rotational
-    matrix form or quaternion form.
+    This class provides method to access all point group symmetry operation in
+    both rotational matrix form or quaternion form.
 
     :param point_group_number:
         Point group number between 1 and 32.
@@ -1214,35 +1430,44 @@ class PointGroup(object):
     """
 
     dir_path = os.path.dirname(__file__)
-    point_group_rotation_matrix_dir = os.path.join(dir_path,
-                                                   'crystal_data/'
-                                                   'point_group_rotation_matrix_dict.pickle')
-    with open(point_group_rotation_matrix_dir, 'rb') as f:
+    point_group_rotation_matrix_dir = os.path.join(
+        dir_path, "crystal_data/" "point_group_rotation_matrix_dict.pickle"
+    )
+    with open(point_group_rotation_matrix_dir, "rb") as f:
         point_group_rotation_matrix_dict = pickle.load(f)
 
-    point_group_quat_dir = os.path.join(dir_path,
-                                            'crystal_data/point_group_quat_dict.json')
-    with open(point_group_quat_dir, 'r') as f:
+    point_group_quat_dir = os.path.join(
+        dir_path, "crystal_data/point_group_quat_dict.json"
+    )
+    with open(point_group_quat_dir, "r") as f:
         point_group_quat_dict = json.load(f, object_hook=json_key_to_int)
 
-    point_group_name_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/point_group_name_mapping.json')
-    with open(point_group_name_mapping_dir, 'r') as f:
+    point_group_name_mapping_dir = os.path.join(
+        dir_path, "crystal_data/point_group_name_mapping.json"
+    )
+    with open(point_group_name_mapping_dir, "r") as f:
         point_group_name_mapping = json.load(f, object_hook=json_key_to_int)
 
     def __init__(self, point_group_number=1, print_info=False):
         if point_group_number <= 0 or point_group_number > 32:
-            raise ValueError('point_group_number must be an integer between 1 and 32')
+            raise ValueError(
+                "point_group_number must be an integer between 1 and 32"
+            )
 
         self.point_group_number = point_group_number
-        self.point_group_name = self.point_group_name_mapping[point_group_number]
-        self.rotation_matrix = \
-            self.point_group_rotation_matrix_dict[point_group_number]['rotations']
+        self.point_group_name = self.point_group_name_mapping[
+            point_group_number
+        ]
+        self.rotation_matrix = self.point_group_rotation_matrix_dict[
+            point_group_number
+        ]["rotations"]
         self.quaternion = self.point_group_quat_dict[point_group_number]
 
         if print_info:
-            print('Point group number: {}\n'.format(point_group_number),
-                  'Name {}'.format(self.point_group_name))
+            print(
+                "Point group number: {}\n".format(point_group_number),
+                "Name {}".format(self.point_group_name),
+            )
 
     def get_quaternion(self):
         """Get the quaternions for the point group symmetry.
