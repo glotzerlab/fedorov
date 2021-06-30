@@ -17,3 +17,8 @@ Fedorov utilizes the following crystallographic database for different crystal s
 - The space group, plane group and point group symmetry information are obtained from the `Bilbao Crystallographic Server <https://www.cryst.ehu.es/>`_ :
 
 Users are encouraged to cite these references per the authors' guidelines when using fedorov.
+
+Acknowledgments
+---------------
+Development for federov was supported in part by the National Science Foundation, Division of Materials Research Award # DMR 1808342, 
+“CDS&E: Fast, scalable GPU-enabled software for predictive materials design & discovery”.
