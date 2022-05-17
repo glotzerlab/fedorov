@@ -15,6 +15,7 @@ import os
 
 
 _DATA_PATH = os.path.join(os.path.dirname(__file__), "crystal_data")
+_WYCKOFF_FILE = "space_group_{}_Wyckoff_site_data.json"
 
 
 def json_key_to_int(x):
@@ -872,8 +873,8 @@ class Prototype(object):
         wyckoff_site_list = list(wyckoff_site.lower())
         type_by_site = list(type_by_site.upper())
 
-        wyckoff_data_dir = os.path.join(_DATA_PATH, 'space_group_{}_Wyckoff'
-                                        '_site_data.json'.format(space_group_number))
+        wyckoff_data_dir = os.path.join(
+            _DATA_PATH, _WYCKOFF_FILE.format(space_group_number))
         with open(wyckoff_data_dir, 'r') as f:
             full_wyckoff_positions = json.load(f)
 
@@ -1064,8 +1065,8 @@ class AflowPrototype(Prototype):
             entry['Wyckoff_site'])
         wyckoff_sites = sorted(''.join(wyckoff_sites_by_type))
 
-        filename = f"space_group_{space_group}_Wyckoff_site_data.json"
-        wyckoff_data_path = os.path.join(_DATA_PATH, filename)
+        wyckoff_data_path = os.path.join(
+            _DATA_PATH, _WYCKOFF_FILE.format(space_group))
 
         with open(wyckoff_data_path, 'r') as f:
             wyckoff_positions = json.load(f)
