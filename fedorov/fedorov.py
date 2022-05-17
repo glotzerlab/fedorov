@@ -998,15 +998,15 @@ class AflowPrototype(Prototype):
         bool
     """
 
-    Aflow_data_dir = os.path.join(_DATA_PATH, 'Aflow_processed_data.csv')
-    Aflow_database = pd.read_csv(Aflow_data_dir, index_col=0)
+    _Aflow_database = pd.read_csv(
+        os.path.join(_DATA_PATH, 'Aflow_processed_data.csv'), index_col=0)
     _name_regex = re.compile(r"'(.*?)'")
 
     def __init__(self, prototype_index=0, set_type=False, print_info=True):
         if prototype_index < 0 or prototype_index >= 590:
             raise ValueError(
                 "prototype_index must be an integer between 0 and 590.")
-        entry = self.Aflow_database.iloc[prototype_index]
+        entry = self._Aflow_database.iloc[prototype_index]
         # TODO: a search and use best match feature with pearson and chemistry input
 
         def get_values(value_str: str):
