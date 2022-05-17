@@ -208,7 +208,7 @@ def translate_to_vector_2D(a=1, b=1, theta=np.pi / 2):
 
 
 # 2D systems
-class Oblique2D(object):
+class Oblique2D:
     """A class for constructing a 2D oblique unitcell
 
     This class provides method to initialize a 2D oblique unitcell
@@ -339,7 +339,7 @@ lattice_system_dict_2D = {
 }
 
 
-class PlaneGroup(object):
+class PlaneGroup:
     """A class for plane group symmetry operation.
 
     This class provides method to initialize a crystal unit cell with plane
@@ -531,7 +531,7 @@ class PlaneGroup(object):
 
 
 # 3D systems
-class Triclinic(object):
+class Triclinic:
     """A class for constructing a triclinic unitcell."""
 
     Pearson = "a"
@@ -775,7 +775,7 @@ lattice_system_dict_3D = {
 }
 
 
-class SpaceGroup(object):
+class SpaceGroup:
     """A class for space group symmetry operation.
 
     This class provides method to initialize a crystal unit cell with space
@@ -966,7 +966,7 @@ class SpaceGroup(object):
         return self.lattice.get_lattice_vectors(**user_lattice_params)
 
 
-class Prototype(object):
+class Prototype:
     """Crystal prototype class.
 
     This class uses the minimal necessay information needed to fully define a
@@ -1275,7 +1275,7 @@ class AflowPrototype(Prototype):
 
 
 # Point Group operations
-class PointGroup(object):
+class PointGroup:
     """A class to access all point group symmetry operations.
 
     This class provides method to access all point group symmetry operation in
