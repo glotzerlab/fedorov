@@ -349,10 +349,6 @@ class PlaneGroup:
         Plane group number between 1 and 17.
     :type plane_group_number:
         int
-    :param print_info:
-        Print plane group information upon initialization.
-    :type print_info:
-        bool
     """
 
     plane_group_info_dir = os.path.join(_DATA_PATH, "plane_group_info.pickle")
@@ -364,7 +360,7 @@ class PlaneGroup:
     with open(plane_group_lattice_mapping_dir, "r") as f:
         plane_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
-    def __init__(self, plane_group_number=1, print_info=False):
+    def __init__(self, plane_group_number=1):
         if plane_group_number <= 0 or plane_group_number > 17:
             raise ValueError(
                 "plane_group_number must be an integer between 1 and 17"
@@ -379,14 +375,12 @@ class PlaneGroup:
         self.translations = info["translations"]
         self.rotations = info["rotations"]
 
-        if print_info:
-            print(
-                "Plane group number: {}\n".format(plane_group_number),
-                "lattice type: {}\n".format(self.lattice_type),
-                "Default parameters for lattice: {}".format(
-                    self.lattice.lattice_params
-                ),
-            )
+    def print_info(self):
+        print(
+            f"Plane group number: {self.plane_group_number}\n"
+            f"lattice type: {self.lattice_type}\n"
+            f"Default parameters for lattice: {self.lattice.lattice_params}"
+        )
 
     def get_basis_vectors(
         self,
@@ -785,10 +779,6 @@ class SpaceGroup:
         Space group number between 1 and 230.
     :type space_group_number:
         int
-    :param print_info:
-        Print space group information upon initialization.
-    :type print_info:
-        bool
     """
 
     space_group_hall_mapping_dir = os.path.join(
@@ -802,7 +792,7 @@ class SpaceGroup:
     with open(space_group_lattice_mapping_dir, "r") as f:
         space_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
-    def __init__(self, space_group_number=1, print_info=False):
+    def __init__(self, space_group_number=1):
         if space_group_number <= 0 or space_group_number > 230:
             raise ValueError(
                 "space_group_number must be an integer between 1 and 230"
@@ -819,14 +809,12 @@ class SpaceGroup:
         self.translations = info["translations"]
         self.rotations = info["rotations"]
 
-        if print_info:
-            print(
-                "Space group number: {}\n".format(space_group_number),
-                "lattice type: {}\n".format(self.lattice_type),
-                "Default parameters for lattice: {}".format(
-                    self.lattice.lattice_params
-                ),
-            )
+    def print_info(self):
+        print(
+            f"Space group number: {self.space_group_number}\n"
+            f"lattice type: {self.lattice_type}\n"
+            f"Default parameters for lattice: {self.lattice.lattice_params}"
+        )
 
     def get_basis_vectors(
         self,
@@ -985,10 +973,6 @@ class Prototype:
         type name letter for each site set in wyckoff_sites
     :type type_by_site:
         str
-    :param print_info:
-        print space group information upon initialization
-    :type print_info:
-        bool
     """
 
     def __init__(
@@ -996,7 +980,6 @@ class Prototype:
         space_group_number=1,
         wyckoff_site="",
         type_by_site="",
-        print_info=False,
     ):
         if space_group_number > 230 or space_group_number < 1:
             raise ValueError(
@@ -1045,7 +1028,7 @@ class Prototype:
         basis_params_value_list = [None] * len(basis_params_list)
 
         self.space_group_number = space_group_number
-        self.space_group = SpaceGroup(space_group_number, print_info)
+        self.space_group = SpaceGroup(space_group_number)
         self.wyckoff_site_list = wyckoff_site_list
         self.full_wyckoff_positions = full_wyckoff_positions
         self.type_by_site = type_by_site
@@ -1054,17 +1037,13 @@ class Prototype:
             zip(basis_params_list, basis_params_value_list)
         )
 
-        if print_info:
-            print(
-                "Wyckoff sites:{}\n".format(wyckoff_site_list),
-                "Particle type for each Wyckoff sites:{}\n".format(
-                    type_by_site
-                ),
-                "lattice parameters list:{}\n".format(
-                    list(self.lattice_params)
-                ),
-                "basis parameters list:{}".format(basis_params_list),
-            )
+    def print_info(self):
+        print(
+            f"Wyckoff sites:{self.wyckoff_site_list}\n",
+            f"Particle type for each Wyckoff sites:{self.type_by_site}\n"
+            f"lattice parameters list:{list(self.lattice_params)}\n"
+            f"basis parameters list:{self.basis_params}",
+        )
 
     def update_basis_params(self, user_basis_params):
         params = copy.deepcopy(self.basis_params)
@@ -1080,9 +1059,8 @@ class Prototype:
         for value in params.values():
             if value is None:
                 raise ValueError(
-                    "not all necessary parameters were provided! Set "
-                    "print_info=True at prototype initialization to see the "
-                    "full list of necessary parameters"
+                    "not all necessary parameters were provided! Call "
+                    "print_info() to see the full list of necessary parameters"
                 )
         return params
 
@@ -1174,10 +1152,6 @@ class AflowPrototype(Prototype):
         in AFLOW prototype
     :type set_type:
         bool
-    :param print_info:
-        Print prototype information upon initialization
-    :type print_info:
-        bool
     """
 
     _Aflow_database = pd.read_csv(
@@ -1185,7 +1159,7 @@ class AflowPrototype(Prototype):
     )
     _name_regex = re.compile(r"'(.*?)'")
 
-    def __init__(self, prototype_index=0, set_type=False, print_info=True):
+    def __init__(self, prototype_index=0, set_type=False):
         if prototype_index < 0 or prototype_index >= 590:
             raise ValueError(
                 "prototype_index must be an integer between 0 and 590."
@@ -1230,6 +1204,7 @@ class AflowPrototype(Prototype):
             entry, space_group, set_type
         )
 
+        self.id = entry["id"]
         self.space_group_number = space_group
         self.space_group = SpaceGroup(space_group)
         self.wyckoff_site_list = wyckoff_sites
@@ -1238,14 +1213,14 @@ class AflowPrototype(Prototype):
         self.lattice_params = lattice_params
         self.basis_params = basis_params
 
-        if print_info:
-            print(
-                "Info for the chosen crystal structure prototype:\n",
-                "id: {}, (Pearson-Chemistry-SpaceGroup)\n".format(entry["id"]),
-                "Wyckoff sites: {}\n".format(entry["wyckoff_sites"]),
-                "available lattice parameters: {}\n".format(lattice_params),
-                "available basis parameters: {}".format(basis_params),
-            )
+    def print_info(self):
+        print(
+            f"Info for the chosen crystal structure prototype:\n"
+            f"id: {self.id}, (Pearson-Chemistry-SpaceGroup)\n"
+            f"Wyckoff sites: {self.wyckoff_site_list}\n"
+            f"available lattice parameters: {self.lattice_params}\n"
+            f"available basis parameters: {self.basis_params}"
+        )
 
     def _get_wyckoff_sites(self, entry, space_group, set_type):
         wyckoff_sites_by_type = self._name_regex.findall(entry["wyckoff_sites"])
@@ -1285,10 +1260,6 @@ class PointGroup:
         Point group number between 1 and 32.
     :type point_group_number:
         int
-    :param print_info:
-        Print point group information upon initialization.
-    :type print_info:
-        bool
     """
 
     point_group_rotation_matrix_dir = os.path.join(
@@ -1309,7 +1280,7 @@ class PointGroup:
     with open(point_group_name_mapping_dir, "r") as f:
         point_group_name_mapping = json.load(f, object_hook=json_key_to_int)
 
-    def __init__(self, point_group_number=1, print_info=False):
+    def __init__(self, point_group_number=1):
         if point_group_number <= 0 or point_group_number > 32:
             raise ValueError(
                 "point_group_number must be an integer between 1 and 32"
@@ -1324,11 +1295,11 @@ class PointGroup:
         ]["rotations"]
         self.quaternion = self.point_group_quat_dict[point_group_number]
 
-        if print_info:
-            print(
-                "Point group number: {}\n".format(point_group_number),
-                "Name {}".format(self.point_group_name),
-            )
+    def print_info(self):
+        print(
+            f"Point group number: {self.point_group_number}\n"
+            f"Name {self.point_group_name}"
+        )
 
     def get_quaternion(self):
         """Get the quaternions for the point group symmetry.
