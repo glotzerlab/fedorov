@@ -9,6 +9,7 @@ import json
 import os
 import pickle
 import re
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -224,9 +225,9 @@ class Oblique2D:
                 if value is not None:
                     params[param] = value
             else:
-                print(
-                    "warning: {} is not required and not used to define this "
-                    "structure".format(param)
+                warnings.warn(
+                    f"warning: {param} is not used to define this structure",
+                    RuntimeWarning,
                 )
         return params
 
@@ -487,15 +488,15 @@ class PlaneGroup:
                 if apply_orientation:
                     quaternions = np.append(quaternions, quat[comps], axis=0)
                     if norms.min() < threshold:
-                        print(
+                        warnings.warn(
                             "Orientation quaterions may have multiple values "
                             "for the same particle postion under the symmetry "
                             "operation for this space group and is not well "
                             "defined, only the first occurance is used."
                         )
         if reflection_exist:
-            print(
-                "Warning: reflection operation is included in this space "
+            warnings.warn(
+                "Reflection operation is included in this space "
                 "group, and is ignored for quaternion calculation."
             )
 
@@ -547,9 +548,9 @@ class Triclinic:
                 if value is not None:
                     params[param] = value
             else:
-                print(
-                    "warning: {} is not required and not used to define this "
-                    "structure".format(param)
+                warnings.warn(
+                    f"warning: {param} is not used to define this structure",
+                    RuntimeWarning,
                 )
         return params
 
