@@ -1210,7 +1210,7 @@ class AflowPrototype(Prototype):
         for key in {"alpha", "beta", "gamma"} & lattice_params.keys():
             lattice_params[key] = lattice_params[key] / 180 * np.pi
 
-        space_group = entry["space_group_number"]
+        space_group = entry["space_group"]
         # process proper unitcell params
         if space_group in {146, 148, 155, 160, 161, 166, 167}:
             a = lattice_params.pop("a")
@@ -1242,13 +1242,13 @@ class AflowPrototype(Prototype):
             print(
                 "Info for the chosen crystal structure prototype:\n",
                 "id: {}, (Pearson-Chemistry-SpaceGroup)\n".format(entry["id"]),
-                "Wyckoff sites: {}\n".format(entry["Wyckoff_site"]),
+                "Wyckoff sites: {}\n".format(entry["wyckoff_sites"]),
                 "available lattice parameters: {}\n".format(lattice_params),
                 "available basis parameters: {}".format(basis_params),
             )
 
     def _get_wyckoff_sites(self, entry, space_group, set_type):
-        wyckoff_sites_by_type = self._name_regex.findall(entry["Wyckoff_site"])
+        wyckoff_sites_by_type = self._name_regex.findall(entry["wyckoff_sites"])
         wyckoff_sites = sorted("".join(wyckoff_sites_by_type))
 
         wyckoff_data_path = os.path.join(
