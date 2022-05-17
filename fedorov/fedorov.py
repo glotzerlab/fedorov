@@ -14,6 +14,9 @@ import rowan
 import os
 
 
+_DATA_PATH = os.path.join(os.path.dirname(__file__), "crystal_data")
+
+
 def json_key_to_int(x):
     if isinstance(x, dict):
         return {int(k): v for k, v in x.items()}
@@ -344,13 +347,11 @@ class PlaneGroup(object):
         bool
     """
 
-    dir_path = os.path.dirname(__file__)
-    plane_group_info_dir = os.path.join(dir_path,
-                                        'crystal_data/plane_group_info.pickle')
+    plane_group_info_dir = os.path.join(_DATA_PATH, 'plane_group_info.pickle')
     with open(plane_group_info_dir, 'rb') as f:
         plane_group_info_dict = pickle.load(f)
-    plane_group_lattice_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/plane_group_lattice_mapping.json')
+    plane_group_lattice_mapping_dir = os.path.join(_DATA_PATH,
+                                                   'plane_group_lattice_mapping.json')
     with open(plane_group_lattice_mapping_dir, 'r') as f:
         plane_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
@@ -697,13 +698,12 @@ class SpaceGroup(object):
     :type print_info:
         bool
     """
-    dir_path = os.path.dirname(__file__)
-    space_group_hall_mapping_dir = os.path.join(dir_path,
-                                                'crystal_data/space_group_hall_mapping.json')
+    space_group_hall_mapping_dir = os.path.join(_DATA_PATH,
+                                                'space_group_hall_mapping.json')
     with open(space_group_hall_mapping_dir, 'r') as f:
         space_group_hall_mapping = json.load(f, object_hook=json_key_to_int)
-    space_group_lattice_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/space_group_lattice_mapping.json')
+    space_group_lattice_mapping_dir = os.path.join(_DATA_PATH,
+                                                   'space_group_lattice_mapping.json')
     with open(space_group_lattice_mapping_dir, 'r') as f:
         space_group_lattice_mapping = json.load(f, object_hook=json_key_to_int)
 
@@ -851,8 +851,6 @@ class Prototype(object):
         bool
     """
 
-    dir_path = os.path.dirname(__file__)
-
     def __init__(self, space_group_number=1, wyckoff_site='', type_by_site='', print_info=False):
         if space_group_number > 230 or space_group_number < 1:
             raise ValueError('space_group_number must be an integer between 0 and 230, '
@@ -874,7 +872,7 @@ class Prototype(object):
         wyckoff_site_list = list(wyckoff_site.lower())
         type_by_site = list(type_by_site.upper())
 
-        wyckoff_data_dir = os.path.join(self.dir_path, 'crystal_data/space_group_{}_Wyckoff'
+        wyckoff_data_dir = os.path.join(_DATA_PATH, 'space_group_{}_Wyckoff'
                                         '_site_data.json'.format(space_group_number))
         with open(wyckoff_data_dir, 'r') as f:
             full_wyckoff_positions = json.load(f)
@@ -999,9 +997,7 @@ class AflowPrototype(Prototype):
         bool
     """
 
-    dir_path = os.path.dirname(__file__)
-    Aflow_data_dir = os.path.join(dir_path,
-                                  'crystal_data/Aflow_processed_data.csv')
+    Aflow_data_dir = os.path.join(_DATA_PATH, 'Aflow_processed_data.csv')
     Aflow_database = pd.read_csv(Aflow_data_dir, index_col=0)
     _name_regex = re.compile(r"'(.*?)'")
 
@@ -1069,8 +1065,7 @@ class AflowPrototype(Prototype):
         wyckoff_sites = sorted(''.join(wyckoff_sites_by_type))
 
         filename = f"space_group_{space_group}_Wyckoff_site_data.json"
-        wyckoff_data_path = os.path.join(
-            self.dir_path, "crystal_data", filename)
+        wyckoff_data_path = os.path.join(_DATA_PATH, filename)
 
         with open(wyckoff_data_path, 'r') as f:
             wyckoff_positions = json.load(f)
@@ -1108,20 +1103,17 @@ class PointGroup(object):
         bool
     """
 
-    dir_path = os.path.dirname(__file__)
-    point_group_rotation_matrix_dir = os.path.join(dir_path,
-                                                   'crystal_data/'
+    point_group_rotation_matrix_dir = os.path.join(_DATA_PATH,
                                                    'point_group_rotation_matrix_dict.pickle')
     with open(point_group_rotation_matrix_dir, 'rb') as f:
         point_group_rotation_matrix_dict = pickle.load(f)
 
-    point_group_quat_dir = os.path.join(dir_path,
-                                            'crystal_data/point_group_quat_dict.json')
+    point_group_quat_dir = os.path.join(_DATA_PATH, 'point_group_quat_dict.json')
     with open(point_group_quat_dir, 'r') as f:
         point_group_quat_dict = json.load(f, object_hook=json_key_to_int)
 
-    point_group_name_mapping_dir = os.path.join(dir_path,
-                                                   'crystal_data/point_group_name_mapping.json')
+    point_group_name_mapping_dir = os.path.join(_DATA_PATH,
+                                                'point_group_name_mapping.json')
     with open(point_group_name_mapping_dir, 'r') as f:
         point_group_name_mapping = json.load(f, object_hook=json_key_to_int)
 
