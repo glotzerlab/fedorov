@@ -1003,89 +1003,56 @@ class AflowPrototype(Prototype):
     Aflow_data_dir = os.path.join(dir_path,
                                   'crystal_data/Aflow_processed_data.csv')
     Aflow_database = pd.read_csv(Aflow_data_dir, index_col=0)
+    _name_regex = re.compile(r"'(.*?)'")
 
     def __init__(self, prototype_index=0, set_type=False, print_info=True):
-        # should do search, return best match and all options, define a Structure
-        # name search should support one or any combination of: Pearson symbol, space_group number
-        # and chemistry
-        # must define unitcell type and space_group now
         if prototype_index < 0 or prototype_index >= 590:
-            raise ValueError('prototype_index must be an integer between 0 and 590, default '
-                             'value of 0 will skip search by index and use Pearson symbol or '
-                             'chemistry for search')
-        if prototype_index + 1:
-            entry = self.Aflow_database.iloc[prototype_index]
+            raise ValueError(
+                "prototype_index must be an integer between 0 and 590.")
+        entry = self.Aflow_database.iloc[prototype_index]
         # TODO: a search and use best match feature with pearson and chemistry input
 
-        space_group_number = entry['space_group_number']
-        lattice_params_list = re.findall(r"'(.*?)'", entry['lattice_params_list'])
-        try:
-            lattice_params_value_list = [float(i) for i in
-                                         entry['lattice_params_value_list'].strip('[]').split(',')]
-        except BaseException:
-            lattice_params_value_list = []
+        def get_values(value_str: str):
+            try:
+                return [float(i) for i in value_str.strip("[]").split(",")]
+            except Exception:
+                return []
 
-        basis_params_list = re.findall(r"'(.*?)'", entry['basis_params_list'])
-        try:
-            basis_params_value_list = [float(i) for i in
-                                       entry['basis_params_value_list'].strip('[]').split(',')]
-        except BaseException:
-            basis_params_value_list = []
+        lattice_params = self._name_regex.findall(entry['lattice_params'])
+        lattice_params_value = get_values(entry["lattice_params_value"])
+        lattice_params = dict(zip(lattice_params, lattice_params_value))
 
-        lattice_params = dict(zip(lattice_params_list, lattice_params_value_list))
-        basis_params = dict(zip(basis_params_list, basis_params_value_list))
+        basis_params = self._name_regex.findall(entry['basis_params'])
+        basis_params_value = get_values(entry["basis_params_value"])
+        basis_params = dict(zip(basis_params, basis_params_value))
 
         # convert Aflow angle unit from degree to rad
-        for key in ['alpha', 'beta', 'gamma']:
-            if key in lattice_params.keys():
-                lattice_params[key] = lattice_params[key] / 180 * np.pi
+        for key in {'alpha', 'beta', 'gamma'} & lattice_params.keys():
+            lattice_params[key] = lattice_params[key] / 180 * np.pi
 
+        space_group = entry['space_group_number']
         # process proper unitcell params
-        if space_group_number in [146, 148, 155, 160, 161, 166, 167]:
+        if space_group in {146, 148, 155, 160, 161, 166, 167}:
             a = lattice_params.pop('a')
             c = lattice_params.pop('c/a') * a
             lattice_params['a'] = np.sqrt(a ** 2 / 3 + c ** 2 / 9)
             lattice_params['alpha'] = np.arccos((2 * c ** 2 - 3 * a ** 2) / (
                                                 2 * (c ** 2 + 3 * a ** 2)))
         else:
-            # for others
             a = lattice_params['a']
-            try:
+            if "b/a" in lattice_params:
                 lattice_params['b'] = lattice_params.pop('b/a') * a
-            except BaseException:
-                pass
-            try:
+            if "c/a" in lattice_params:
                 lattice_params['c'] = lattice_params.pop('c/a') * a
-            except BaseException:
-                pass
 
-        wyckoff_site_list_by_type = re.findall(r"'(.*?)'", entry['Wyckoff_site'])
-        wyckoff_site_list = list(''.join(wyckoff_site_list_by_type))
-        wyckoff_site_list.sort()
+        wyckoff_sites, wyckoff_positions, types = self._get_wyckoff_sites(
+            entry, space_group, set_type)
 
-        wyckoff_data_dir = os.path.join(self.dir_path, 'crystal_data/space_group_{}_Wyckoff'
-                                        '_site_data.json'.format(space_group_number))
-
-        with open(wyckoff_data_dir, 'r') as f:
-            full_wyckoff_positions = json.load(f)
-
-        # get type label
-        type_by_site = list('A' * len(wyckoff_site_list))
-        if set_type:
-            sorted_site_string = ''.join(wyckoff_site_list)
-            base = ord('A')
-            for wyckoffs in wyckoff_site_list_by_type:
-                for site in wyckoffs:
-                    order = sorted_site_string.find(site)
-                    sorted_site_string = sorted_site_string.replace(site, '0', 1)
-                    type_by_site[order] = chr(base)
-                base += 1
-
-        self.space_group_number = space_group_number
-        self.space_group = SpaceGroup(space_group_number)
-        self.wyckoff_site_list = wyckoff_site_list
-        self.full_wyckoff_positions = full_wyckoff_positions
-        self.type_by_site = type_by_site
+        self.space_group_number = space_group
+        self.space_group = SpaceGroup(space_group)
+        self.wyckoff_site_list = wyckoff_sites
+        self.full_wyckoff_positions = wyckoff_positions
+        self.type_by_site = types
         self.lattice_params = lattice_params
         self.basis_params = basis_params
 
@@ -1095,6 +1062,33 @@ class AflowPrototype(Prototype):
                   'Wyckoff sites: {}\n'.format(entry['Wyckoff_site']),
                   'available lattice parameters: {}\n'.format(lattice_params),
                   'available basis parameters: {}'.format(basis_params))
+
+    def _get_wyckoff_sites(self, entry, space_group, set_type):
+        wyckoff_sites_by_type = self._name_regex.findall(
+            entry['Wyckoff_site'])
+        wyckoff_sites = sorted(''.join(wyckoff_sites_by_type))
+
+        filename = f"space_group_{space_group}_Wyckoff_site_data.json"
+        wyckoff_data_path = os.path.join(
+            self.dir_path, "crystal_data", filename)
+
+        with open(wyckoff_data_path, 'r') as f:
+            wyckoff_positions = json.load(f)
+
+        # get type label
+        if not set_type:
+            return wyckoff_sites, wyckoff_positions, None
+
+        type_by_site = list('A' * len(wyckoff_sites))
+        sorted_site_string = ''.join(wyckoff_sites)
+        base = ord('A')
+        for wyckoffs in wyckoff_sites_by_type:
+            for site in wyckoffs:
+                order = sorted_site_string.find(site)
+                sorted_site_string = sorted_site_string.replace(site, '0', 1)
+                type_by_site[order] = chr(base)
+            base += 1
+        return wyckoff_sites, wyckoff_positions, type_by_site
 
 
 # Point Group operations
