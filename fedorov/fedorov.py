@@ -1206,6 +1206,8 @@ class AflowPrototype(Prototype):
         )
 
         self.id = entry["id"]
+        self.pearson_symbol = entry["pearson_symbol"]
+        self.prototype = entry["prototype"]
         self.space_group_number = space_group
         self.space_group = SpaceGroup(space_group)
         self.wyckoff_site_list = wyckoff_sites
