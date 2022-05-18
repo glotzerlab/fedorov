@@ -1260,7 +1260,7 @@ class AflowPrototype(Prototype):
 
         # get type label
         if not set_type:
-            return wyckoff_sites, wyckoff_positions, None
+            return wyckoff_sites, wyckoff_positions, ["A"] * len(wyckoff_sites)
 
         type_by_site = list("A" * len(wyckoff_sites))
         sorted_site_string = "".join(wyckoff_sites)
