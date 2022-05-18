@@ -7,6 +7,8 @@ Pengji Zhou <zhoupj@umich.edu>, University of Michigan - **Lead developer**.
 
 Vyas Ramasubramani <vramasub@umich.edu>, University of Michigan
 
+Brandon Butler <butlerbr@umich.edu>, University of Michigan
+
 Libraries
 ---------
 
@@ -20,5 +22,5 @@ Users are encouraged to cite these references per the authors' guidelines when u
 
 Acknowledgments
 ---------------
-Development for federov was supported in part by the National Science Foundation, Division of Materials Research Award # DMR 1808342, 
+Development for federov was supported in part by the National Science Foundation, Division of Materials Research Award # DMR 1808342,
 “CDS&E: Fast, scalable GPU-enabled software for predictive materials design & discovery”.
