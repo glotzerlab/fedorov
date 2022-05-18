@@ -22,16 +22,18 @@ from fedorov import (
 
 # test all available structures from Aflow database
 def test_aflow_prototype():
-    dir_path = os.path.dirname(fedorov.__file__)
-    Aflow_data_dir = os.path.join(dir_path, "crystal_data/Aflow_raw_data.csv")
+    Aflow_data_dir = os.path.join(
+        fedorov.fedorov._DATA_PATH, "Aflow_raw_data.csv"
+    )
     database = pd.read_csv(Aflow_data_dir, index_col=0)
 
     # test all run
+    N_regex = re.compile(r"\d+")
     for i in range(0, 590):
-        structure_test = AflowPrototype(prototype_index=i, print_info=False)
+        structure_test = AflowPrototype(i)
         basis_vectors, type_list = structure_test.get_basis_vectors()
         lattice_vectors = structure_test.get_lattice_vectors()
-        N = int(re.findall(r"\d+", database.loc[i, "Pearson Symbol"])[0])
+        N = int(N_regex.findall(database["Pearson Symbol"].iloc[i])[0])
         assert not np.isnan(lattice_vectors).any()
         assert len(basis_vectors) == N
         assert len(type_list) == N
@@ -39,7 +41,7 @@ def test_aflow_prototype():
 
     # detailed test result for different case
     # hexagonal
-    structure_test = AflowPrototype(prototype_index=0, print_info=False)
+    structure_test = AflowPrototype(prototype_index=0)
     basis_vectors, type_list = structure_test.get_basis_vectors()
     lattice_vectors = structure_test.get_lattice_vectors()
     lattice_vectors_reference = np.array(
@@ -57,7 +59,7 @@ def test_aflow_prototype():
     assert np.allclose(basis_vectors, wrap(basis_vectors_reference))
 
     # Rhombohedral
-    structure_test = AflowPrototype(prototype_index=10, print_info=False)
+    structure_test = AflowPrototype(prototype_index=10)
     basis_vectors, type_list = structure_test.get_basis_vectors()
     lattice_vectors = structure_test.get_lattice_vectors()
     basis_vectors_reference = np.array(
@@ -77,9 +79,7 @@ def test_aflow_prototype():
     assert np.allclose(basis_vectors, wrap(basis_vectors_reference))
 
     # tetragonal and type check
-    structure_test = AflowPrototype(
-        prototype_index=5, print_info=False, set_type=True
-    )
+    structure_test = AflowPrototype(prototype_index=5, set_type=True)
     basis_vectors, type_list = structure_test.get_basis_vectors()
     lattice_vectors = structure_test.get_lattice_vectors()
     Lx, Ly, Lz, xy, xz, yz = convert_to_box(lattice_vectors)
@@ -210,8 +210,8 @@ def test_prototype_accuracy():
 
 # test aflow_database parameter is complete
 def test_aflow_database_accuracy():
-    for i, name in AflowPrototype.Aflow_database["id"].iteritems():
-        cdbs = AflowPrototype(i, print_info=False)
+    for i, name in AflowPrototype._Aflow_database["id"].iteritems():
+        cdbs = AflowPrototype(i)
         keys = set(cdbs.lattice_params.keys())
         if name.startswith("a"):  # triclinic
             assert keys == set(("a", "b", "c", "alpha", "beta", "gamma"))
