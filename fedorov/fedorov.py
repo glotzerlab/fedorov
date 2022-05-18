@@ -1249,6 +1249,47 @@ class AflowPrototype(Prototype):
             base += 1
         return wyckoff_sites, wyckoff_positions, type_by_site
 
+    @classmethod
+    def from_query(
+        cls,
+        pearson_symbol: "str | None" = None,
+        space_group: "int | None" = None,
+        prototype: "str | None" = None,
+        set_type: bool = False,
+    ):
+        """Create all `AflowPrototype` matching the given query.
+
+        Args:
+            pearson_symbol (`str`, optional): The Pearson symbol to search for,
+                defaults to ``None`` which accepts any Pearson symbol.
+            space_group (`int`, optional): The space group to search for,
+                defaults to ``None`` which accepts any space group.
+            prototype (`str`, optional): The chemical prototype to search for,
+                defaults to ``None`` which accepts any prototype.
+            set_type (`bool`, optional): Set different type name (in alphabetic
+                order starting with "A") for different atoms in AFLOW prototype.
+
+        Returns:
+            lattices (list[`AflowPrototype`]): The list of all
+                `AflowPrototype`'s with a given Pearson symbol.
+        """
+
+        def query(row):
+            return (
+                (prototype is None or row.prototype == prototype)
+                and (
+                    pearson_symbol is None
+                    or row.pearson_symbol == pearson_symbol
+                )
+                and (space_group is None or row.space_group == space_group)
+            )
+
+        return [
+            cls(i, set_type)
+            for i, row in cls._Aflow_database.iterrows()
+            if query(row)
+        ]
+
 
 # Point Group operations
 class PointGroup:
