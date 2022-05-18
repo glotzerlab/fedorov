@@ -5,6 +5,7 @@ import re
 
 import numpy as np
 import pandas as pd
+import pytest
 
 import fedorov
 from fedorov import (
@@ -20,88 +21,96 @@ from fedorov import (
 )
 
 
-# test all available structures from Aflow database
-def test_aflow_prototype():
-    Aflow_data_dir = os.path.join(
-        fedorov.fedorov._DATA_PATH, "Aflow_raw_data.csv"
-    )
-    database = pd.read_csv(Aflow_data_dir, index_col=0)
+class TestAflowPrototype:
+    @pytest.fixture(scope="module")
+    def raw_data(self):
+        fn = os.path.join(fedorov.fedorov._DATA_PATH, "Aflow_raw_data.csv")
+        return pd.read_csv(fn, index_col=0)
 
-    # test all run
-    N_regex = re.compile(r"\d+")
-    for i in range(0, 590):
-        structure_test = AflowPrototype(i)
-        basis_vectors, type_list = structure_test.get_basis_vectors()
-        lattice_vectors = structure_test.get_lattice_vectors()
-        N = int(N_regex.findall(database["Pearson Symbol"].iloc[i])[0])
-        assert not np.isnan(lattice_vectors).any()
-        assert len(basis_vectors) == N
-        assert len(type_list) == N
-        assert "".join(type_list).isalpha()
+    def test_construction(self, raw_data):
+        """Test all available structures from Aflow database."""
+        N_regex = re.compile(r"\d+")
+        for i in range(0, 590):
+            structure = AflowPrototype(i)
+            basis_vectors, type_list = structure.get_basis_vectors()
+            lattice_vectors = structure.get_lattice_vectors()
+            N = int(N_regex.findall(raw_data["Pearson Symbol"].iloc[i])[0])
+            assert not np.isnan(lattice_vectors).any()
+            assert len(basis_vectors) == N
+            assert len(type_list) == N
+            assert "".join(type_list).isalpha()
 
-    # detailed test result for different case
-    # hexagonal
-    structure_test = AflowPrototype(prototype_index=0)
-    basis_vectors, type_list = structure_test.get_basis_vectors()
-    lattice_vectors = structure_test.get_lattice_vectors()
-    lattice_vectors_reference = np.array(
-        [[2.508, 0, 0], [-1.254, 2.1719917, 0], [0, 0, 4.183]]
-    )
-    basis_vectors_reference = np.array(
+    @pytest.mark.parametrize(
+        "index, basis_vectors, lattice_vectors, type_list",
         [
-            [0.33333333333333, 0.66666666666667, 0.05995000000000],
-            [0.66666666666667, 0.33333333333333, -0.05995000000000],
-            [0.66666666666667, 0.33333333333333, 0.55995000000000],
-            [0.33333333333333, 0.66666666666667, 0.44005000000000],
-        ]
+            (
+                0,
+                np.array(
+                    [
+                        [0.33333333333333, 0.66666666666667, 0.05995000000000],
+                        [0.66666666666667, 0.33333333333333, -0.05995000000000],
+                        [0.66666666666667, 0.33333333333333, 0.55995000000000],
+                        [0.33333333333333, 0.66666666666667, 0.44005000000000],
+                    ]
+                ),
+                np.array(
+                    [[2.508, 0, 0], [-1.254, 2.1719917, 0], [0, 0, 4.183]]
+                ),
+                None,
+            ),
+            (
+                10,
+                np.array(
+                    [
+                        [0, 0, 0],
+                        [0.5, 0.5, 0.5],
+                        [0.2667, 0.2667, 0.2667],
+                        [-0.2667, -0.2667, -0.2667],
+                    ]
+                ),
+                translate_to_vector(
+                    a=6.773648,
+                    b=6.773648,
+                    c=6.773648,
+                    alpha=0.531214,
+                    beta=0.531214,
+                    gamma=0.531214,
+                ),
+                None,
+            ),
+            (
+                5,
+                np.array(
+                    [
+                        [0, 0, 0],
+                        [0.5, 0.5, 0.8973],
+                        [0.5, 0.5, 0.4517],
+                        [0.5, 0, 0.3785],
+                        [0, 0.5, 0.3785],
+                    ]
+                ),
+                np.array([[4.046, 0, 0], [0, 4.046, 0], [0, 0, 4.1394]]),
+                ["B", "A", "C", "A", "A"],
+            ),
+        ],
     )
-    assert np.allclose(lattice_vectors, lattice_vectors_reference)
-    assert np.allclose(basis_vectors, wrap(basis_vectors_reference))
+    def test_lattice_basis_vectors(
+        self, index, basis_vectors, lattice_vectors, type_list
+    ):
+        """Test detailed results for different structures.
 
-    # Rhombohedral
-    structure_test = AflowPrototype(prototype_index=10)
-    basis_vectors, type_list = structure_test.get_basis_vectors()
-    lattice_vectors = structure_test.get_lattice_vectors()
-    basis_vectors_reference = np.array(
-        [
-            [0, 0, 0],
-            [0.5, 0.5, 0.5],
-            [0.2667, 0.2667, 0.2667],
-            [-0.2667, -0.2667, -0.2667],
-        ]
-    )
-    a = 6.773648
-    alpha = 0.531214
-    lattice_vectors_reference = translate_to_vector(
-        a=a, b=a, c=a, alpha=alpha, beta=alpha, gamma=alpha
-    )
-    assert np.allclose(lattice_vectors, lattice_vectors_reference)
-    assert np.allclose(basis_vectors, wrap(basis_vectors_reference))
-
-    # tetragonal and type check
-    structure_test = AflowPrototype(prototype_index=5, set_type=True)
-    basis_vectors, type_list = structure_test.get_basis_vectors()
-    lattice_vectors = structure_test.get_lattice_vectors()
-    Lx, Ly, Lz, xy, xz, yz = convert_to_box(lattice_vectors)
-    basis_vectors_reference = np.array(
-        [
-            [0, 0, 0],
-            [0.5, 0.5, 0.8973],
-            [0.5, 0.5, 0.4517],
-            [0.5, 0, 0.3785],
-            [0, 0.5, 0.3785],
-        ]
-    )
-    lattice_vectors_reference = np.array(
-        [[4.046, 0, 0], [0, 4.046, 0], [0, 0, 4.1394]]
-    )
-    assert np.allclose(lattice_vectors, lattice_vectors_reference)
-    assert np.allclose(basis_vectors, wrap(basis_vectors_reference))
-    assert type_list == ["B", "A", "C", "A", "A"]
+        Tests hexagonal, rhombohedral, and tetragonal lattices.
+        """
+        structure = AflowPrototype(prototype_index=index, set_type=True)
+        assert np.allclose(structure.get_lattice_vectors(), lattice_vectors)
+        struct_basis_vectors, struct_type_list = structure.get_basis_vectors()
+        assert np.allclose(struct_basis_vectors, wrap(basis_vectors))
+        if type_list is not None:
+            assert type_list == struct_type_list
 
 
 def test_prototype():
-    structure_test = Prototype(
+    structure = Prototype(
         space_group_number=230, wyckoff_site="hh", type_by_site="ac"
     )
     basis_params = {
@@ -113,8 +122,8 @@ def test_prototype():
         "z2": -0.145,
     }
 
-    basis_vectors, type_list = structure_test.get_basis_vectors(**basis_params)
-    lattice_vectors = structure_test.get_lattice_vectors(a=4)
+    basis_vectors, type_list = structure.get_basis_vectors(**basis_params)
+    lattice_vectors = structure.get_lattice_vectors(a=4)
     assert type_list == ["A", "C"] * 96
     assert np.allclose(basis_vectors[0, :], np.array([0.12, 0.13, 0.14]))
     assert np.allclose(
