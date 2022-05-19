@@ -9,22 +9,28 @@ setuptools.setup(
     author="Pengji Zhou",
     author_email="zhoupj@umich.edu",
     description="A python code repo to initialize different crystal structures "
-                "based on Pearson symbol or space group",
+    "based on Pearson symbol or space group",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     url="https://github.com/zhou-pj/crystal_database",
-    packages=['fedorov'],
-    package_data={'fedorov': ['crystal_data/*.csv', 'crystal_data/*.json',
-                              'crystal_data/*.pickle']},
+    packages=["fedorov"],
+    package_data={
+        "fedorov": [
+            "crystal_data/*.csv",
+            "crystal_data/*.json",
+            "crystal_data/*.pickle",
+        ]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
         "Topic :: Scientific/Engineering",
     ],
     install_requires=[
-        'numpy>=1.10',
-        'spglib>=1.9.0',
-        'pandas>=0.20.0',
-        'rowan>=1.0.0'],
-    python_requires='>=3.3',
+        "numpy>=1.10",
+        "spglib>=1.9.0",
+        "pandas>=0.20.0",
+        "rowan>=1.0.0",
+    ],
+    python_requires=">=3.3",
 )

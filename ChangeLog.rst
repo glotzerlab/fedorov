@@ -10,3 +10,5 @@ Added
 
 Changed
 +++++
+- All class attributes of `fedorov.AflowPrototype` are now private (#10).
+- Various class instances of the attribute ``dir_path`` are removed (#10).
