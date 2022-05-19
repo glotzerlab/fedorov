@@ -108,6 +108,36 @@ class TestAflowPrototype:
         if type_list is not None:
             assert type_list == struct_type_list
 
+    @pytest.mark.parametrize(
+        "query, expected_length",
+        [
+            ({"pearson_symbol": "cP8"}, 7),
+            ({"pearson_symbol": "cP8", "prototype": "N"}, 2),
+            ({"pearson_symbol": "cP8", "space_group": 198}, 3),
+            (
+                {"pearson_symbol": "cP8", "space_group": 198, "prototype": "N"},
+                1,
+            ),
+            ({"pearson_symbol": "hP2", "space_group": 194}, 1),
+            ({"space_group": 198}, 6),
+        ],
+    )
+    def test_from_query(self, query, expected_length):
+        structures = fedorov.AflowPrototype.from_query(**query)
+        assert len(structures) == expected_length
+        if "pearson_symbol" in query:
+            assert all(
+                st.pearson_symbol == query["pearson_symbol"]
+                for st in structures
+            )
+        if "space_group" in query:
+            assert all(
+                st.space_group_number == query["space_group"]
+                for st in structures
+            )
+        if "prototype" in query:
+            assert all(st.prototype == query["prototype"] for st in structures)
+
 
 def test_prototype():
     structure = Prototype(
