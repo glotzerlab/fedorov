@@ -1,41 +1,25 @@
-from .fedorov import (
-    AflowPrototype,
+from . import data
+from .fedorov import AflowPrototype, Prototype
+from .lattice import (
     Cubic,
     Hexagonal,
     Hexagonal2D,
     Monoclinic,
     Oblique2D,
     Orthorhombic,
-    PlaneGroup,
-    PointGroup,
-    Prototype,
     Rectangular2D,
     Rhombohedral,
-    SpaceGroup,
     Square2D,
     Tetragonal,
     Triclinic,
-    convert_to_box,
-    convert_to_vectors,
-    fractional_to_cartesian,
-    get_volumn,
-    translate_to_vector,
-    translate_to_vector_2D,
-    wrap,
 )
+from .space_group import PlaneGroup, PointGroup, SpaceGroup
 
 # Get the version
 __version__ = "0.1.0"
 
 __all__ = [
-    "wrap",
-    "convert_to_box",
-    "convert_to_vectors",
-    "translate_to_vector",
-    "fractional_to_cartesian",
-    "get_volumn",
-    "translate_to_vector_2D",
-    "populate_system",
+    "data",
     "PlaneGroup",
     "Oblique2D",
     "Rectangular2D",

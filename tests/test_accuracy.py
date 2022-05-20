@@ -14,6 +14,9 @@ from fedorov import (
     PointGroup,
     Prototype,
     SpaceGroup,
+)
+from fedorov.data import (
+    _DATA_PATH,
     convert_to_box,
     convert_to_vectors,
     translate_to_vector,
@@ -24,7 +27,7 @@ from fedorov import (
 class TestAflowPrototype:
     @pytest.fixture(scope="module")
     def raw_data(self):
-        fn = os.path.join(fedorov.fedorov._DATA_PATH, "Aflow_raw_data.csv")
+        fn = os.path.join(_DATA_PATH, "Aflow_raw_data.csv")
         return pd.read_csv(fn, index_col=0)
 
     def test_construction(self, raw_data):
